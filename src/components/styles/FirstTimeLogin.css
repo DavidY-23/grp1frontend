@@ -1,0 +1,12 @@
+.form-part label {
+  display: block;
+  margin: 10px 0 0;
+  padding: 10px;
+}
+
+.form-part {
+  border-style: solid;
+  width: 50%;
+  margin: 10px;
+}
+
