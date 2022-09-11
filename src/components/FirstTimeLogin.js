@@ -5,7 +5,8 @@ import {Link, Navigate } from 'react-router-dom';
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getNextKeyDef } from '@testing-library/user-event/dist/keyboard/getNextKeyDef';
-
+import { FormControl } from '@mui/material';
+import { Button } from '@mui/material';
 function FirstTimeLogin() {
   const navigate = useNavigate();
 
@@ -20,19 +21,18 @@ function FirstTimeLogin() {
     navigate('/Profile', {state:{name: name, age: age, gender:gender, weight:weight, height:height}});
   }
 
-
   return (
     <div className="form-part">
     <h3>Please tell us about yourself</h3>
       <form onSubmit={handleSubmit}>
-      <label>Enter your name:
+      <label>Enter your name: 
         <input 
           type="text" 
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>Enter your age:
+      <label>Enter your age: 
         <input 
           type="number" 
           value={age}
@@ -44,21 +44,21 @@ function FirstTimeLogin() {
         <input type="radio" value="Female" name="gender"onChange={(e) => setGender(e.target.value)}/> Female
         <input type="radio" value="Other" name="gender" onChange={(e) => setGender(e.target.value)}/> Other      
       </label>
-      <label>Enter your weight:
+      <label>Enter your weight (lbs):
         <input 
           type="number" 
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
         />
       </label>
-      <label>Enter your height:
+      <label>Enter your height (in):
         <input 
           type="number" 
           value={height}
           onChange={(e) => setHeight(e.target.value)}
         />
       </label>
-      <input type="submit" value="Submit" />
+      <input className="button" type="submit" value="Submit" />
     </form>
   </div>
   )
