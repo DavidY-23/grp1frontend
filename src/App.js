@@ -10,11 +10,10 @@ function App() {
   return (
     <div>
       <p>Main page to be implemented</p>
-    <Routes>
-      {/* Add routes/your page components here  */}
-      <Route path="/CreateAccount" element={<CreateAccount />} />
-      
-    </Routes>
+      <Routes>
+        {/* Add routes/your page components here  */}
+        <Route path="/CreateAccount" element={<CreateAccount />} />
+      </Routes>
     </div>
 
   );
