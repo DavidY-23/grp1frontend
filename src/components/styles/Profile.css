@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body {
+    font-family: 'Ubuntu';
+    background-color: #87CEFE;
+    color: #0000EE;
+}
+
+.profile {
+    border-right: solid;
+    font-size: 64px;
+}
+
+p {
+    font-size: 30px;
+}

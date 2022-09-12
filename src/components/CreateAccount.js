@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/CreateAccount.css'
+import "@fontsource/comic-neue";
 
 class CreateAccount extends Component {
     constructor(props) {

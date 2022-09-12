@@ -5,16 +5,19 @@ import LoginPage from './components/LoginPage';
 
 // Import your components here 
 import CreateAccount from './components/CreateAccount';
+import FirstTimeLogin from './components/FirstTimeLogin';
+import Profile from './components/Profile';
 
 
 function App() {
   /* global google */
   return (
     <div>
-      <p>Main page to be implemented</p>
     <Routes>
       {/* Add routes/your page components here  */}
       <Route path="/CreateAccount" element={<CreateAccount />} />
+      <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
+      <Route path="/Profile" element={<Profile />} />
       <Route path="/LoginPage" element={<LoginPage/>}/>
     </Routes>
     </div>
