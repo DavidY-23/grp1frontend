@@ -15,7 +15,6 @@ function App() {
     <Routes>
       {/* Add routes/your page components here  */}
       <Route path="/CreateAccount" element={<CreateAccount />} />
-      
       <Route path="/LoginPage" element={<LoginPage/>}/>
     </Routes>
     </div>
