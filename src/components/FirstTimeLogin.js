@@ -6,7 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getNextKeyDef } from '@testing-library/user-event/dist/keyboard/getNextKeyDef';
 import { FormControl } from '@mui/material';
-import { Button } from '@mui/material';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function FirstTimeLogin() {
   const navigate = useNavigate();
 
@@ -25,33 +26,33 @@ function FirstTimeLogin() {
     <div className="form-part">
     <h3>Please tell us about yourself</h3>
       <form onSubmit={handleSubmit}>
-      <label>Enter your name: 
+      <label className="loginLabel">Enter your name: 
         <input 
           type="text" 
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label>Enter your age: 
+      <label className="loginLabel">Enter your age: 
         <input 
           type="number" 
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
       </label>
-      <label>Enter your gender:
+      <label className="loginLabel">Enter your gender:
         <input type="radio" value="Male" name="gender" onChange={(e) => setGender(e.target.value)}/> Male
         <input type="radio" value="Female" name="gender"onChange={(e) => setGender(e.target.value)}/> Female
         <input type="radio" value="Other" name="gender" onChange={(e) => setGender(e.target.value)}/> Other      
       </label>
-      <label>Enter your weight (lbs):
+      <label className="loginLabel">Enter your weight (lbs):
         <input 
           type="number" 
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
         />
       </label>
-      <label>Enter your height (in):
+      <label className="loginLabel">Enter your height (in):
         <input 
           type="number" 
           value={height}

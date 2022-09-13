@@ -11,12 +11,11 @@ body {
 }
 
 .form-part input {
+  margin: 10px;
   border-radius: 7px;
   padding: 7px;
-}
-
-.form-part input {
-  margin: 10px;
+  border: 1px solid black;
+  appearance: auto;
 }
 
 .form-part {
