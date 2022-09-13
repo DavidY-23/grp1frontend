@@ -15,7 +15,6 @@ input {
   border-radius: 7px;
   padding: 7px;
   border: 1px solid black;
-
   appearance: auto;
 }
 
@@ -35,7 +34,7 @@ input {
 
 }
 
-h3 {
+.form-part h3 {
   color: pink;
   text-decoration: underline;
 }

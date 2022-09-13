@@ -5,12 +5,12 @@
     font-family: Arial, sans-serif;
 }
 
-input, button {
+/* input, button {
     appearance: none;
     background: none;
     border: none;
     outline: none;
-}
+} */
 
 .Login {
     height: 100vh;
@@ -71,6 +71,11 @@ form {
 }
 
 .form-inner .form-group input {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+
     display: block;
     width: 100%;
     padding: 10px 15px;
@@ -84,6 +89,11 @@ form {
 }
 
 .form-inner input[type="submit"]{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+
     display: inline-block;
     width: 48%;
     font-size: 15px;

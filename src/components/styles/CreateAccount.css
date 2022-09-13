@@ -163,6 +163,9 @@
   border-radius: 10px;
 
   /* Sign up button  */
+  border: none;
+  outline: none;
+
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
