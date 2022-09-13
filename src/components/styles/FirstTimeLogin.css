@@ -10,12 +10,12 @@ body {
   padding: 10px;
 }
 
-input {
+.form-part input {
   border-radius: 7px;
   padding: 7px;
 }
 
-input {
+.form-part input {
   margin: 10px;
 }
 
@@ -35,7 +35,7 @@ input {
 
 }
 
-h3 {
+.form-part h3 {
   color: pink;
   text-decoration: underline;
 }

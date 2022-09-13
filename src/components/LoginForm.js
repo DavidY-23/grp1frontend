@@ -55,7 +55,7 @@ function LoginForm({ Login, error}) {
                 </div>
                 <input type="submit" value="LOGIN"/>
                 {/* <a href="https://i0.wp.com/learn.onemonth.com/wp-content/uploads/2017/08/1-10.png?fit=845%2C503&ssl=1">SIGN UP</a> */}
-                <Link to="/CreateAccount" id="Signup">Signup</Link>
+                <Link to="/CreateAccount" id="Signup">SIGN UP</Link>
 
                 <div id="signInDiv"></div>
             </div>
