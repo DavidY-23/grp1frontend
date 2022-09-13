@@ -10,7 +10,7 @@ body {
   padding: 10px;
 }
 
-input {
+.form-part input {
   margin: 10px;
   border-radius: 7px;
   padding: 7px;
