@@ -5,10 +5,14 @@ import { Routes, Route } from "react-router-dom";
 
 function ExceriseSearch() {
     return (
-        <div>
-            <h1>Excersie Search Page</h1>  
+        <div id="wholeComponet">
+            <div>
+                <form action="https:/httpbin.org/get" method="get">
+                    <input id="SearchBar" type="text" placeholder="Search for exercises best suited for you!"></input> 
+                </form>
+            </div>
         </div>
     );
 }
 
-export default ExerciseSearch;
+export default ExceriseSearch;

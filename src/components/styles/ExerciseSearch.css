@@ -1,4 +1,26 @@
 body {
-    background-color: black;
+    background-image: url("../../images/backgroundForExercise.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     color:white;
 }
+
+#SearchBar {
+    background-color: #CDCDCD;
+    width: 50%;
+    height: 3vw;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8vw;
+    display: block;
+    text-align: left;
+    font-size: 2vw;
+    
+}
+
+
+   
+
+
+
