@@ -1,17 +1,9 @@
 import './styles/FirstTimeLogin.css';
 import { useState } from 'react';
-import {Link, Navigate } from 'react-router-dom';
-// import {Profile} from './component/Profile'
-import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getNextKeyDef } from '@testing-library/user-event/dist/keyboard/getNextKeyDef';
-import { FormControl } from '@mui/material';
-import { tsConstructorType } from '@babel/types';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
+
 function FirstTimeLogin() {
   const navigate = useNavigate();
-
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -20,7 +12,6 @@ function FirstTimeLogin() {
   const [page, setPage] = useState(0);
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
-  var injuryCheckBox = [];
 
   const handlePrevious = () => {
     setPage(0);
@@ -31,7 +22,6 @@ function FirstTimeLogin() {
     if (page === 0) {
       setPage(1)
       return;
-      console.log("Page 2")
     }
     if (page === 1)
       navigate('/Profile', {state:{name: name, age: age, gender:gender, weight:weight, height:height, allergies: allergies, injury: injury}});
@@ -48,12 +38,11 @@ function FirstTimeLogin() {
 
   const handleInjury = async (event) => {
     if (event.target.checked) {
-      injuryCheckBox.push(event.target.value)
+      setInjury(oldArray => [...oldArray, event.target.value] );
     } else {
-      const res = injuryCheckBox.filter(item => item !== event.target.value)
-      injuryCheckBox = res;
+      setInjury((prevState) => 
+        prevState.filter((prevItem) => prevItem !== event.target.value));
     }
-    setInjury(injuryCheckBox);
   }
 
   if (page === 0) {
