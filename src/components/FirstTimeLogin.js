@@ -23,6 +23,7 @@ function FirstTimeLogin() {
   }
 
   return (
+    <div id="back">
     <div className="form-part">
     <h3>Please tell us about yourself</h3>
       <form onSubmit={handleSubmit}>
@@ -61,6 +62,7 @@ function FirstTimeLogin() {
       </label>
       <input className="button" type="submit" value="Submit" />
     </form>
+  </div>
   </div>
   )
 }
