@@ -8,6 +8,7 @@ function Profile() {
     const BMI = (location.state?.weight/ (location.state?.height * location.state?.height) * 703).toFixed(1)
     const feet = Math.floor(location.state?.height / 12);
     const inches = location.state?.height % 12
+    console.log(location.state?.allergies)
     return (
     <div className="profile">
         <Grid container spacing={3}
@@ -28,6 +29,7 @@ function Profile() {
                 {location.state?.name}<br></br>
                 {location.state?.age} years old<br></br>
                 {location.state?.gender}
+                {location.state?.allergies}
             </Grid>
         </Grid>
     </div>
