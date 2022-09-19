@@ -47,6 +47,7 @@ function FirstTimeLogin() {
 
   if (page === 0) {
     return (
+      <div id="back">
       <div className="form-part">
       <h3>Please tell us about yourself</h3>
         <form onSubmit={handleSubmit}>
@@ -86,10 +87,12 @@ function FirstTimeLogin() {
         <input className="button" type="submit" value="Next" />
       </form>
     </div>
+    </div>
     )
   }
   if (page === 1) {
     return (
+      <div id="back">
       <div className="form-part">
       <h3>Please tell us about yourself</h3>
         <form onSubmit={handleSubmit}>
@@ -111,6 +114,7 @@ function FirstTimeLogin() {
           <input className="button" type="submit" onClick={handlePrevious} value="Previous" /> 
           <input className="button" type="submit" value="Submit" />
       </form>
+    </div>
     </div>
     )
   }
