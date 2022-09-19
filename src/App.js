@@ -8,6 +8,7 @@ import CreateAccount from './components/CreateAccount';
 import FirstTimeLogin from './components/FirstTimeLogin';
 import Profile from './components/Profile';
 import ExerciseSearch from './components/ExerciseSearch';
+import RecipeSearch from "./components/RecipeSearch";
 
 function App() {
   /* global google */
@@ -20,6 +21,7 @@ function App() {
       <Route path="/Profile" element={<Profile />} />
       <Route path="/LoginPage" element={<LoginPage/>}/>
       <Route path="/ExerciseSearch" element={<ExerciseSearch/>}/>
+      <Route path="/RecipeSearch" element={<RecipeSearch/>}/>
     </Routes>
     </div>
 

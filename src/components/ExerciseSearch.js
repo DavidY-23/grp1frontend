@@ -29,7 +29,7 @@ function ExceriseSearch() {
                     <img src={legsPic} height="150" width="150"/>
                     <a href="#">Legs</a>
                 </div>
-                <div class="pad">
+                <div class="pad" id="singlelink">
                     <a href="#">And Much More</a>
                 </div>
 
