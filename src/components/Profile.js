@@ -30,6 +30,8 @@ function Profile() {
                 {location.state?.age} years old<br></br>
                 {location.state?.gender}
                 {location.state?.allergies}
+                {location.state?.injury}
+
             </Grid>
         </Grid>
     </div>

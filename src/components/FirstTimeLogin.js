@@ -19,7 +19,8 @@ function FirstTimeLogin() {
   const [height, setHeight] = useState("");
   const [page, setPage] = useState(0);
   const [allergies, setAllergies] = useState([]);
-  let allergyCheckBox = [];
+  const [injury, setInjury] = useState([]);
+  var injuryCheckBox = [];
 
   const handlePrevious = () => {
     setPage(0);
@@ -33,18 +34,26 @@ function FirstTimeLogin() {
       console.log("Page 2")
     }
     if (page === 1)
-      navigate('/Profile', {state:{name: name, age: age, gender:gender, weight:weight, height:height, allergies: allergies}});
+      navigate('/Profile', {state:{name: name, age: age, gender:gender, weight:weight, height:height, allergies: allergies, injury: injury}});
   }
 
   const handleAllergy = async (event) => {
     if (event.target.checked) {
-      console.log("inside checked");
-      allergyCheckBox.push(event.target.value)
+      setAllergies(oldArray => [...oldArray, event.target.value] );
     } else {
-      const res = allergyCheckBox.filter(item => item !== event.target.value)
-      allergyCheckBox = res;
+      setAllergies((prevState) => 
+        prevState.filter((prevItem) => prevItem !== event.target.value));
     }
-    setAllergies(allergyCheckBox);
+  }
+
+  const handleInjury = async (event) => {
+    if (event.target.checked) {
+      injuryCheckBox.push(event.target.value)
+    } else {
+      const res = injuryCheckBox.filter(item => item !== event.target.value)
+      injuryCheckBox = res;
+    }
+    setInjury(injuryCheckBox);
   }
 
   if (page === 0) {
@@ -105,11 +114,10 @@ function FirstTimeLogin() {
             <input type="checkbox" value="Soybeans" onChange={handleAllergy} />Soybeans
           </label>
           <label className="loginLabel">Any current injuries that would prevent you from exercises?: 
-            <input 
-              type="number" 
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
+          <input type="checkbox" value="Arms" onChange={handleInjury} />Arms
+            <input type="checkbox" value="Legs" onChange={handleInjury} />Legs
+            <input type="checkbox" value="Shoulders" onChange={handleInjury} />Shoulders
+            <input type="checkbox" value="Chest" onChange={handleInjury} />Chest
           </label>
           <input className="button" type="submit" onClick={handlePrevious} value="Previous" /> 
           <input className="button" type="submit" value="Submit" />
