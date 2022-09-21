@@ -7,33 +7,14 @@ import legsPic from '../images/legs.png';
 
 function ExceriseSearch() {
     return (
-        <div id="wholeComponet">
-            <div id="surrounding">
-                <form action="https:/httpbin.org/get" method="get">
-                    <input id="SearchBar" type="text" placeholder="Search for exercises best suited for you!"></input> 
+        <div id="wholepage">
+            <div class="container">
+                <form action="https://www.google.com/search" method="get" class="searchbar" target="_blank">
+                    <input type="text" placeholder="Search for Exercises Best Suited for you!" />
+                    <button type="submit"></button>
                 </form>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-            </div>
-            <div id="images">
-                <div class="pad">
-                    <img src={armsPic} height="150" width="150"/>
-                    <a href="#">Arms</a>
-                </div>
-                <div class="pad">
-                    <img src={legsPic} height="150" width="150"/>
-                    <a href="#">Legs</a>
-                </div>
-                <div class="pad" id="singlelink">
-                    <a href="#">And Much More</a>
-                </div>
+            </div>  
 
-            </div>
         </div>
     );
 }

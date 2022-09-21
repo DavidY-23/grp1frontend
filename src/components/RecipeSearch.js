@@ -7,33 +7,12 @@ import recipeRight from '../images/recipeRight.png';
 function RecipeSearch() {
     return (
         <div id="wholeComponet">
-            <div id="surrounding">
-                <form action="https:/httpbin.org/get" method="get">
-                    <input id="SearchBar" type="text" placeholder="Search the best recipes for you!"></input> 
+            <div class="container">
+                <form action="https://www.google.com/search" method="get" class="searchbar" target="_blank">
+                    <input type="text" placeholder="Search the Best Recipes for you!" />
+                    <button type="submit"></button>
                 </form>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-            </div>
-            <div id="images">
-                <div class="pad">
-                    <img src={recipeLeft} height="150" width="150"/>
-                    <a href="#">Toast with eggs</a>
-                </div>
-                <div class="pad">
-                    <img src={recipeMiddle} height="150" width="150"/>
-                    <a href="#">Trail Mix</a>
-                </div>
-                <div class="pad" id="singlelink">
-                    <img src={recipeRight} height="150" width="150"/>
-                    <a href="#">Cream Cheese</a>
-                </div>
-
-            </div>
+            </div> 
         </div>
     );
 }

@@ -1,80 +1,61 @@
-body {
-    background-image: url("../../images/backgroundForExercise.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    color:white;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    /* Great font for search engine*/
+    font-family: "Poppins", sans-serif;
+    background-image: url("../../images/backgroundForExercise.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
-#SearchBar {
-    background-color: white;
-    width: 50%;
-    height: 3vw;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 8vw;
-    display: block;
-    text-align: left;
-    font-size: 2vw;   
-}
-
-#images {
+/* This is the whole container for the search bar*/
+.container {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
-    height: 300px;
-    flex-shrink: 1;    
-    flex-grow: 1;
+    justify-content: center;
 }
 
-#images img {
-    margin-bottom: 17px;
-}
-
-.pad {
-    border: 3px solid white;
-    padding: 40px;
-    background-color: rgb(17,204,68,0.4);
-    border-radius: 15px;
+.searchbar {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(17,204,68,0.4);
+    /* Time to use what I learned about flex box*/
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px 20px;
 }
 
-.pad #singlelink {
-   align-self: center;
-}
-
-.pad a:link {
-    text-decoration: none;
-    color: white;
+.searchbar input {
     font-size: 20px;
-    font-family: sans-serif;
-}
-
-.pad a:visited {
-    text-decoration: none;
+    flex: 1;
+    border: 0;
+    padding: 24px 20px;
+    background: transparent;
     color: white;
-    font-size: 20px;
-    font-family: sans-serif;
+    outline: none;
 }
 
-.pad a:hover {
-    font-weight: bold;
-    text-decoration: underline;
+::placeholder {
+    color: white;
 }
-
-.pad a:active {
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 25px;
+ 
+.searchbar button{
+    background-image: url("../../images/searchIcon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    /* Just to make the search icon a circle*/
+    border-radius: 50%;
 }
-   
-
-
-
