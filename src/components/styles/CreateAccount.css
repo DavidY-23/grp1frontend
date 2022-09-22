@@ -1,6 +1,24 @@
-.CreateAccountBody{
-background-color: #0599ad;
-min-height: 100vh;
+.CreateAccountBody {
+  background-color: #0599ad;
+  min-height: 100vh;
+}
+
+.password-checker {
+  /* Password must contain at least one letter, digit, and special character */
+
+  position: absolute;
+  width: 295px;
+  height: 23px;
+  left: calc(50% - 295px / 2 + 2.5px);
+  top: calc(50% - 23px / 2 + 145.5px);
+
+  font-family: "Inder";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10.5px;
+  line-height: 12px;
+
+  color: #e80606;
 }
 
 .welcome {
@@ -26,6 +44,16 @@ min-height: 100vh;
   align-items: center;
 }
 
+.login-form input {
+  background-color: #f8f8f8;
+}
+.login-form input:focus {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.login-form input:focus::placeholder {
+  color: transparent;
+}
+
 .input-user {
   /* Rectangle 6 */
 
@@ -36,27 +64,27 @@ min-height: 100vh;
   height: 40px;
   left: calc(50% - 300px / 2);
   top: calc(50% - 40px / 2 - 98px);
+  padding: 2%;
 
-  background: #ffffff;
   border: 1px solid #c4bdbd;
   border-radius: 5px;
 }
-
-.input-user::placeholder {
-  position: absolute;
-  width: 78px;
-  height: 19px;
-  left: 501px;
-  top: 292px;
-  
-  font-family: 'Inter';
+.input-user:placeholder {
+  /* position: absolute;
+    width: 78px;
+    height: 19px;
+    left: 501px;
+    top: 292px; */
+  position: relative;
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  
-  color: #C5BFBF;
+
+  color: #c5bfbf;
 }
+
 .input-password {
   /* Rectangle 7 */
 
@@ -67,25 +95,26 @@ min-height: 100vh;
   height: 40px;
   left: calc(50% - 300px / 2);
   top: calc(50% - 40px / 2 - 31px);
+  padding: 2%;
 
-  background: #ffffff;
   border: 1px solid #c4bdbd;
   border-radius: 5px;
 }
-.input-password::placeholder {
-position: absolute;
-width: 74px;
-height: 19px;
-left: 501px;
-top: 359px;
+.input-password:placeholder {
+  /* position: absolute;
+  width: 74px;
+  height: 19px;
+  left: 501px;
+  top: 359px; */
+  position: relative;
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
 
-color: #C5BFBF;
+  color: #c5bfbf;
 }
 
 .input-confirm {
@@ -98,25 +127,26 @@ color: #C5BFBF;
   height: 40px;
   left: calc(50% - 300px / 2);
   top: calc(50% - 40px / 2 + 36px);
+  padding: 2%;
 
-  background: #ffffff;
   border: 1px solid #c4bdbd;
   border-radius: 5px;
 }
-.input-confirm::placeholder {
-  position: absolute;
-  width: 139px;
-  height: 19px;
-  left: 501px;
-  top: 426px;
-  
-  font-family: 'Inter';
+.input-confirm:placeholder {
+  /* position: absolute;
+    width: 139px;
+    height: 19px;
+    left: 501px;
+    top: 426px; */
+  position: relative;
+
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  
-  color: #C5BFBF;
+
+  color: #c5bfbf;
 }
 
 .button-container {
@@ -128,16 +158,25 @@ color: #C5BFBF;
   left: calc(50% - 300px / 2);
   top: calc(50% - 40px / 2 + 103px);
 
-  background: #4075ff;
+  /* background: #4075ff; */
+  background-image: linear-gradient(to right, #c2e59c, #64b3f4);
   border-radius: 10px;
 
   /* Sign up button  */
+  border: none;
+  outline: none;
+
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   color: #ffffff;
+  cursor: pointer;
+}
+
+.button-container:hover {
+  background-image: linear-gradient(to right, #3494e6, #ec6ead);
 }
 
 .login-form {
@@ -185,4 +224,15 @@ color: #C5BFBF;
   /* identical to box height */
 
   color: #4075ff;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  color: #0e44ce;
+  font-weight: 530;
+}
+
+.login-link:hover {
+  color: #0e44ce;
+  font-weight: 530;
 }

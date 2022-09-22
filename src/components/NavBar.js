@@ -1,9 +1,8 @@
 import React from "react";
-import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
 import "./styles/NavBar.css";
 import { Link } from "react-router-dom";
 
+//to do: code clarity can be improved
 const NavBar = (props) => {
   return (
     <div className="container-fluid sticky-top side-nav-bar">
