@@ -1,0 +1,15 @@
+.selected-nav-tab {
+  font-weight: bold;
+}
+
+.side-nav-bar {
+  background-color: lightgreen;
+  height: 100vh;
+}
+
+.side-nav-bar .row a {
+  text-decoration: none;
+  padding: 1rem;
+  color: white;
+  margin-left: 1rem;
+}

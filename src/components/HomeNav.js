@@ -1,8 +1,8 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import {LinkContainer} from 'react-router-bootstrap'
-import logo from '../images/Logo11.png';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
+import logo from "../images/Logo11.png";
 
 function HomeNav() {
   return (
@@ -11,7 +11,7 @@ function HomeNav() {
         <LinkContainer to="/">
           <Navbar.Brand>Diet Unquiet</Navbar.Brand>
         </LinkContainer>
-        <img className="HomeLogo" src={logo}/>
+        <img className="HomeLogo" src={logo} />
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
