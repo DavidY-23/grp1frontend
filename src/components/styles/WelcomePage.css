@@ -38,7 +38,7 @@
     border-radius: 50%;
 }
 
-#Homenav {
+#Welcomenav {
     position: absolute;
     top: 0;
     left: 0;
@@ -46,7 +46,7 @@
     z-index: 1;
 }
 
-.HomeLogo {
+.WelcomeLogo {
     width: 40px;
     height: 40px;
     position: relative;
