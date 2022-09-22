@@ -6,13 +6,13 @@ import recipeRight from '../images/recipeRight.png';
 
 function RecipeSearch() {
     return (
-        <div id="wholeComponet">
-            <div class="container">
-                <form action="https://www.google.com/search" method="get" class="searchbar" target="_blank">
-                    <input type="text" placeholder="Search the Best Recipes for you!" />
+        <div className="wholepagetwo">
+            <div className="containertwo">
+                <form action="https://www.google.com/search" method="get" className="searchbartwo" target="_blank">
+                    <input type="text" placeholder="Search for Exercises Best Suited for you!" />
                     <button type="submit"></button>
                 </form>
-            </div> 
+            </div>           
         </div>
     );
 }

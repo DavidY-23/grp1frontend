@@ -7,8 +7,8 @@ import LoginPage from './components/LoginPage';
 import CreateAccount from './components/CreateAccount';
 import FirstTimeLogin from './components/FirstTimeLogin';
 import Profile from './components/Profile';
-import ExerciseSearch from './components/ExerciseSearch';
-import RecipeSearch from "./components/RecipeSearch";
+import ExerciseSearch from './components/ExerciseSearch.js';
+import RecipeSearch from "./components/RecipeSearch.js";
 
 function App() {
   /* global google */

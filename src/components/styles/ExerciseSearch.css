@@ -1,32 +1,30 @@
-* {
+.wholepage {
+    background-image: url('../../images/backgroundForExercise.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Great font for search engine*/
     font-family: "Poppins", sans-serif;
-    background-image: url("../../images/backgroundForExercise.png"); 
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 
-/* This is the whole container for the search bar*/
 .container {
-    background-position: center;
-    background-size: cover;
+    background-position: top; 
+    background-size: cover; 
     width: 100%;
     min-height: 100vh;
     padding: 5%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly; 
 }
 
 .searchbar {
     width: 100%;
     max-width: 700px;
     background: rgba(17,204,68,0.4);
-    /* Time to use what I learned about flex box*/
     display: flex;
     align-items: center;
     border-radius: 60px;
@@ -56,6 +54,24 @@
     cursor: pointer;
     border: none;
     background-color: white;
-    /* Just to make the search icon a circle*/
     border-radius: 50%;
+}
+
+.imagescollect {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pad {
+    border: 5px solid white;
+    padding: 40px;
+    background-color: rgba(17,204,68,0.4);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    flex-wrap: wrap;
 }
