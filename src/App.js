@@ -1,22 +1,20 @@
-import { render } from '@testing-library/react';
-import React, { Component } from 'react';
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 // Import your components here 
 import CreateAccount from './components/CreateAccount';
-
+import HomePage from './components/HomePage';
 
 function App() {
   return (
-    <div>
-      <p>Main page to be implemented</p>
-    <Routes>
-      {/* Add routes/your page components here  */}
-      <Route path="/CreateAccount" element={<CreateAccount />} />
-      
-    </Routes>
-    </div>
-
+    <BrowserRouter>
+      <Routes>
+        {/* Add routes/your page components here  */}
+        <Route exact path='/' element={<CreateAccount />} />
+        <Route path="/CreateAccount" element={<CreateAccount />} />
+        <Route path="/home/:state" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

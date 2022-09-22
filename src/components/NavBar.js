@@ -1,0 +1,54 @@
+import React from "react";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
+import "./styles/NavBar.css";
+import { Link } from "react-router-dom";
+
+const NavBar = (props) => {
+  return (
+    <div className="container-fluid sticky-top side-nav-bar">
+      <div className="row">
+        <Link to="/home/overview">
+          <div
+            className={props.selected === "overview" ? "selected-nav-tab" : ""}
+          >
+            Overview
+          </div>
+        </Link>
+      </div>
+      <div className="row">
+        <Link to="/home/profile">
+          <div
+            className={props.selected === "profile" ? "selected-nav-tab" : ""}
+          >
+            Profile
+          </div>
+        </Link>
+      </div>
+      <div className="row">
+        <Link to="/home/recipesearch">
+          <div
+            className={
+              props.selected === "recipesearch" ? "selected-nav-tab" : ""
+            }
+          >
+            Recipe Search
+          </div>
+        </Link>
+      </div>
+      <div className="row">
+        <Link to="/home/exercisesearch">
+          <div
+            className={
+              props.selected === "exercisesearch" ? "selected-nav-tab" : ""
+            }
+          >
+            Exercise Search
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default NavBar;
