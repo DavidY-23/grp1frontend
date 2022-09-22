@@ -4,14 +4,14 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import logo from "../images/Logo11.png";
 
-function HomeNav() {
+function WelcomeNav() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Diet Unquiet</Navbar.Brand>
         </LinkContainer>
-        <img className="HomeLogo" src={logo} />
+        <img className="WelcomeLogo" src={logo} />
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -39,4 +39,4 @@ function HomeNav() {
   );
 }
 
-export default HomeNav;
+export default WelcomeNav;

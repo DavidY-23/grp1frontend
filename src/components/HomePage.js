@@ -1,28 +1,38 @@
-import "./styles/HomePage.css";
-import HomeNav from "./HomeNav";
-import bg1 from "../images/Home_BG1.jpeg";
-import bg2 from "../images/Home_BG2.jpeg";
-import middle from "../images/Home_Middle.png";
-import bowl1 from "../images/Home_Bowl1.png";
-import bowl2 from "../images/Home_Bowl2.png";
-import bowl3 from "../images/Home_Bowl3.png";
+import React from "react";
+import NavBar from "./NavBar";
+import Overview from "./Overview";
+import RecipeSearch from "./RecipeSearch";
+import ExerciseSearch from "./ExerciseSearch";
+import Profile from "./Profile";
+import { useParams } from "react-router-dom";
 
-function HomePage() {
+const renderContent = (state) => {
+  switch (state) {
+    case "overview":
+      return <Overview />;
+    case "profile":
+      return <Profile />;
+    case "recipesearch":
+      return <RecipeSearch />;
+    case "exercisesearch":
+      return <ExerciseSearch />;
+    default:
+      return <Overview />;
+  }
+};
+
+const HomePage = (props) => {
+  const { state } = useParams();
   return (
-    <div className="Home">
-      <HomeNav id="Homenav" />
-      <img className="BG" src={bg1} />
-      <img className="BGBottom" src={bg2} />
-      <img className="middle" src={middle} />
-      <img className="bowl" id="bowl" src={bowl1} />
-      <img className="bowl" id="bowl2" src={bowl2} />
-      <img className="bowl" id="bowl3" src={bowl3} />
-      <div className="msg">
-        <span className="msgHeader">Welcome to Diet Unquiet</span>
-        <h2>Start your health journey today</h2>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-3">
+          <NavBar selected={state} />
+        </div>
+        <div className="col-9">{renderContent(state)}</div>
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;

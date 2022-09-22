@@ -8,10 +8,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Import your components here
 import CreateAccount from "./components/CreateAccount";
 import FirstTimeLogin from "./components/FirstTimeLogin";
-import HomePage from "./components/HomePage";
+import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
-import HomePage2 from "./components/HomePage2";
+import HomePage from "./components/HomePage";
 
 function App() {
   /* global google */
@@ -20,10 +20,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Add routes/your page components here  */}
-          <Route exact path="/" element={<CreateAccount />} />
-          <Route path="/CreateAccount" element={<CreateAccount />} />
-          <Route path="/home/:state" element={<HomePage2 />} />
-          <Route exact path="/" element={<HomePage />} />
+          <Route path="/home/:state" element={<HomePage />} />
+          <Route exact path="/" element={<WelcomePage />} />
           <Route exact path="/About" element={<AboutPage />} />
           <Route exact path="/Contact" element={<ContactPage />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />

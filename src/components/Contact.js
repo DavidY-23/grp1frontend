@@ -1,11 +1,11 @@
 import "./styles/Contact.css";
-import HomeNav from "./HomeNav";
+import WelcomeNav from "./WelcomeNav";
 import bg from "../images/Contact_BG.jpeg";
 
 function ContactPage() {
   return (
     <div className="Contact">
-      <HomeNav id="Homenav" />
+      <WelcomeNav id="Welcomenav" />
       <img className="BG" src={bg} />
     </div>
   );

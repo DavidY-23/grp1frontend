@@ -1,11 +1,11 @@
 import "./styles/About.css";
-import HomeNav from "./HomeNav";
+import WelcomeNav from "./WelcomeNav";
 import bg from "../images/About_BG.webp";
 
 function AboutPage() {
   return (
     <div className="About">
-      <HomeNav id="Homenav" />
+      <WelcomeNav id="Welcomenav" />
       <img className="BG" src={bg} />
     </div>
   );
