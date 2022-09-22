@@ -9,10 +9,24 @@ function RecipeSearch() {
         <div className="wholepagetwo">
             <div className="containertwo">
                 <form action="https://www.google.com/search" method="get" className="searchbartwo" target="_blank">
-                    <input type="text" placeholder="Search for Exercises Best Suited for you!" />
+                    <input type="text" placeholder="Search the Best Recipes for you!" />
                     <button type="submit"></button>
                 </form>
-            </div>           
+                <div className="imagescollecttwo">
+                    <div className="padtwo">
+                        <img src={recipeLeft} height="150" width="150"/>
+                        <a href="#">Toast with eggs and avocado</a>
+                    </div>
+                    <div className="padtwo">
+                        <img src={recipeMiddle} height="150" width="150"/>
+                        <a href="#">Trail Mix</a>
+                    </div>
+                    <div className="padtwo">
+                        <img src={recipeRight} height="150" width="150"/>
+                        <a href="#">Lox and cream cheese on Toast</a>
+                    </div>
+                </div> 
+            </div>          
         </div>
     );
 }

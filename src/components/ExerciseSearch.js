@@ -19,7 +19,7 @@ function ExerciseSearch() {
                         <a href="#">Arms</a>
                     </div>
                     <div className="pad">
-                        <img src={legsPic} height="150" width="150"/>
+                        <img src={legsPic} height="150" width="150" />
                         <a href="#">Legs</a>
                     </div>
                     <div className="pad">

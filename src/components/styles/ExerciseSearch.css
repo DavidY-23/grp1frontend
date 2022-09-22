@@ -13,12 +13,12 @@
     background-position: top; 
     background-size: cover; 
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; 
     padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly; 
+    justify-content: space-between; 
 }
 
 .searchbar {
@@ -71,7 +71,33 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     text-align: center;
     flex-wrap: wrap;
+}
+
+.pad a {
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+.pad a:link{
+    text-decoration: none;
+    color: white;
+}
+
+.pad a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.pad a:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.pad a:active{
+    text-decoration: underline;
+    font-weight: bold;
 }
