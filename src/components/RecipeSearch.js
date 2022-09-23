@@ -14,15 +14,15 @@ function RecipeSearch() {
                 </form>
                 <div className="imagescollecttwo">
                     <div className="padtwo">
-                        <img src={recipeLeft} height="150" width="150"/>
+                        <img src={recipeLeft} />
                         <a href="#">Toast with eggs and avocado</a>
                     </div>
                     <div className="padtwo">
-                        <img src={recipeMiddle} height="150" width="150"/>
+                        <img src={recipeMiddle} />
                         <a href="#">Trail Mix</a>
                     </div>
                     <div className="padtwo">
-                        <img src={recipeRight} height="150" width="150"/>
+                        <img src={recipeRight} />
                         <a href="#">Lox and cream cheese on Toast</a>
                     </div>
                 </div> 

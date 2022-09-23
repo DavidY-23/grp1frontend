@@ -15,11 +15,11 @@ function ExerciseSearch() {
                 </form>
                 <div className="imagescollect">
                     <div className="pad">
-                        <img src={armsPic} height="150" width="150"/>
+                        <img src={armsPic}/>
                         <a href="#">Arms</a>
                     </div>
                     <div className="pad">
-                        <img src={legsPic} height="150" width="150" />
+                        <img src={legsPic} />
                         <a href="#">Legs</a>
                     </div>
                     <div className="pad">

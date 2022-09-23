@@ -66,7 +66,8 @@
 
 .pad {
     border: 5px solid white;
-    padding: 40px;
+    padding: 20px;
+    width: 25%;
     background-color: rgba(17,204,68,0.4);
     border-radius: 15px;
     display: flex;
@@ -75,6 +76,11 @@
     justify-content: space-between;
     text-align: center;
     flex-wrap: wrap;
+}
+
+.pad img{
+    width: 70%;
+    height: auto;
 }
 
 .pad a {
