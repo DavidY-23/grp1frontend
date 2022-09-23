@@ -9,7 +9,7 @@ function RecipeSearch() {
         <div className="wholepagetwo">
             <div className="containertwo">
                 <form action="https://www.google.com/search" method="get" className="searchbartwo" target="_blank">
-                    <input type="text" placeholder="Search the Best Recipes for you!" />
+                    <input type="text" className='searchbarText' placeholder="Search the Best Recipes for you!" />
                     <button type="submit"></button>
                 </form>
                 <div className="imagescollecttwo">
