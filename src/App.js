@@ -12,6 +12,9 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
+import Profile from './components/Profile';
+import ExerciseSearch from './components/ExerciseSearch.js';
+import RecipeSearch from "./components/RecipeSearch.js";
 
 function App() {
   /* global google */
@@ -27,6 +30,9 @@ function App() {
           <Route path="/CreateAccount" element={<CreateAccount />} />
           <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
           <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/ExerciseSearch" element={<ExerciseSearch/>}/>
+          <Route path="/RecipeSearch" element={<RecipeSearch/>}/>
         </Routes>
       </BrowserRouter>
     </div>
