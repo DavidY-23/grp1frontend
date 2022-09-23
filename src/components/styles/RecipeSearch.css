@@ -39,10 +39,6 @@
     color: white;
     outline: none;
 }
-
-::placeholder {
-    color: white;
-}
  
 .searchbartwo button{
     background-image: url("../../images/searchIcon.png");

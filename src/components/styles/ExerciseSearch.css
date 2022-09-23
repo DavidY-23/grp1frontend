@@ -9,7 +9,7 @@
 }
 
 
-.container {
+.contnr {
     background-position: top; 
     background-size: cover; 
     width: 100%;
@@ -41,7 +41,7 @@
     outline: none;
 }
 
-::placeholder {
+.searchbarText::placeholder {
     color: white;
 }
  

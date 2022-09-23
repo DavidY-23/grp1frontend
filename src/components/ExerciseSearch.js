@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom/client'
 import "./styles/ExerciseSearch.css"
-import { Routes, Route } from "react-router-dom";
 import armsPic from '../images/Arms.png';
 import legsPic from '../images/legs.png';
 
 function ExerciseSearch() {
     return (
         <div className="wholepage">
-            <div className="container">
+            <div className="contnr">
                 <form action="https://www.google.com/search" method="get" className="searchbar" target="_blank">
-                    <input type="text" placeholder="Search for Exercises Best Suited for you!" />
+                    <input type="text" className='searchbarText' placeholder="Search for Exercises Best Suited for you!" />
                     <button type="submit"></button>
                 </form>
                 <div className="imagescollect">

@@ -1,6 +1,5 @@
-import { render } from "@testing-library/react";
-import React, { Component } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React from "react";
+import { Routes, Route} from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,7 +19,6 @@ function App() {
   /* global google */
   return (
     <div>
-      <BrowserRouter>
         <Routes>
           {/* Add routes/your page components here  */}
           <Route path="/home/:state" element={<HomePage />} />
@@ -34,7 +32,6 @@ function App() {
           <Route path="/ExerciseSearch" element={<ExerciseSearch/>}/>
           <Route path="/RecipeSearch" element={<RecipeSearch/>}/>
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }
