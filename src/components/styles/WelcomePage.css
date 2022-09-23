@@ -1,0 +1,109 @@
+/* .Home {
+    height: 100vh;
+    display: flex;
+    align-items: left;
+} */
+
+*::-webkit-scrollbar {
+    width:0px;
+}
+
+.BG {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.BGBottom{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.middle {
+    position: absolute;
+    left: 45%;
+    top: 92%;
+    width: 9%;
+    height: 16%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#Welcomenav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.WelcomeLogo {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: -5px;
+}
+
+.bowl {
+    width: 20%;
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+#bowl {
+    position: absolute;
+    left: 30%;
+    top: 13%;
+}
+
+#bowl2 {
+    position: absolute;
+    left: 62%;
+    width: 18%;
+    top: 50%;
+}
+
+#bowl3 {
+    width: 23%;
+    position: absolute;
+    left: 42.5%;
+    top: 32%;
+}
+
+.msg {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-image: radial-gradient(circle at center, #ffb3bd, #b6e5b1);
+    padding: 40px 30px;
+    z-index: 2;
+    border-radius: 0px 50px 50px 0px;
+    max-width: 40%;
+    text-align: center;
+    line-height: 250%;
+}
+
+.msgHeader {
+    font-size: 60px;
+    background-image: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.msg h2 {
+    position: relative;
+    font-size: 40px;
+    top: 15px;
+    color: rgb(30, 50, 177);
+}
