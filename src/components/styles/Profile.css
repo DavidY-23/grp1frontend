@@ -18,3 +18,23 @@
 p {
     font-size: 30px;
 }
+
+.edit {
+    border: none;
+    outline: none;
+    display: inline-block;
+    width: 200px;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, #0628e7, #70c2d3);
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    position: fixed;
+    top: 5%;
+    right: 5%;
+  }

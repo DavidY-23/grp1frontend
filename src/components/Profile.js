@@ -2,6 +2,9 @@ import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
+import { useNavigate } from 'react-router-dom';
+
+
 function Profile() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
@@ -12,6 +15,12 @@ function Profile() {
   ).toFixed(1);
   const feet = Math.floor(location.state?.height / 12);
   const inches = location.state?.height % 12;
+  let navigate = useNavigate()
+  const redirect = () =>
+  {
+    let path = '/Overview';
+    navigate(path);
+  }
   console.log(location.state?.allergies);
   return (
     <div className="profile">
@@ -40,6 +49,7 @@ function Profile() {
           {location.state?.injury}
         </Grid>
       </Grid>
+      <button className='edit' onClick={redirect} > Edit Profile </button>
     </div>
   );
 }

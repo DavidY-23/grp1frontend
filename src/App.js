@@ -12,6 +12,7 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
+import Overview from './components/Overview';
 
 function App() {
   /* global google */
@@ -27,6 +28,7 @@ function App() {
           <Route path="/CreateAccount" element={<CreateAccount />} />
           <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
           <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/Overview" element={<Overview />} />
         </Routes>
       </BrowserRouter>
     </div>
