@@ -18,7 +18,7 @@ function Profile() {
   let navigate = useNavigate()
   const redirect = () =>
   {
-    let path = '/Overview';
+    let path = '/home/overview';
     navigate(path);
   }
   console.log(location.state?.allergies);
