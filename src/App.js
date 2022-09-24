@@ -1,6 +1,5 @@
-import { render } from "@testing-library/react";
-import React, { Component } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React from "react";
+import { Routes, Route} from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,12 +12,14 @@ import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
 import Overview from './components/Overview';
+import Profile from './components/Profile';
+import ExerciseSearch from './components/ExerciseSearch.js';
+import RecipeSearch from "./components/RecipeSearch.js";
 
 function App() {
   /* global google */
   return (
     <div>
-      <BrowserRouter>
         <Routes>
           {/* Add routes/your page components here  */}
           <Route path="/home/:state" element={<HomePage />} />
@@ -29,8 +30,10 @@ function App() {
           <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/Overview" element={<Overview />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/ExerciseSearch" element={<ExerciseSearch/>}/>
+          <Route path="/RecipeSearch" element={<RecipeSearch/>}/>
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }

@@ -1,0 +1,104 @@
+.wholepagetwo {
+    background-image: url('../../images/backgroundForRecipe.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.containertwo {
+    background-position: top; 
+    background-size: cover; 
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.searchbartwo {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px 20px;
+}
+
+.searchbartwo input {
+    font-size: 20px;
+    flex: 1;
+    border: 0;
+    padding: 24px 20px;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+ 
+.searchbartwo button{
+    background-image: url("../../images/searchIcon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.imagescollecttwo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.padtwo {
+    border: 5px solid white;
+    padding: 20px;
+    width: 25%;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.padtwo img{
+    width: 70%;
+    height: auto;
+}
+
+.padtwo a {
+    margin-top: 25px;
+    font-size: 18px;
+}
+
+.padtwo a:link{
+    text-decoration: none;
+    color: white;
+}
+
+.padtwo a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.padtwo a:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.padtwo a:active{
+    text-decoration: underline;
+    font-weight: bold;
+}
