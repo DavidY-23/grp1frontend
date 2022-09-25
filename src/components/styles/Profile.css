@@ -3,11 +3,16 @@
     font-family: 'Ubuntu';
     background-color: #87CEFE;
     color: #0000EE;
-    position: absolute;
-    width: 100%;
+    position: relative;
     height: 100%;
     top: 0;
     left: 0;
+
+}
+
+.profileGrid {
+    font-size: 10px;
+    width: 50%;
 }
 
 .profile {

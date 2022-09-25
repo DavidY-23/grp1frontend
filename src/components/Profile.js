@@ -4,6 +4,10 @@ import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
 import { useNavigate } from 'react-router-dom';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 function Profile() {
   //Temporary way to demostrate form until we have backend working
@@ -24,31 +28,33 @@ function Profile() {
   console.log(location.state?.allergies);
   return (
     <div className="profile">
+      <div className="profileGrid">
       <Grid
-        container
-        spacing={3}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item>
-          {location.state?.weight} lbs<br></br>
-          {feet} ft {inches} inches<br></br>
-          BMI: {BMI}
-          <br></br>
-        </Grid>
-        <Grid item>
-          <img src={profilepic} alt=""></img>
-        </Grid>
-        <Grid item>
-          {location.state?.name}
-          <br></br>
-          {location.state?.age} years old<br></br>
-          {location.state?.gender}
-          {location.state?.allergies}
-          {location.state?.injury}
-        </Grid>
-      </Grid>
+    container
+    spacing={3}
+    direction="row"
+    justifyContent="center"
+    alignItems="center"
+    >
+    <Grid item>
+      {location.state?.weight} lbs<br></br>
+      {feet} ft {inches} inches<br></br>
+      BMI: {BMI}
+      <br></br>
+    </Grid>
+    <Grid item>
+      <img src={profilepic} alt=""></img>
+    </Grid>
+    <Grid item>
+      {location.state?.name}
+      <br></br>
+      {location.state?.age} years old<br></br>
+      {location.state?.gender}
+      {location.state?.allergies}
+      {location.state?.injury}
+    </Grid>
+    </Grid>
+      </div>
       <button className='edit' onClick={redirect} > Edit Profile </button>
     </div>
   );

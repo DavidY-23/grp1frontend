@@ -24,7 +24,7 @@ function FirstTimeLogin() {
       return;
     }
     if (page === 1)
-      navigate("/Profile", {
+      navigate("/home/profile", {
         state: {
           name: name,
           age: age,
