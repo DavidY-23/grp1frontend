@@ -60,16 +60,6 @@ function FirstTimeLogin() {
     }
   };
 
-  const genderFunction = (event) => {
-    if(event.target.checked) {
-        setGender(event.target.value)
-        setChecked(true)
-    }
-    else {
-       setChecked(true)
-    }
-  }
-
   if (page === 0) {
     return (
       <div id="back">

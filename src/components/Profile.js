@@ -21,18 +21,19 @@ function Profile() {
   if (location.state?.height === undefined) {
     height = "Height N/A";
   }
-  
-  let injuries;
+
+  let injuries = "";
   for (let i = 0; i < location.state?.injury.length; i++) {
-    injuries = location.state?.injury[i] + ' ';
+    injuries += location.state?.injury[i] + ' ';
   }
   if (location.state?.injury.length === undefined) {
     injuries = "None";
   }
 
-  let allergies;
-  for (let i = 0; i < location.state?.allergies.length; i++) {
-    allergies = location.state?.allergies[i] + ' ';
+  let allergies = "";
+  for (let i = 0; i < location.state.allergies.length; i++) {
+    console.log(location.state.allergies[i])
+    allergies += location.state.allergies[i] + ' ';
   }
   if (location.state?.allergies.length === undefined) {
     allergies = "None";
