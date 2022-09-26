@@ -7,29 +7,55 @@ import { useNavigate } from 'react-router-dom';
 function Profile() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
-  const BMI = (
+  let BMI = "BMI " +(
     (location.state?.weight /
       (location.state?.height * location.state?.height)) *
     703
   ).toFixed(1);
+  if (location.state?.height === undefined && location.state?.height === undefined) {
+    BMI = "BMI N/A"
+  }
   const feet = Math.floor(location.state?.height / 12);
   const inches = location.state?.height % 12;
-
+  let height = feet + "ft " + inches + " inches";
+  if (location.state?.height === undefined) {
+    height = "Height N/A";
+  }
+  
   let injuries;
   for (let i = 0; i < location.state?.injury.length; i++) {
     injuries = location.state?.injury[i] + ' ';
   }
   if (location.state?.injury.length === undefined) {
-    injuries = "N/A";
+    injuries = "None";
   }
 
   let allergies;
   for (let i = 0; i < location.state?.allergies.length; i++) {
     allergies = location.state?.allergies[i] + ' ';
   }
-  console.log(location.state?.allergies.length)
   if (location.state?.allergies.length === undefined) {
-    allergies = "N/A";
+    allergies = "None";
+  }
+
+  let name = location.state?.firstName + " " + location.state?.lastName;
+  if (location.state?.firstName === undefined && location.state?.lastName === undefined) {
+    name = "Name N/A"
+  }
+
+  let weight = location.state?.weight + " lbs";
+  if (location.state?.weight === undefined) {
+    weight = "Weight N/A"
+  }
+
+  let age = location.state?.age + " years old";
+  if (location.state?.age === undefined) {
+    age = "Age N/A"
+  }
+
+  let gender = location.state?.gender;
+  if (location.state?.gender === undefined) {
+    gender = "Gender N/A"
   }
 
   let navigate = useNavigate()
@@ -49,19 +75,17 @@ function Profile() {
     alignItems="center"
     >
     <Grid item>
-    {location.state?.firstName} {location.state?.lastName}      <br></br>
-      {location.state?.weight} lbs<br></br>
-      {feet} ft {inches} inches<br></br>
-      BMI: {BMI}
-      <br></br>
+    {name}<br></br>
+    {weight}<br></br>
+    {height} <br></br>
+    {BMI} <br></br>
     </Grid>
     <Grid item>
       <img src={profilepic} alt=""></img>
     </Grid>
     <Grid item>
-      {location.state?.age} years old<br></br>
-      {location.state?.gender}<br></br>
-      {console.log(location.state?.allergies)}
+      {age}<br></br>
+      {gender}<br></br>
       Allergies: {allergies} <br></br>
       Current injuries: {injuries}
     </Grid>
