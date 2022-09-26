@@ -13,6 +13,7 @@ function FirstTimeLogin() {
   const [page, setPage] = useState(0);
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const handlePrevious = () => {
     setPage(0);
@@ -58,6 +59,16 @@ function FirstTimeLogin() {
       );
     }
   };
+
+  const genderFunction = (event) => {
+    if(event.target.checked) {
+        setGender(event.target.value)
+        setChecked(true)
+    }
+    else {
+       setChecked(true)
+    }
+  }
 
   if (page === 0) {
     return (

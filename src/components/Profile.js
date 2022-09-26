@@ -49,6 +49,7 @@ function Profile() {
     alignItems="center"
     >
     <Grid item>
+    {location.state?.firstName} {location.state?.lastName}      <br></br>
       {location.state?.weight} lbs<br></br>
       {feet} ft {inches} inches<br></br>
       BMI: {BMI}
@@ -58,8 +59,6 @@ function Profile() {
       <img src={profilepic} alt=""></img>
     </Grid>
     <Grid item>
-      {location.state?.name}
-      <br></br>
       {location.state?.age} years old<br></br>
       {location.state?.gender}<br></br>
       {console.log(location.state?.allergies)}
