@@ -65,26 +65,27 @@ function FirstTimeLogin() {
       <div id="back">
         <div className="form-part">
           <h3>Welcome to Diet Unquiet! Please tell us about yourself</h3>
-          <p id="info">Every field is optional, although filling it out will help us create the perfect program for you!</p>
+          <p id="info">
+            Every field is optional, although filling it out will help us create
+            the perfect program for you!
+          </p>
           <form onSubmit={handleSubmit}>
-
-          <label className="loginLabel">
-            First Name:
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+            <label className="loginLabel">
+              First Name:
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
             </label>
             <label className="loginLabel">
-            Last Name:
-
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </label>
+              Last Name:
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </label>
             <hr></hr>
             <label className="loginLabel">
               Enter your age:
@@ -99,29 +100,29 @@ function FirstTimeLogin() {
               Enter your gender:
               <label>
                 <input
-                type="radio"
-                value="Male"
-                name="gender"
-                onChange={(e) => setGender(e.target.value)}
-              />
+                  type="radio"
+                  value="Male"
+                  name="gender"
+                  onChange={(e) => setGender(e.target.value)}
+                />
                 Male
               </label>
               <label>
                 <input
-                type="radio"
-                value="Female"
-                name="gender"
-                onChange={(e) => setGender(e.target.value)}
-              />
+                  type="radio"
+                  value="Female"
+                  name="gender"
+                  onChange={(e) => setGender(e.target.value)}
+                />
                 Female
               </label>
               <label>
                 <input
-                type="radio"
-                value="Other"
-                name="gender"
-                onChange={(e) => setGender(e.target.value)}
-              />
+                  type="radio"
+                  value="Other"
+                  name="gender"
+                  onChange={(e) => setGender(e.target.value)}
+                />
                 Other
               </label>
             </label>
@@ -155,7 +156,10 @@ function FirstTimeLogin() {
       <div id="back">
         <div className="form-part">
           <h3>Welcome to Diet Unquiet! Please tell us about yourself</h3>
-          <p id="info">Every field is optional, although filling it out will help us create the perfect program for you!</p>
+          <p id="info">
+            Every field is optional, although filling it out will help us create
+            the perfect program for you!
+          </p>
           <form onSubmit={handleSubmit}>
             <div className="loginLabel">
               Any food allergies?
@@ -232,7 +236,8 @@ function FirstTimeLogin() {
             </div>
             <hr></hr>
             <div className="loginLabel">
-              Any current injuries that would prevent you from a certain exercise?
+              Any current injuries that would prevent you from a certain
+              exercise?
               <label>
                 <input
                   type="checkbox"

@@ -1,42 +1,42 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 .profile {
-    font-family: 'Ubuntu';
-    background-color: #87CEFE;
-    color: #0000EE;
-    position: relative;
-    height: 100%;
-    top: 0;
-    left: 0;
+  font-family: "Ubuntu";
+  background-color: #87cefe;
+  color: #0000ee;
+  position: relative;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .profileGrid {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .profile {
-    border-right: solid;
+  border-right: solid;
 }
 
 .edit {
-    border: none;
-    outline: none;
-    display: inline-block;
-    width: 200px;
-    font-size: 15px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    background-image: linear-gradient(to right, #0628e7, #70c2d3);
-    background-size: 200%;
-    background-position: 0%;
-    transition: 0.4s;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    position: fixed;
-    top: 5%;
-    right: 5%;
-  }
+  border: none;
+  outline: none;
+  display: inline-block;
+  width: 200px;
+  font-size: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-image: linear-gradient(to right, #0628e7, #70c2d3);
+  background-size: 200%;
+  background-position: 0%;
+  transition: 0.4s;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+}
 
-  .edit:hover {
-    background-image: linear-gradient(to right, #021791, #70c2d9);
-  }
+.edit:hover {
+  background-image: linear-gradient(to right, #021791, #70c2d9);
+}

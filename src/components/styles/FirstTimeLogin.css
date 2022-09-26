@@ -45,7 +45,7 @@
 }
 
 .button {
-  background-color: #87cefe; 
+  background-color: #87cefe;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -60,7 +60,7 @@
 }
 
 .nameTable input {
-float: left
+  float: left;
 }
 
 .sameLine {
@@ -68,7 +68,7 @@ float: left
 }
 
 .sameLine label {
-  display: table-cell
+  display: table-cell;
 }
 
 .numberForm {
