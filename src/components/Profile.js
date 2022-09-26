@@ -36,9 +36,8 @@ function Profile() {
   }
 
   let allergies = "";
-  for (let i = 0; i < location.state.allergies.length; i++) {
-    console.log(location.state.allergies[i]);
-    allergies += location.state.allergies[i] + " ";
+  for (let i = 0; i < location.state?.allergies.length; i++) {
+    allergies += location.state?.allergies[i] + " ";
   }
   if (location.state?.allergies.length === undefined) {
     allergies = "None";
