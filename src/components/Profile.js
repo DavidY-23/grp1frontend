@@ -4,11 +4,6 @@ import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
 import { useNavigate } from 'react-router-dom';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-
 function Profile() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
@@ -19,13 +14,30 @@ function Profile() {
   ).toFixed(1);
   const feet = Math.floor(location.state?.height / 12);
   const inches = location.state?.height % 12;
+
+  let injuries;
+  for (let i = 0; i < location.state?.injury.length; i++) {
+    injuries = location.state?.injury[i] + ' ';
+  }
+  if (location.state?.injury.length === undefined) {
+    injuries = "N/A";
+  }
+
+  let allergies;
+  for (let i = 0; i < location.state?.allergies.length; i++) {
+    allergies = location.state?.allergies[i] + ' ';
+  }
+  console.log(location.state?.allergies.length)
+  if (location.state?.allergies.length === undefined) {
+    allergies = "N/A";
+  }
+
   let navigate = useNavigate()
   const redirect = () =>
   {
     let path = '/home/overview';
     navigate(path);
   }
-  console.log(location.state?.allergies);
   return (
     <div className="profile">
       <div className="profileGrid">
@@ -49,9 +61,10 @@ function Profile() {
       {location.state?.name}
       <br></br>
       {location.state?.age} years old<br></br>
-      {location.state?.gender}
-      {location.state?.allergies}
-      {location.state?.injury}
+      {location.state?.gender}<br></br>
+      {console.log(location.state?.allergies)}
+      Allergies: {allergies} <br></br>
+      Current injuries: {injuries}
     </Grid>
     </Grid>
       </div>

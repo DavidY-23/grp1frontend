@@ -30,8 +30,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 75%;
-  height: 75%;
+  width: 90%;
+  height: 90%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: black;
@@ -46,7 +46,7 @@
 }
 
 .button {
-  background-color: #4caf50; /* Green */
+  background-color: #87cefe; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -58,4 +58,24 @@
 
 .button:hover {
   background-color: #458e48;
+}
+
+.nameTable input {
+float: left
+}
+
+.sameLine {
+  display: table;
+}
+
+.sameLine label {
+  display: table-cell
+}
+
+.numberForm {
+  width: 3%;
+}
+
+hr {
+  width: 50%;
 }

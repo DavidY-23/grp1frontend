@@ -7,21 +7,14 @@
     height: 100%;
     top: 0;
     left: 0;
-
 }
 
 .profileGrid {
-    font-size: 10px;
-    width: 50%;
+    font-size: 30px;
 }
 
 .profile {
     border-right: solid;
-    font-size: 64px;
-}
-
-p {
-    font-size: 30px;
 }
 
 .edit {
@@ -42,4 +35,8 @@ p {
     position: fixed;
     top: 5%;
     right: 5%;
+  }
+
+  .edit:hover {
+    background-image: linear-gradient(to right, #021791, #70c2d9);
   }
