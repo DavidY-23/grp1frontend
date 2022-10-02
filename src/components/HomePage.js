@@ -26,7 +26,7 @@ const HomePage = (props) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-3">
+        <div className="col-3" style={{width: '14%'}}>
           <NavBar selected={state} />
         </div>
         <div className="col-9">{renderContent(state)}</div>

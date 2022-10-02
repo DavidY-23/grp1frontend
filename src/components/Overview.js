@@ -41,6 +41,7 @@ class Overview extends Component {
     this.setState({
       redirect: true
     })
+    console.log(this.state)
   }
 
   //This might be more of an edit form
@@ -68,7 +69,7 @@ class Overview extends Component {
             <input className='weight_container' type='number' name='weight' value={this.state.weight} onChange={this.onChange} />
           </div>
           <div className='height' >Height
-            <input className='height_container' type='number' name='height' value={this.state.height} onChange={this.onChange} />
+            <input className='height_container' type='text' name='height' value={this.state.height} onChange={this.onChange} />
           </div>
           <div className='about_me' >About Me
             <textarea className='about_container' size="100" name='about_user' value={this.state.about_user} onChange={this.onChange} />
