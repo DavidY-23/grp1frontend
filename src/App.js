@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 
@@ -11,10 +11,35 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
-
+//import axios from 'axios'
 
 function App() {
-  /* global google */
+  // const [api, setapi] = useState(null);
+  // const APP_ID = "1835a421";
+  // const APP_KEY = "af382678c70f9ed773f2eb9c921ba7ae";
+  
+  // //Loading API data
+  // useEffect(() => {
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setapi(result); //Storing API in our own variable
+  //       console.log(result);
+  //       console.log(api);
+  //     })
+  //   // axios.get('https://moj-api.herokuapp.com/debits')
+  //   // axios.get('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
+  //   //   .then(res => {
+  //   //     console.log(res)
+  //   //     setapi(res.data)
+  //   //   })
+  //   //   .catch(err => {
+  //   //     console.log(err)
+  //   //   })
+  //   //   console.log(api);
+  //   // getRecipes();
+  // }, []);
+  // console.log(api);
   return (
     <div>
       <Routes>
