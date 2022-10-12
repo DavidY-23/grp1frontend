@@ -16,7 +16,7 @@
 .MentalImage {
     max-width: 100%;
     width: 40%;
-    height: 60%;
+    height: 80%;
     border: 3px solid; 
     border-image: linear-gradient(45deg, purple, orange) 1;
 }
@@ -63,21 +63,21 @@
 
 }
 
+/* Bottom half of the page ----------------------------------------------------------------------------------------------------*/
 .MentalBoxes {
     background-color:  #0a51cc;  
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    height: 40vh;
-}
-  
-.MentalBoxes .MentalContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
+    height: 40vh;
+}
+  
+.MentalBoxes .MentalBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
     
 .MentalBox {
@@ -85,13 +85,21 @@
     background: #3474e6; /* #0a51cc*/
     color: #fff;
     border-radius: 10px;
-    margin: 20px 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
     padding: 15px 20px; 
     text-align: center;
     cursor: pointer;
 }
-    
+
+.MentalBox img {
+    height: 60%;
+    width: 60%;
+}
+
+#JournalTitle {
+    font-size: 2.5vw;
+}
+
 .MentalBox a {
     color: white;
     text-decoration: none;
