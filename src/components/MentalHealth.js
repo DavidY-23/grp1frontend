@@ -12,7 +12,7 @@ function MentalHealth() {
                 <div className="MentalContainer">
                     <div>
                         <h1>Mental Health</h1>
-                        <p>Here are helpful Links for them</p>
+                        <p>Below are some helpful Links that can help you.</p>
                     </div>
                     <img src={mentalHealth} className="MentalImage"/>
                 </div>
@@ -25,9 +25,9 @@ function MentalHealth() {
                     </p>
                 </div>
                 <div className="MentalBox">
-                    <h2 className='Theh1sh2s'>Option 2</h2>
+                    <h2 className='Theh1sh2s'>Exercise</h2>
                     <p>
-                        Have an option here.
+                        <a>Article Here</a>
                     </p>
                 </div>
                 <div className="MentalBox" id="journalbox">

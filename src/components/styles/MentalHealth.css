@@ -94,6 +94,9 @@
 .MentalBox img {
     height: 60%;
     width: 60%;
+    border: 2px solid;
+    border-image: linear-gradient(45deg, white, pink) 1;
+
 }
 
 #JournalTitle {
@@ -103,5 +106,31 @@
 .MentalBox a {
     color: white;
     text-decoration: none;
+    font-size: 1.5vw;
+}
+
+.MentalBox a:link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5vw;
+}
+
+.MentalBox a:visited {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5vw;
+}
+
+.MentalBox a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.5vw;
+}
+
+.MentalBox a:active {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
     font-size: 1.5vw;
 }
