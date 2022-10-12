@@ -27,7 +27,7 @@ function MentalHealth() {
                 <div className="MentalBox">
                     <h2 className='Theh1sh2s'>Exercise</h2>
                     <p>
-                        <a>Article Here</a>
+                        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1470658/" target="_blank">Article Here</a>
                     </p>
                 </div>
                 <div className="MentalBox" id="journalbox">
