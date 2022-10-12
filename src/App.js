@@ -12,6 +12,10 @@ import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
 
+// Just added it here to test the mental health page
+import MentalHealth  from "./components/MentalHealth";
+import JournalEntry from "./components/JournalEntry";
+
 
 function App() {
   /* global google */
@@ -26,6 +30,8 @@ function App() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/MentalHealth" element={<MentalHealth />} />
+        <Route path="/JournalEntry" element={<JournalEntry />} />
       </Routes>
     </div>
   );
