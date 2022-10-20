@@ -4,7 +4,9 @@ import Overview from "./Overview";
 import RecipeSearch from "./RecipeSearch";
 import ExerciseSearch from "./ExerciseSearch";
 import Profile from "./Profile";
+import Locator from "./Locator";
 import { useParams } from "react-router-dom";
+import AutocompleteForm from "./AutocompleteForm";
 
 const renderContent = (state) => {
   switch (state) {
@@ -16,6 +18,10 @@ const renderContent = (state) => {
       return <RecipeSearch />;
     case "exercisesearch":
       return <ExerciseSearch />;
+    case "locator":
+      return <Locator />;
+      case "apple":
+        return <AutocompleteForm />;
     default:
       return <Overview />;
   }

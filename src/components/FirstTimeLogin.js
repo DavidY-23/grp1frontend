@@ -64,7 +64,7 @@ function FirstTimeLogin() {
     return (
       <div id="back">
         <div className="form-part">
-          <div className="formText">
+          <div className="form-text">
           <h3>Welcome to Diet Unquiet! Please tell us about yourself</h3>
           <p id="info">
             Every field is optional, although filling it out will help us create
