@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import data from "./ListData.json"
-import newData from "./recipelist.json";
-import ModifiedList from "./ModifiedRecipeList.json";
+import newData from "./JSON files/recipelist.json";
+import ModifiedList from "./JSON files/ModifiedRecipeList.json";
 
 function ParseR(props) {
     let recipe_data = [];

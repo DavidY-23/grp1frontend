@@ -1,10 +1,11 @@
 import "./styles/FirstTimeLogin.css";
 import React, { useState, useEffect } from "react";
-import CopyRecipeList from './recipelistAll.json'
+import CopyRecipeList from './JSON files/recipelistAll.json'
 import './styles/RecipeCreate.css'
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function RecipeCreate() {
+    const [message, setmessage] = useState("");
     const [ingredients_list, setingredients_list] = useState([]);
     const [tag_list, settag_list] = useState([]);
     const [measurement_list, setmeasurement_list] = useState([]);
@@ -22,7 +23,7 @@ function RecipeCreate() {
     const range = alphabet.length;
     const copy_of_recipe = CopyRecipeList;
 
-    //Loading API data
+    // //Loading API data
     useEffect(() => {
         apiCall(); //Calling API function
         console.log(ingred_and_measure);
@@ -127,6 +128,15 @@ function RecipeCreate() {
     //After button press, perform this submission:
     const SubmitRecipe = async (event) => {
         event.preventDefault();
+        if ((!name.trim().length || !name) || (!image.trim().length || !image) || (!area.trim().length || !area) || (!instructions.trim().length || !instructions))  {
+            setmessage("SUBMISSION DENIED: All fields must be filled.  Also, tags, ingredients, and measurements cannot be empty.");
+            return;
+        }
+
+        if ((tag_list.length === 0) || (ingred_and_measure.length === 0)) {
+            setmessage("SUBMISSION DENIED: tags, ingredients, and measurements cannot be empty.");
+            return;
+        }
         let recipe_object =
         {
             name: name,
@@ -138,18 +148,61 @@ function RecipeCreate() {
             ingredients: ingredients_list,
             measurements: measurement_list,
         }
-        copy_of_recipe.push(recipe_object);
-        console.log(copy_of_recipe);
+        //Pushing new recipe into json 
+        CopyRecipeList.push(recipe_object);
+
+        // copy_of_recipe.push(recipe_object);
+        // console.log(copy_of_recipe);
+        console.log(CopyRecipeList);
         setname('');
         setImage('');
         setarea('');
         setinstructions('');
+        setmessage('');
+        setingred_and_measure([]);
+        settag_list([]);
+        alert("Your recipe is now in our database.");
+    }
+
+    const TagDeleteIndex = (index) => {
+        // console.log(tag_list);
+        let new_array = [];
+        for (let i = 0; i < tag_list.length; i++) {
+            if (i === index) {
+                continue;
+            }
+            else {
+                new_array.push(tag_list[i]);
+            }
+        }
+        settag_list(new_array);
+    }
+
+    const DeleteMeasureAndIngredient = (index) => {
+        let measure_and_ingredient_array = [];
+        let temporary_ingredients_array = [];
+        let temporary_measurements_array = [];
+        for (let i = 0; i < ingred_and_measure.length; i++) {
+            if (i === index) {
+                continue;
+            }
+            else {
+                measure_and_ingredient_array.push(ingred_and_measure[i]);
+                temporary_ingredients_array.push(ingredients_list[i]);
+                temporary_measurements_array.push(measurement_list[i]);
+            }
+        }
+        setingred_and_measure(measure_and_ingredient_array);
+        setingredients_list(temporary_ingredients_array);
+        setmeasurement_list(temporary_measurements_array);
+        console.log(ingredients_list)
+        console.log(measurement_list)
     }
 
 
-    // onChange={(e) => setingredients(prevArray => [...prevArray, e.target.value])}
     return (
-        <div>
+        <div className="entirepage">
+            <Link to={'/RecipeSearch'} className="btn btn-primary position-absolute" >Return to Search Page</Link>
             <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitRecipe}>
                 <div>
                     <label className="recipe-name">Recipe Name
@@ -184,17 +237,24 @@ function RecipeCreate() {
                 </div>
             </form>
             <form>
-                <h3>Current Tags added</h3>
-                <ul>
-                    {
-                        tag_list.map((tags, i) => {
-                            return (
-                                <li key={i}>{tags}</li>
-                            )
-                        })
-                    }
-                </ul>
-                <h3>Current Ingredients added</h3>
+                <div className="tag-box">
+                    <h4 className="header-text">Tags</h4>
+                    <ul>
+                        {
+                            tag_list.map((tags, index) => {
+                                return (
+                                    <div>
+                                        <li key={index}>{tags}
+                                            <button type="button" className="close" onClick={() => TagDeleteIndex(index)}>x</button>
+                                        </li>
+                                    </div>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+                {/* Use this to test Ingredients and Measurements Array Live */}
+                {/* <h4>Ingredients added</h4>
                 <ul>
                     {
                         ingredients_list.map((ingredients, i) => {
@@ -204,7 +264,7 @@ function RecipeCreate() {
                         })
                     }
                 </ul>
-                <h3>Current Measurements added</h3>
+                <h4>Measurements added</h4>
                 <ul>
                     {
                         measurement_list.map((measurements, i) => {
@@ -213,18 +273,27 @@ function RecipeCreate() {
                             )
                         })
                     }
-                </ul>
-                <h3>Ingredients Along with Measurements</h3>
-                <ul>
-                    {
-                        ingred_and_measure.map((both, i) => {
-                            return (
-                                <li key={i}>{both}</li>
-                            )
-                        })
-                    }
-                </ul>
+                </ul> */}
+                <div className="ingred-measure-box">
+                    <h4 className="header-text ">Ingredients & Measurements</h4>
+                    <ul>
+                        {
+                            ingred_and_measure.map((both, both_index) => {
+                                return (
+                                    <div>
+                                        <li key={both_index}>{both}
+                                            <button type="button" className="close" onClick={() => DeleteMeasureAndIngredient(both_index)}>x</button>
+                                        </li>
+                                    </div>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
             </form>
+            <div className="restriction">
+                {message}
+            </div>
         </div>
 
     );
