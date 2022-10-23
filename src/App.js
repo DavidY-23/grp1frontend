@@ -11,11 +11,12 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
-import Profile from './components/Profile';
-import ExerciseSearch from './components/ExerciseSearch.js';
-import RecipeSearch from "./components/RecipeSearch.js";
 import RecipeCreate from "./components/RecipeCreate.js";
 import ParseR from "./components/Parse.js";
+
+// Just added it here to test the mental health page
+import MentalHealth  from "./components/MentalHealth";
+import JournalEntry from "./components/JournalEntry";
 
 function App() {
   return (
@@ -29,11 +30,10 @@ function App() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
         <Route path="/LoginPage" element={<LoginPage />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/ExerciseSearch" element={<ExerciseSearch />} />
-        <Route path="/RecipeSearch" element={<RecipeSearch />} />
         <Route path="/RecipeCreate" element={<RecipeCreate />} />
         <Route path = '/ParseR' element={<ParseR/>} />
+        <Route path="/MentalHealth" element={<MentalHealth />} />
+        <Route path="/JournalEntry" element={<JournalEntry />} />
       </Routes>
     </div>
   );

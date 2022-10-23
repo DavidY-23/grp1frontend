@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/CreateAccount.css'
 import "@fontsource/comic-neue";
+import { auth } from "./firebase.js"
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
 
 class CreateAccount extends Component {
     constructor(props) {
@@ -33,6 +35,25 @@ class CreateAccount extends Component {
     confirm_password_handler = (event) => {
         this.setState({
             confirm_password: event.target.value
+        });
+    }
+    
+    register = async () =>{
+        const user = await createUserWithEmailAndPassword(auth, this.state.email, this.state.password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("user created")
+    
+        window.location.href = "FirstTimeLogin"
+    
+        // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            console.log(error.code + error.message)
         });
     }
 
@@ -78,7 +99,7 @@ class CreateAccount extends Component {
                     <div className="input-container">
                         <input className='input-confirm' value={this.state.confirm_password} onChange={this.confirm_password_handler} type="password" placeholder="Confirm Password" name="pass" />
                     </div>
-                    <button className="button-container"> SIGN UP
+                    <button className="button-container" onClick={this.register}> SIGN UP
                     </button>
                     <div className='password-checker'>Password must contain at least one letter, digit, and special character </div>
                     <div className='account'>Have an account?</div>

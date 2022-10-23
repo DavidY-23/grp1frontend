@@ -2,54 +2,110 @@ import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
-  const BMI = (
-    (location.state?.weight /
-      (location.state?.height * location.state?.height)) *
-    703
-  ).toFixed(1);
+  let BMI =
+    "BMI " +
+    (
+      (location.state?.weight /
+        (location.state?.height * location.state?.height)) *
+      703
+    ).toFixed(1);
+  if (
+    location.state?.height === undefined &&
+    location.state?.height === undefined
+  ) {
+    BMI = "BMI N/A";
+  }
   const feet = Math.floor(location.state?.height / 12);
   const inches = location.state?.height % 12;
-  let navigate = useNavigate()
-  const redirect = () =>
-  {
-    let path = '/home/overview';
-    navigate(path);
+  let height = feet + "ft " + inches + " inches";
+  if (location.state?.height === undefined) {
+    height = "Height N/A";
   }
-  console.log(location.state?.allergies);
+
+  let injuries = "";
+  for (let i = 0; i < location.state?.injury.length; i++) {
+    injuries += location.state?.injury[i] + " ";
+  }
+  if (location.state?.injury.length === undefined) {
+    injuries = "None";
+  }
+
+  let allergies = "";
+  for (let i = 0; i < location.state?.allergies.length; i++) {
+    allergies += location.state?.allergies[i] + " ";
+  }
+  if (location.state?.allergies.length === undefined) {
+    allergies = "None";
+  }
+
+  let name = location.state?.firstName + " " + location.state?.lastName;
+  if (
+    location.state?.firstName === undefined &&
+    location.state?.lastName === undefined
+  ) {
+    name = "Name N/A";
+  }
+
+  let weight = location.state?.weight + " lbs";
+  if (location.state?.weight === undefined) {
+    weight = "Weight N/A";
+  }
+
+  let age = location.state?.age + " years old";
+  if (location.state?.age === undefined) {
+    age = "Age N/A";
+  }
+
+  let gender = location.state?.gender;
+  if (location.state?.gender === undefined) {
+    gender = "Gender N/A";
+  }
+
+  let navigate = useNavigate();
+  const redirect = () => {
+    let path = "/home/overview";
+    navigate(path);
+  };
   return (
     <div className="profile">
-      <Grid
-        container
-        spacing={3}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item>
-          {location.state?.weight} lbs<br></br>
-          {feet} ft {inches} inches<br></br>
-          BMI: {BMI}
-          <br></br>
+      <div className="profileGrid">
+        <Grid
+          container
+          spacing={3}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item>
+            {name}
+            <br></br>
+            {weight}
+            <br></br>
+            {height} <br></br>
+            {BMI} <br></br>
+          </Grid>
+          <Grid item>
+            <img src={profilepic} alt=""></img>
+          </Grid>
+          <Grid item>
+            {age}
+            <br></br>
+            {gender}
+            <br></br>
+            Allergies: {allergies} <br></br>
+            Current injuries: {injuries}
+          </Grid>
         </Grid>
-        <Grid item>
-          <img src={profilepic} alt=""></img>
-        </Grid>
-        <Grid item>
-          {location.state?.name}
-          <br></br>
-          {location.state?.age} years old<br></br>
-          {location.state?.gender}
-          {location.state?.allergies}
-          {location.state?.injury}
-        </Grid>
-      </Grid>
-      <button className='edit' onClick={redirect} > Edit Profile </button>
+      </div>
+      <button className="edit" onClick={redirect}>
+        {" "}
+        Edit Profile{" "}
+      </button>
     </div>
   );
 }
