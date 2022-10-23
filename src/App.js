@@ -11,6 +11,8 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
+import RecipeDetails from "./components/RecipeDetails";
+import SearchResults from "./components/SearchResultsPage";
 import RecipeCreate from "./components/RecipeCreate.js";
 import ParseR from "./components/Parse.js";
 
@@ -30,6 +32,8 @@ function App() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/home/recipesearch/RecipeDetails/:state" element={<RecipeDetails />} />
+        <Route path="/home/recipesearch/SearchResults" element={<SearchResults />} />
         <Route path="/RecipeCreate" element={<RecipeCreate />} />
         <Route path = '/ParseR' element={<ParseR/>} />
         <Route path="/MentalHealth" element={<MentalHealth />} />

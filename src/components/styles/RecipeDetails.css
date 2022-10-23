@@ -1,0 +1,368 @@
+div.detailsBG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200vh;
+    width: 100vw;
+    background-image: url("../../images/DetailsBG.png");
+    background-size: 100vw 200vh;
+    overflow-y: visible;
+    overflow-x: visible;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+    display: none;
+}
+
+div.RecipeDetailsWrapper {
+    height: 98vh;
+    width: 98vw;
+    overflow-y: visible;
+    overflow-x: visible;
+    padding: 1vw;
+}
+
+div.wrapper3d {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: none;
+}
+
+.box3D {
+	display: flex;
+}
+
+.box3D .inner3D {
+	width: 450px;
+	height: 150px;
+	line-height: 150px;
+	font-size: clamp(35px, 8vw, 50px);
+	font-family: sans-serif;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.RecipeNameTooLong {
+    font-size: .4em;
+}
+
+.box3D .inner3D:first-child {
+	/* background-color: indianred;
+	color: darkred; */
+    background-color: #db9492;
+    color: #d2d489;
+	transform-origin: right;
+	transform: perspective(150px) rotateY(-10deg);
+}
+
+.box3D .inner3D:last-child {
+	/* background-color: lightcoral;
+	color: antiquewhite; */
+    background-color: #ffadab;
+    color: #feffaa;
+	transform-origin: left;
+	transform: perspective(150px) rotateY(10deg);
+}
+
+.box3D .inner3D span {
+	position: absolute;
+	animation: marquee 5s linear infinite;
+}
+
+.box3D .inner3D:first-child span {
+    animation-delay: 1.93s;
+	left: -100%;
+}
+
+@keyframes marquee {
+	from {
+		left: 100%;
+	}
+
+	to {
+		left: -160%;
+	}
+}
+
+/* h1.RecipeName {
+    margin: auto;
+    text-align: center;
+} */
+
+img.RecipeImg {
+    width: 20%;
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    min-width: 200px;
+}
+
+a.RecipeYT {
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    width: 188px;
+
+    text-transform: uppercase;
+    font-family: verdana;
+    font-size: 12;
+    font-weight: 700;
+    color: #91efff;
+    text-shadow: 1px 1px 1px #0d6dba,
+        1px 2px 1px #0d6dba,
+        1px 3px 1px #0d6dba,
+    1px 18px 6px rgba(2, 55, 111, 0.4),
+    1px 25px 35px rgba(2, 55, 111,0.2);
+}
+
+a.RecipeYT:hover {
+    color: #886eb3;
+    text-shadow: 1px 1px 1px #4b2f77,
+        1px 2px 1px #4b2f77,
+        1px 3px 1px #4b2f77,
+    1px 18px 6px rgba(43, 20, 135, 0.4),
+    1px 25px 35px rgba(43, 20, 135,0.2);
+}
+
+div.IngredientsDiv {
+    margin: auto;
+    background-image: linear-gradient(to bottom, #F5F7F6, #FDE7F9);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h2.Ingr {
+    margin: auto;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #86be86;
+    margin-bottom: 10px;
+    color: #00A36C;
+    font-style: italic;
+}
+
+ul.Ingredients {
+    columns: 2;
+    margin: auto;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+ul li.ingredient:before {
+    content: '';
+    display: inline-block;
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    background-size: 20px;
+    background-image: url("../../images/Logo11.png");
+    background-repeat: no-repeat;
+    vertical-align: sub;
+}
+
+li.ingredient {
+    margin-bottom: 10px;
+    color: #614a85;
+    text-align: left;
+    list-style: none;
+}
+
+div.instr {
+    font-size: 19px;
+    margin: auto;
+    background-image: linear-gradient(to bottom, #F5F7F6, #FDE7F9);
+    border-radius: 10px;
+    padding: 12px 20px 20px 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+h2.InstructionTitle {
+    font-size: 28px;
+    margin: auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #7591b8;
+    color: #2f70a6;
+    font-style: italic;
+}
+
+div.Instructions {
+    position: relative;
+    top: -15px;
+    text-indent: 2em;
+    text-align: justify;
+    letter-spacing: 1px;
+    color: #487160;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+div.FAB {
+    justify-content: center;
+    right: 10px;
+    position: fixed;
+    bottom: 10px;
+    width: 75px;
+    height: 75px;
+}
+
+.fabMain {
+    position: relative;
+    display: block;
+    padding-left: 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.fabCheck {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 75px;
+    width: 75px;
+    background-size: 60px 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../../images/heartIcon.png");
+}
+
+.fabMain:hover input ~ .fabCheck {
+    /* background-color: yellow; */
+    background-size: 70px 70px;
+}
+.fabMain input:active ~ .fabCheck {
+    background-size: 55px 55px;
+}
+.fabMain input:checked ~ .fabCheck {
+    background-size: 60px 60px;
+    background-repeat: no-repeat;
+    background-image: url("../../images/fullHeartIcon.png");
+}
+.fabMain input:checked:hover ~ .fabCheck {
+    background-size: 70px 70px;
+}
+.fabMain input:checked:active ~ .fabCheck {
+    background-size: 55px 55px;
+}
+
+div.detailsNav {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 35px;
+}
+
+.detailsNavMain {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.detailsNavCheck {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 15px;
+    background-size: 15px 35px;
+    border-radius: 0px 10px 10px 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../../images/rightArrow.png");
+    background-color: #3b93aa8c;
+}
+
+.detailsNavMain:hover input ~ .detailsNavCheck {
+    background-color: yellow;
+    /* background-size: 70px 70px; */
+}
+.detailsNavMain input:active ~ .detailsNavCheck {
+    background-color: pink;
+    /* background-size: 55px 55px; */
+}
+.detailsNavMain input:checked ~ .detailsNavCheck {
+    border-radius: 10px 0px 0px 10px;
+    background-image: url("../../images/leftArrow.png");
+}
+.detailsNavMain input:checked:hover ~ .detailsNavCheck {
+    /* background-size: 70px 70px; */
+    background-color: yellow;
+}
+.detailsNavMain input:checked:active ~ .detailsNavCheck {
+    /* background-size: 55px 55px; */
+    background-color: pink;
+}
+
+.detailsNavBox {
+    visibility: none;
+    left: -70px;
+    width: 90px;
+    height: 35px;
+    position: absolute;
+}
+
+img.HomeIcon {
+    width: 35px;
+    height: 35px;
+}
+
+img.HomeIcon:hover, img.SearchIcon:hover {
+    background-color: rgb(173, 208, 213);
+    cursor: pointer;
+}
+
+.SearchIcon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes marquee2 {
+    from {
+        left: -70px;
+    }
+
+    to {
+        left: 0px;
+    }   
+}
+@keyframes marquee3 {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: -70px;
+        visibility: hidden;
+    }   
+}
+@keyframes marquee4 {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: 70px;
+    }   
+}
+@keyframes marquee5 {
+    from {
+        left: 70px;
+    }
+
+    to {
+        left: 0px;
+    }   
+}
