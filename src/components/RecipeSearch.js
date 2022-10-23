@@ -1,45 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles/RecipeSearch.css"
 import recipeLeft from '../images/recipeLeft.png';
 import recipeMiddle from '../images/recipeMiddle.png';
 import recipeRight from '../images/recipeRight.png';
+import List from "./List";
+import { useNavigate } from "react-router-dom";
 
 function RecipeSearch() {
-    const [api, setapi] = useState(null);
-    // const APP_ID = "1835a421";
-    // const APP_KEY = "af382678c70f9ed773f2eb9c921ba7ae";
+    const [inputText, setInputText] = useState("");
+    const navigate = useNavigate();
+    const [search, setSearch] = useState('');
 
-    //Loading API data
-    useEffect(() => {
-        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
-            .then(res => res.json())
-            .then(result => {
-                setapi(result); //Storing API in our own variable
-                console.log(result);
-                console.log(api);
-            })
-    }, []);
-    console.log(api);
+    let inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+
+        setSearch(e.target.value);
+    };
+
+    let handleKeyDown = (event) => {
+        if(event.key === 'Enter') {
+            navigate('/home/recipesearch/SearchResults', { state: { searchName: search} });
+        }
+    };
 
     return (
         <div className="wholepagetwo">
             <div className="containertwo">
-                <form action="https://www.google.com/search" method="get" className="searchbartwo" target="_blank">
+                {/* <form action="https://www.google.com/search" method="get" className="searchbartwo" target="_blank">
                     <input type="text" className='searchbarText' placeholder="Search the Best Recipes for you!" />
                     <button type="submit"></button>
-                </form>
+                </form> */}
+                {/* <div className="search3"> */}
+                <div className="searchbartwo">
+                    {/* <input type="text" id="searchBar3" onChange={inputHandler} /> */}
+                    <input type="text" className='searchbarText' placeholder="Search the Best Recipes for you!" onChange={inputHandler} onKeyDown={handleKeyDown}/>
+                    { (inputText !== "") ? 
+                        (<List input={inputText} />) : (<h2/>)
+                    }
+                </div>
+                
                 <div className="imagescollecttwo">
                     <div className="padtwo">
-                        <img src={recipeLeft} />
-                        <a href="#">Toast with eggs and avocado</a>
+                        <img src={recipeLeft} alt=""/>
+                        <a href="https://feelgoodfoodie.net/recipe/avocado-toast-with-egg-3-ways/">Toast with eggs and avocado</a>
                     </div>
                     <div className="padtwo">
-                        <img src={recipeMiddle} />
-                        <a href="#">Trail Mix</a>
+                        <img src={recipeMiddle} alt=""/>
+                        <a href="https://therecipecritic.com/trail-mix/">Trail Mix</a>
                     </div>
                     <div className="padtwo">
-                        <img src={recipeRight} />
-                        <a href="#">Lox and cream cheese on Toast</a>
+                        <img src={recipeRight} alt=""/>
+                        <a href="https://thefeedfeed.com/dieteticaesthetic/cream-cheese-lox-toast">Lox and cream cheese on Toast</a>
                     </div>
                 </div>
             </div>

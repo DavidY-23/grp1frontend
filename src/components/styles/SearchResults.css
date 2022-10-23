@@ -1,0 +1,41 @@
+.SearchWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 25vh;
+    min-height: 150px;
+    overflow-y: scroll;
+    /* background-color: rgb(243, 243, 243); */
+    display: block;
+    margin: auto;
+    top: -20px;
+    padding: 10px;
+    z-index: 0;
+}
+
+.searchResults {
+    position: relative;
+    background-color: rgba(243, 243, 243,.6);
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 0;
+    border: none;
+    border-bottom: 1px solid green;
+    border-radius: 10px;
+    padding: 0px;
+    font-size: 18px;
+}
+
+.searchResults:hover {
+    background-color: rgb(50, 141, 158);
+    color: white;
+}
+
+/* hr.borderBottom {
+    height: 1px;
+    display: flex;
+    top: 5px;
+    position: relative;
+    border-top: 1px solid red;
+    width: 80%;
+} */

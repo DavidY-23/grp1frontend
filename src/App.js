@@ -11,6 +11,8 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
+import RecipeDetails from "./components/RecipeDetails";
+import SearchResults from "./components/SearchResultsPage";
 //import axios from 'axios'
 
 function App() {
@@ -51,6 +53,8 @@ function App() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/home/recipesearch/RecipeDetails/:state" element={<RecipeDetails />} />
+        <Route path="/home/recipesearch/SearchResults" element={<SearchResults />} />
       </Routes>
     </div>
   );
