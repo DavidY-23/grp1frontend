@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/RecipeSearch.css"
 import recipeLeft from '../images/recipeLeft.png';
 import recipeMiddle from '../images/recipeMiddle.png';
@@ -25,8 +25,8 @@ function RecipeSearch() {
                         <img src={recipeRight} />
                         <a href="#">Lox and cream cheese on Toast</a>
                     </div>
-                </div> 
-            </div>          
+                </div>
+            </div>
         </div>
     );
 }

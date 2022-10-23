@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 
@@ -11,14 +11,14 @@ import WelcomePage from "./components/WelcomePage";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
+import RecipeCreate from "./components/RecipeCreate.js";
+import ParseR from "./components/Parse.js";
 
 // Just added it here to test the mental health page
 import MentalHealth  from "./components/MentalHealth";
 import JournalEntry from "./components/JournalEntry";
 
-
 function App() {
-  /* global google */
   return (
     <div>
       <Routes>
@@ -30,6 +30,8 @@ function App() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/FirstTimeLogin" element={<FirstTimeLogin />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/RecipeCreate" element={<RecipeCreate />} />
+        <Route path = '/ParseR' element={<ParseR/>} />
         <Route path="/MentalHealth" element={<MentalHealth />} />
         <Route path="/JournalEntry" element={<JournalEntry />} />
       </Routes>
