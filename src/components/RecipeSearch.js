@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/RecipeSearch.css"
 import recipeLeft from '../images/recipeLeft.png';
 import recipeMiddle from '../images/recipeMiddle.png';

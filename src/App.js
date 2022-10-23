@@ -13,35 +13,14 @@ import AboutPage from "./components/About";
 import HomePage from "./components/HomePage";
 import RecipeDetails from "./components/RecipeDetails";
 import SearchResults from "./components/SearchResultsPage";
-//import axios from 'axios'
+import RecipeCreate from "./components/RecipeCreate.js";
+import ParseR from "./components/Parse.js";
+
+// Just added it here to test the mental health page
+import MentalHealth  from "./components/MentalHealth";
+import JournalEntry from "./components/JournalEntry";
 
 function App() {
-  // const [api, setapi] = useState(null);
-  // const APP_ID = "1835a421";
-  // const APP_KEY = "af382678c70f9ed773f2eb9c921ba7ae";
-  
-  // //Loading API data
-  // useEffect(() => {
-  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       setapi(result); //Storing API in our own variable
-  //       console.log(result);
-  //       console.log(api);
-  //     })
-  //   // axios.get('https://moj-api.herokuapp.com/debits')
-  //   // axios.get('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
-  //   //   .then(res => {
-  //   //     console.log(res)
-  //   //     setapi(res.data)
-  //   //   })
-  //   //   .catch(err => {
-  //   //     console.log(err)
-  //   //   })
-  //   //   console.log(api);
-  //   // getRecipes();
-  // }, []);
-  // console.log(api);
   return (
     <div>
       <Routes>
@@ -55,6 +34,10 @@ function App() {
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/home/recipesearch/RecipeDetails/:state" element={<RecipeDetails />} />
         <Route path="/home/recipesearch/SearchResults" element={<SearchResults />} />
+        <Route path="/RecipeCreate" element={<RecipeCreate />} />
+        <Route path = '/ParseR' element={<ParseR/>} />
+        <Route path="/MentalHealth" element={<MentalHealth />} />
+        <Route path="/JournalEntry" element={<JournalEntry />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,154 @@
+input {
+  display: block;
+  width: 100%;
+  min-height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgb(255, 255, 255);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+}
+
+.tag-button {
+  width: 50%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgb(118, 0, 253);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.ing-meas-button {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgb(118, 0, 253);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.regForm {
+  background-color: #ffffff;
+  margin: 0px auto;
+  font-family: Raleway;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgb(118, 0, 253);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  text-align: center;
+}
+
+.text-input {
+  display: block;
+  width: 185%;
+  min-height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgb(255, 255, 255);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+}
+
+.tag-box {
+  position: fixed;
+  background-color: lightgrey;
+  border: solid green;
+  padding: 20px;
+  width: 250px;
+  left: 15%;
+  top: 5%;
+  text-align: center;
+}
+
+.header-text {
+  text-decoration: underline;
+}
+
+.ingred-measure-box {
+  position: fixed;
+  background-color: lightgrey;
+  border: solid green;
+  padding: 20px;
+  width: 490px;
+  right: 7%;
+  top: 5%;
+  text-align: center;
+}
+
+.close {
+  background-color: lightgrey;
+  border: solid lightgrey;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
+.close:hover {
+  opacity: 1;
+  color: red;
+}
+
+.restriction
+{
+  width: 100%;
+  text-align: center;
+  color: purple;
+}
+
+.return-link
+{
+  /* position: fixed;
+  background-color: purple;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  left: 100px; */
+  
+}
+/* .entirepage
+{
+    width: auto;
+    height: auto;
+} */
