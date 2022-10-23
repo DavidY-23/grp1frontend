@@ -1,0 +1,97 @@
+.JournalEntryPage {
+    height: 100vh;
+    background-color: dodgerblue;
+    background-image: url('../../images/JournalEntryBackground.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formForEntry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*background-color: dodgerblue; */
+    height: 80vh;
+}
+
+.InputTextForMental {
+    background-color: rgba(10,36,99,0.6);
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 1em;
+    outline: none;
+    border: 3px solid transparent;
+    font-family:Verdana,Tahoma, sans-serif;
+    
+}
+
+#TitleOfEntry {
+    font-weight: bold;
+    line-height: 1.4;
+    transition: all 0.2s;
+    width: 40%;
+    text-align: center;
+    margin-top: 4vh;
+    margin-bottom: 5vh;
+    font-size: 1.7vw;
+}
+
+#entryItSelf {
+    font-size: 16px;
+    line-height: 1.4;
+    transition: all 0.2s;
+    width: 80%;
+    height: 70%;
+    font-size: 1.75vw;
+}
+
+#TitleOfEntry:hover, #entryItSelf:hover {
+    cursor: pointer;
+    background-color: rgba(10,36,99,0.9);  /*rgba(17,204,68,0.7)*/
+    border-color: #FFFFFF;
+}
+
+#TitleOfEntry:focus, #entryItSelf:focus {
+    cursor: text;
+    border-color: #FFFFFF;
+}
+
+.formForEntry .InputTextForMental {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.JournalButton {
+    background-color: rgba(10,36,99,0.6);
+    padding: 5px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid transparent;
+    height: 50%;
+    width: 18%;
+    
+}
+    
+.JournalButton:hover {
+    cursor: pointer;
+    background-color: rgba(10,36,99,0.9);
+    border-color: #FFFFFF;
+    font-family:Verdana,Tahoma, sans-serif;
+    font-weight: 500;
+
+}
+
+.JournalButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 20vh;
+    width: 60vw;
+    margin-left: 20vw;
+    /*background-color: black;*/
+    font-size: 1.35vw;
+}
