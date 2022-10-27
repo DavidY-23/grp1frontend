@@ -1,114 +1,87 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/CreateAccount.css'
 import "@fontsource/comic-neue";
 import { auth } from "./firebase.js"
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
 
-class CreateAccount extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            confirm_password: ''
-        }
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.email_handler = this.email_handler.bind(this);
-        // this.confirm_password_handler = this.confirm_password_handler.bind(this);
-        // this.password_handler = this.password_handler.bind(this);
-    }
-    //
-    email_handler = (event) => {
-        this.setState({
-            email: event.target.value
-        });
+function CreateAccount() {
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const [confirm_password, setconfirm_password] = useState('');
+
+    const register = async () => {
+        const user = await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log("user created")
+
+                window.location.href = "FirstTimeLogin"
+
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                console.log(error.code + error.message)
+            });
     }
 
-    password_handler = (event) => {
-        this.setState({
-            password: event.target.value
-        });
-    }
-
-    confirm_password_handler = (event) => {
-        this.setState({
-            confirm_password: event.target.value
-        });
-    }
-    
-    register = async () =>{
-        const user = await createUserWithEmailAndPassword(auth, this.state.email, this.state.password)
-        .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("user created")
-    
-        window.location.href = "FirstTimeLogin"
-    
-        // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            console.log(error.code + error.message)
-        });
-    }
-
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         //Special character condition
         let special = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
         event.preventDefault(); //prevent reload after pressing submit
-        if (this.state.email === '' || this.state.email === null || this.state.password === '' || this.state.password === null || this.state.confirm_password === '' || this.state.confirm_password === null || !this.state.email.replace(/\s/g, '').length || !this.state.password.replace(/\s/g, '').length || !this.state.confirm_password.replace(/\s/g, '').length) {
+        if (email === '' || email === null || password === '' || password === null || confirm_password === '' || confirm_password === null || !email.replace(/\s/g, '').length || !password.replace(/\s/g, '').length || !confirm_password.replace(/\s/g, '').length) {
             alert("All fields must be filled");
             return;
         }
-        else if (this.state.password !== this.state.confirm_password) {
+        else if (password !== confirm_password) {
             alert('Your password and confirmation does not match, please try again');
             return;
         }
-        else if (this.state.password.search(/[a-z]/i) < 0) {
+        else if (password.search(/[a-z]/i) < 0) {
             alert('Your password must contain at least one letter');
             return;
         }
-        else if (this.state.password.search(/[0-9]/) < 0) {
+        else if (password.search(/[0-9]/) < 0) {
             alert('Your password must contain one digit');
             return;
-        }
-        else if (!special.test(this.state.password)) {
+        } 
+        else if (!special.test(password)) {
             alert('Your password must contain one special character');
             return;
         }
-        console.log(this.state);
+        console.log(email);
+        console.log(password);
+        console.log(confirm_password)
     }
 
-    render() {
-        return (
-            // Using this div tag to change background color of only this page
-            <div className='CreateAccountBody'>
-                <form className='login-form' onSubmit={(e) => this.handleSubmit(e)}>
-                    <div className='welcome'>WELCOME!</div>
-                    <div className='input-container'>
-                        <input className='input-user' value={this.state.email} onChange={this.email_handler} placeholder="Email" type="text" name="uname" />
-                    </div>
-                    <div className="input-container">
-                        <input className='input-password' value={this.state.password} onChange={this.password_handler} type="password" placeholder="Password" name="pass" />
-                    </div>
-                    <div className="input-container">
-                        <input className='input-confirm' value={this.state.confirm_password} onChange={this.confirm_password_handler} type="password" placeholder="Confirm Password" name="pass" />
-                    </div>
-                    <button className="button-container" onClick={this.register}> SIGN UP
-                    </button>
-                    <div className='password-checker'>Password must contain at least one letter, digit, and special character </div>
-                    <div className='account'>Have an account?</div>
-                    <Link to={'/LoginPage'}>
-                        <div className='login-link'>Login</div>
-                    </Link>
-                </form>
-            </div >
-        )
-    }
+    return (
+        // Using this div tag to change background color of only this page
+        <div className='CreateAccountBody'>
+            <form className='login-form' onSubmit={(e) => handleSubmit(e)}>
+                <div className='welcome'>WELCOME!</div>
+                <div className='input-container'>
+                    <input className='input-user' value={email} onChange={(e) => setemail(e.target.value)} placeholder="Email" type="text" name="uname" />
+                </div>
+                <div className="input-container">
+                    <input className='input-password' value={password} onChange={(e) => setpassword(e.target.value)} type="password" placeholder="Password" name="pass" />
+                </div>
+                <div className="input-container">
+                    <input className='input-confirm' value={confirm_password} onChange={(e) => setconfirm_password(e.target.value)} type="password" placeholder="Confirm Password" name="pass" />
+                </div>
+                <button className="button-container" onClick={register}> SIGN UP
+                </button>
+                <div className='password-checker'>Password must contain at least one letter, digit, and special character </div>
+                <div className='account'>Have an account?</div>
+                <Link to={'/LoginPage'}>
+                    <div className='login-link'>Login</div>
+                </Link>
+            </form>
+        </div >
+    )
 }
+
 export default CreateAccount;
