@@ -3,36 +3,40 @@ import { Link } from 'react-router-dom';
 import './styles/CreateAccount.css'
 import "@fontsource/comic-neue";
 import { auth } from "./firebase.js"
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
+import db from './firebase.js';
+import {collection, doc, setDoc} from 'firebase/firestore';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 function CreateAccount() {
+    // The reference to the collection of Users
+    const colRef=collection(db, "Users");
+
+    // The states for the user infor (email, password, confirm password)
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [confirm_password, setconfirm_password] = useState('');
-
-    const register = async () => {
-        const user = await createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log("user created")
-
-                window.location.href = "FirstTimeLogin"
-
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-                console.log(error.code + error.message)
+    
+    async function createAccount() {
+        try {
+            const user = await createUserWithEmailAndPassword(auth, email, password);
+            const newDocument= await setDoc(doc(db,'Users', user.user.uid), {
+                uniqueId: user.user.uid,
+                userEmail: email,
             });
+            window.location.href = "FirstTimeLogin";
+            
+        } catch(error) {
+            console.log(error.code + error.message);
+            alert(error.message);
+        }
     }
 
-    const handleSubmit = async event => {
+    const register=(event) => {
         //Special character condition
         let special = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
-        event.preventDefault(); //prevent reload after pressing submit
+
+        //prevent reload after pressing submit
+        event.preventDefault(); 
         if (email === '' || email === null || password === '' || password === null || confirm_password === '' || confirm_password === null || !email.replace(/\s/g, '').length || !password.replace(/\s/g, '').length || !confirm_password.replace(/\s/g, '').length) {
             alert("All fields must be filled");
             return;
@@ -53,15 +57,19 @@ function CreateAccount() {
             alert('Your password must contain one special character');
             return;
         }
-        console.log(email);
-        console.log(password);
-        console.log(confirm_password)
-    }
+        else {
+            // Now we add the user after the username and password is correct in terms of regex
+            createAccount();
+            console.log("Created Account");
+            return;
+        }
+        
+    };
 
     return (
         // Using this div tag to change background color of only this page
         <div className='CreateAccountBody'>
-            <form className='login-form' onSubmit={(e) => handleSubmit(e)}>
+            <form className='login-form'>
                 <div className='welcome'>WELCOME!</div>
                 <div className='input-container'>
                     <input className='input-user' value={email} onChange={(e) => setemail(e.target.value)} placeholder="Email" type="text" name="uname" />
