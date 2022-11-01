@@ -25,7 +25,7 @@ function CreateAccount() {
                 userEmail: email,
             });
             // window.location.href = "FirstTimeLogin";
-            navigate('/FirstTimeLogin');
+            navigate('/FirstTimeLogin', {state: {userID: user.user.uid}});
             
         } catch(error) {
             console.log(error.code + error.message);

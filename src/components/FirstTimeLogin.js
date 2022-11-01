@@ -1,6 +1,6 @@
 import "./styles/FirstTimeLogin.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function FirstTimeLogin() {
   const navigate = useNavigate();
@@ -14,6 +14,11 @@ function FirstTimeLogin() {
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
   const [checked, setChecked] = useState(false);
+
+  const { state } = useLocation();
+  const { userID } = state;
+
+  console.log(userID);
 
   const handlePrevious = () => {
     setPage(0);
