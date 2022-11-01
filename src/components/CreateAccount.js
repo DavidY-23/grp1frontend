@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles/CreateAccount.css'
 import "@fontsource/comic-neue";
 import { auth } from "./firebase.js"
@@ -15,6 +15,7 @@ function CreateAccount() {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [confirm_password, setconfirm_password] = useState('');
+    const navigate = useNavigate();
     
     async function createAccount() {
         try {
@@ -23,7 +24,8 @@ function CreateAccount() {
                 uniqueId: user.user.uid,
                 userEmail: email,
             });
-            window.location.href = "FirstTimeLogin";
+            // window.location.href = "FirstTimeLogin";
+            navigate('/FirstTimeLogin');
             
         } catch(error) {
             console.log(error.code + error.message);
