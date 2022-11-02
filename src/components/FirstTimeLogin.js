@@ -163,52 +163,57 @@ function FirstTimeLogin() {
           <form onSubmit={handleSubmit}>
             <div className="loginLabel">
               Any food allergies?
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Milk"
                   name="Milk"
                   id="Milk"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Milk
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Nuts"
                   name="Nuts"
                   id="Nuts"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Nuts
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Eggs"
                   name="Eggs"
                   id="Eggs"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Eggs
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Fish"
                   name="Fish"
                   id="Fish"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Fish
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Wheat"
                   name="Wheat"
                   id="Wheat"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Wheat
@@ -219,6 +224,7 @@ function FirstTimeLogin() {
                   value="Shellfish"
                   name="Shellfish"
                   id="Shellfish"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Shellfish
@@ -229,6 +235,8 @@ function FirstTimeLogin() {
                   value="Soybeans"
                   name="Soybeans"
                   id="Soybeans"
+                  className="foodz"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Soybeans
@@ -244,6 +252,7 @@ function FirstTimeLogin() {
                   value="Arms"
                   name="Arms"
                   id="Arms"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Arms
@@ -254,6 +263,7 @@ function FirstTimeLogin() {
                   value="Legs"
                   name="Legs"
                   id="Legs"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Legs
@@ -264,6 +274,7 @@ function FirstTimeLogin() {
                   value="Shoulders"
                   name="Shoulders"
                   id="Shoulders"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Shoulders
@@ -274,6 +285,7 @@ function FirstTimeLogin() {
                   value="Chest"
                   name="Chest"
                   id="Chest"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Chest
@@ -285,6 +297,7 @@ function FirstTimeLogin() {
               type="submit"
               onClick={handlePrevious}
               value="Previous"
+              style={{ visibility: "visible" }}
             />
             <input className="button" type="submit" value="Submit" />
           </form>
