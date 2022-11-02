@@ -27,6 +27,7 @@ function RecipeCreate() {
     useEffect(() => {
         apiCall(); //Calling API function
         console.log(ingred_and_measure);
+        console.log(CopyRecipeList)
     }, []);
 
     const apiCall = async () => {

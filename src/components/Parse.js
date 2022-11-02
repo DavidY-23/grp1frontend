@@ -2,8 +2,26 @@ import React, { useState } from 'react';
 // import data from "./ListData.json"
 import newData from "./JSON files/recipelist.json";
 import ModifiedList from "./JSON files/ModifiedRecipeList.json";
-
+import recipeAll from "./JSON files/recipelistAll.json"
 function ParseR(props) {
+    // let recipe_data = [];
+    // for (let i = 0; i < recipeAll.length; i++) {
+    //     let new_object =
+    //     {
+    //         id: i,
+    //         name: recipeAll[i].name,
+    //         image: recipeAll[i].image,
+    //         youtube: recipeAll[i].youtube,
+    //         area: recipeAll[i].area,
+    //         instructions: recipeAll[i].instructions,
+    //         tags: recipeAll[i].tags,
+    //         ingredients: recipeAll[i].ingredients,
+    //         measurements: recipeAll[i].measurements,
+    //     }
+    //     recipe_data.push(new_object)
+    // }
+    // var myJsonString = JSON.stringify(recipe_data);
+    // console.log(myJsonString)
     let recipe_data = [];
     for (let i = 0; i < ModifiedList.length; i++) {
         let ingredient_list = [];
@@ -108,6 +126,38 @@ function ParseR(props) {
 
     let left_bracket = '{';
     let right_bracket = '},';
+
+    // async function addJSON() {
+    //     for (let i = 0; i < recipeAll.length; i++) {
+    //       let Tags = recipeAll[i].tags;
+    //       let Youtube = recipeAll[i].youtube;
+    //       try {
+    //         if (recipeAll[i].tags === undefined) {
+    //           Tags = null;
+    //         }
+    //         if(recipeAll[i].youtube === undefined)
+    //         {
+    //           Youtube = null;
+    //         }
+    //         await setDoc(doc(db, "Recipes", recipeAll[i].name), {
+    //           id: i,
+    //           name: recipeAll[i].name,
+    //           image: recipeAll[i].image,
+    //           youtube: Youtube,
+    //           area: recipeAll[i].area,
+    //           instructions: recipeAll[i].instructions,
+    //           tags: Tags,
+    //           ingredients: recipeAll[i].ingredients,
+    //           measurements: recipeAll[i].measurements,
+    //         });
+    //       }
+    //       catch (error) {
+    //         console.log(error.code + error.message);
+    //         alert(error.message);
+    //       }
+    //     }
+    //   }
+    
 
 
     return (

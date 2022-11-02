@@ -4,41 +4,42 @@ import './styles/CreateAccount.css'
 import "@fontsource/comic-neue";
 import { auth } from "./firebase.js"
 import db from './firebase.js';
-import {collection, doc, setDoc} from 'firebase/firestore';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 function CreateAccount() {
     // The reference to the collection of Users
-    const colRef=collection(db, "Users");
+    const colRef = collection(db, "Users");
 
     // The states for the user infor (email, password, confirm password)
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [confirm_password, setconfirm_password] = useState('');
     const navigate = useNavigate();
-    
+
+
     async function createAccount() {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
-            const newDocument= await setDoc(doc(db,'Users', user.user.uid), {
+            const newDocument = await setDoc(doc(db, 'Users', user.user.uid), {
                 uniqueId: user.user.uid,
                 userEmail: email,
             });
             // window.location.href = "FirstTimeLogin";
-            navigate('/FirstTimeLogin', {state: {userID: user.user.uid}});
-            
-        } catch(error) {
+            navigate('/FirstTimeLogin', { state: { userID: user.user.uid, UserEmail: email } });
+
+        } catch (error) {
             console.log(error.code + error.message);
             alert(error.message);
         }
     }
 
-    const register=(event) => {
+    const register = (event) => {
         //Special character condition
         let special = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
 
         //prevent reload after pressing submit
-        event.preventDefault(); 
+        event.preventDefault();
         if (email === '' || email === null || password === '' || password === null || confirm_password === '' || confirm_password === null || !email.replace(/\s/g, '').length || !password.replace(/\s/g, '').length || !confirm_password.replace(/\s/g, '').length) {
             alert("All fields must be filled");
             return;
@@ -54,7 +55,7 @@ function CreateAccount() {
         else if (password.search(/[0-9]/) < 0) {
             alert('Your password must contain one digit');
             return;
-        } 
+        }
         else if (!special.test(password)) {
             alert('Your password must contain one special character');
             return;
@@ -65,7 +66,6 @@ function CreateAccount() {
             console.log("Created Account");
             return;
         }
-        
     };
 
     return (

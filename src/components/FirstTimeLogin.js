@@ -1,6 +1,8 @@
 import "./styles/FirstTimeLogin.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import db from './firebase.js';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 function FirstTimeLogin() {
   const navigate = useNavigate();
@@ -14,16 +16,33 @@ function FirstTimeLogin() {
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
   const [checked, setChecked] = useState(false);
-
   const { state } = useLocation();
-  const { userID } = state;
-
-  console.log(userID);
+  const { userID, UserEmail } = state;
 
   const handlePrevious = () => {
     setPage(0);
   };
 
+  async function addExtras() {
+    try {
+      await setDoc(doc(db, "Users", userID), {
+        uniqueId: userID,
+        userEmail: UserEmail,
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        gender: gender,
+        weight: weight,
+        height: height,
+        allergies: allergies,
+        injury: injury
+      });
+    }
+    catch (error) {
+      console.log(error.code + error.message);
+      alert(error.message);
+    }
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     if (page === 0) {
@@ -43,6 +62,7 @@ function FirstTimeLogin() {
           injury: injury,
         },
       });
+    addExtras();
   };
 
   const handleAllergy = async (event) => {
@@ -168,52 +188,57 @@ function FirstTimeLogin() {
           <form onSubmit={handleSubmit}>
             <div className="loginLabel">
               Any food allergies?
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Milk"
                   name="Milk"
                   id="Milk"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Milk
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Nuts"
                   name="Nuts"
                   id="Nuts"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Nuts
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Eggs"
                   name="Eggs"
                   id="Eggs"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Eggs
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Fish"
                   name="Fish"
                   id="Fish"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Fish
               </label>
-              <label>
+              <label className="food">
                 <input
                   type="checkbox"
                   value="Wheat"
                   name="Wheat"
                   id="Wheat"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Wheat
@@ -224,6 +249,7 @@ function FirstTimeLogin() {
                   value="Shellfish"
                   name="Shellfish"
                   id="Shellfish"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Shellfish
@@ -234,6 +260,8 @@ function FirstTimeLogin() {
                   value="Soybeans"
                   name="Soybeans"
                   id="Soybeans"
+                  className="foodz"
+                  style={{ visibility: "visible" }}
                   onChange={handleAllergy}
                 />
                 Soybeans
@@ -249,6 +277,7 @@ function FirstTimeLogin() {
                   value="Arms"
                   name="Arms"
                   id="Arms"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Arms
@@ -259,6 +288,7 @@ function FirstTimeLogin() {
                   value="Legs"
                   name="Legs"
                   id="Legs"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Legs
@@ -269,6 +299,7 @@ function FirstTimeLogin() {
                   value="Shoulders"
                   name="Shoulders"
                   id="Shoulders"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Shoulders
@@ -279,6 +310,7 @@ function FirstTimeLogin() {
                   value="Chest"
                   name="Chest"
                   id="Chest"
+                  style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
                 Chest
@@ -290,6 +322,7 @@ function FirstTimeLogin() {
               type="submit"
               onClick={handlePrevious}
               value="Previous"
+              style={{ visibility: "visible" }}
             />
             <input className="button" type="submit" value="Submit" />
           </form>
