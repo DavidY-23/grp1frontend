@@ -1,17 +1,50 @@
 import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/LoginForm.css";
+import { auth } from "./firebase.js"
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
 
 function LoginForm({ Login, error }) {
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    Login(details);
+    // Login(details);
+    
+    signInWithEmailAndPassword(auth, details.email, details.password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        
+        navigate("/home/profile",
+          {
+            state: {                    //temporary values for passing state
+              userUID : user.uid,
+              firstName: "joe",
+              lastName: "mama",
+              age: "",
+              gender: "",
+              weight: "",
+              height: "",
+              allergies: "",
+              injury: "",
+            }
+          }
+        );
+        console.log("signed in user", user.uid);
+
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            console.log(errorCode + errorMessage)
+        });
   };
 
   useEffect(() => {
@@ -37,6 +70,7 @@ function LoginForm({ Login, error }) {
     console.log(userObject);
     setDetails({ ...details, email: userObject.email });
   }
+
 
   return (
     <form id="LogForm" onSubmit={submitHandler}>
