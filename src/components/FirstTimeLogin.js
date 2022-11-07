@@ -60,6 +60,7 @@ function FirstTimeLogin() {
           height: height,
           allergies: allergies,
           injury: injury,
+          userID: userID,
         },
       });
     addExtras();
