@@ -28,7 +28,7 @@ const SearchResults = (props) => {
     }
 
     let handleInput = (e) => {
-        setNewSearch(e.target.value);
+        setNewSearch(e.target.value.toLowerCase());
     };
 
     const filteredData = data.filter((el) => {
