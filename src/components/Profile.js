@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
+  console.log(location);
   let BMI =
     "BMI " +
     (
@@ -69,7 +70,19 @@ function Profile() {
   let navigate = useNavigate();
   const redirect = () => {
     let path = "/home/overview";
-    navigate(path);
+    navigate(path,{
+      state:{
+        firstName: location.state.firstName,
+        lastName: location.state.lastName,
+        age: location.state.age,
+        gender: location.state.gender,
+        weight: location.state.weight,
+        height: location.state.height,
+        allergies: location.state.allergies,
+        injury: location.state.injury,
+        userID: location.state.userID,
+      },
+    });
   };
   return (
     <div className="profile">

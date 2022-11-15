@@ -1,6 +1,8 @@
 import "./styles/FirstTimeLogin.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import db from './firebase.js';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 function FirstTimeLogin() {
   const navigate = useNavigate();
@@ -14,11 +16,33 @@ function FirstTimeLogin() {
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
   const [checked, setChecked] = useState(false);
+  const { state } = useLocation();
+  const { userID, UserEmail } = state;
 
   const handlePrevious = () => {
     setPage(0);
   };
 
+  async function addExtras() {
+    try {
+      await setDoc(doc(db, "Users", userID), {
+        uniqueId: userID,
+        userEmail: UserEmail,
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        gender: gender,
+        weight: weight,
+        height: height,
+        allergies: allergies,
+        injury: injury
+      });
+    }
+    catch (error) {
+      console.log(error.code + error.message);
+      alert(error.message);
+    }
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     if (page === 0) {
@@ -36,8 +60,10 @@ function FirstTimeLogin() {
           height: height,
           allergies: allergies,
           injury: injury,
+          userID: userID,
         },
       });
+    addExtras();
   };
 
   const handleAllergy = async (event) => {
