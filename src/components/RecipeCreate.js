@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 import CopyRecipeList from './JSON files/recipelistAll.json'
 import './styles/RecipeCreate.css'
 import { Link } from 'react-router-dom';
+import db from './firebase.js';
+import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
+import { setRef } from "@mui/material";
+
 
 function RecipeCreate() {
     const [message, setmessage] = useState("");
@@ -17,6 +21,7 @@ function RecipeCreate() {
     const [tags, setTag] = useState('');
     const [ingredients, setingredients] = useState('');
     const [measurements, setmeasurements] = useState('');
+    const [recipe_count, set_recipe_count] = useState(null);
     const [api, setapi] = useState([]);
     const [ingred_and_measure, setingred_and_measure] = useState([]);
     const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -25,25 +30,31 @@ function RecipeCreate() {
 
     // //Loading API data
     useEffect(() => {
-        apiCall(); //Calling API function
-        console.log(ingred_and_measure);
-        console.log(CopyRecipeList)
+        grabDocument(); //Gathering document
+        // apiCall(); //Calling API function
     }, []);
 
-    const apiCall = async () => {
-        for (let i = 0; i < range; i++) {
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${alphabet[i]}`) //looping through all meals a-z
-            const json = await response.json(); //Gathering data from API call
-            if (json.meals == null) {
-                continue;
-            }
-            else {
-                for (let j = 0; j < json.meals.length; j++) {
-                    setapi(prevArray => [...prevArray, json.meals[j]]); //Appending value to the end of state array
-                }
-            }
-        }
+    async function grabDocument() {
+        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
+        let RecipeLegnth = RecipeDatabase._snapshot.docChanges.length;
+        set_recipe_count(RecipeLegnth); //Adding legnth to state
+        console.log(RecipeDatabase._snapshot.docChanges.length) //Gathering the length of the Recipe collection 
     }
+
+    // const apiCall = async () => {
+    //     for (let i = 0; i < range; i++) {
+    //         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${alphabet[i]}`) //looping through all meals a-z
+    //         const json = await response.json(); //Gathering data from API call
+    //         if (json.meals == null) {
+    //             continue;
+    //         }
+    //         else {
+    //             for (let j = 0; j < json.meals.length; j++) {
+    //                 setapi(prevArray => [...prevArray, json.meals[j]]); //Appending value to the end of state array
+    //             }
+    //         }
+    //     }
+    // }
 
     //Function for removing values that are "" or null in json file
     const RemoveEmpty = () => {
@@ -87,32 +98,32 @@ function RecipeCreate() {
         console.log(tag_list);
     }
 
-    const AddIngredients = () => {
-        if (!ingredients.trim().length || !ingredients) {
-            alert("Please do not leave only whitespace or an empty value");
-            return;
-        }
-        setingredients_list(prevArray => [...prevArray, ingredients]);
-        setingredients('');
-        if (measurement_list.length === ingredients_list.length && (measurement_list.length && ingredients_list.length) !== 0) {
-            console.log("Testing")
-            setingred_and_measure(old => [...old, measurement_list[measurement_list.length - 1] + " " + ingredients_list[ingredients_list.length - 1]]);
-        }
-    }
+    // const AddIngredients = () => {
+    //     if (!ingredients.trim().length || !ingredients) {
+    //         alert("Please do not leave only whitespace or an empty value");
+    //         return;
+    //     }
+    //     setingredients_list(prevArray => [...prevArray, ingredients]);
+    //     setingredients('');
+    //     if (measurement_list.length === ingredients_list.length && (measurement_list.length && ingredients_list.length) !== 0) {
+    //         console.log("Testing")
+    //         setingred_and_measure(old => [...old, measurement_list[measurement_list.length - 1] + " " + ingredients_list[ingredients_list.length - 1]]);
+    //     }
+    // }
 
-    const AddMeasurements = () => {
-        if (!measurements.trim().length || !measurements) {
-            alert("Please do not leave only whitespace or an empty value");
-            return;
-        }
-        setmeasurement_list((prevArray => [...prevArray, measurements]));//Pushing measurement in measurement array
-        setmeasurements('');
-        if (measurement_list.length === ingredients_list.length && (measurement_list.length && ingredients_list.length) !== 0) {
-            console.log("Testing")
-            setingred_and_measure(old => [...old, measurement_list[measurement_list.length - 1] + " " + ingredients_list[ingredients_list.length - 1]]);
-            console.log(ingred_and_measure)
-        }
-    }
+    // const AddMeasurements = () => {
+    //     if (!measurements.trim().length || !measurements) {
+    //         alert("Please do not leave only whitespace or an empty value");
+    //         return;
+    //     }
+    //     setmeasurement_list((prevArray => [...prevArray, measurements]));//Pushing measurement in measurement array
+    //     setmeasurements('');
+    //     if (measurement_list.length === ingredients_list.length && (measurement_list.length && ingredients_list.length) !== 0) {
+    //         console.log("Testing")
+    //         setingred_and_measure(old => [...old, measurement_list[measurement_list.length - 1] + " " + ingredients_list[ingredients_list.length - 1]]);
+    //         console.log(ingred_and_measure)
+    //     }
+    // }
 
     const addBoth = () => {
         if ((!measurements.trim().length || !measurements) || (!ingredients.trim().length || !ingredients)) {
@@ -129,7 +140,7 @@ function RecipeCreate() {
     //After button press, perform this submission:
     const SubmitRecipe = async (event) => {
         event.preventDefault();
-        if ((!name.trim().length || !name) || (!image.trim().length || !image) || (!area.trim().length || !area) || (!instructions.trim().length || !instructions))  {
+        if ((!name.trim().length || !name) || (!image.trim().length || !image) || (!area.trim().length || !area) || (!instructions.trim().length || !instructions)) {
             setmessage("SUBMISSION DENIED: All fields must be filled.  Also, tags, ingredients, and measurements cannot be empty.");
             return;
         }
@@ -138,23 +149,24 @@ function RecipeCreate() {
             setmessage("SUBMISSION DENIED: tags, ingredients, and measurements cannot be empty.");
             return;
         }
-        let recipe_object =
-        {
-            name: name,
-            image: image,
-            youtube: null,
-            area: area,
-            instructions: instructions,
-            tags: tag_list,
-            ingredients: ingredients_list,
-            measurements: measurement_list,
-        }
+        addNewRecipe(); //Adding recipe to backend Database
+        // let recipe_object =
+        // {
+        //     name: name,
+        //     image: image,
+        //     youtube: null,
+        //     area: area,
+        //     instructions: instructions,
+        //     tags: tag_list,
+        //     ingredients: ingredients_list,
+        //     measurements: measurement_list,
+        // }
         //Pushing new recipe into json 
-        CopyRecipeList.push(recipe_object);
+        // CopyRecipeList.push(recipe_object);
 
         // copy_of_recipe.push(recipe_object);
         // console.log(copy_of_recipe);
-        console.log(CopyRecipeList);
+        // console.log(CopyRecipeList);
         setname('');
         setImage('');
         setarea('');
@@ -163,6 +175,26 @@ function RecipeCreate() {
         setingred_and_measure([]);
         settag_list([]);
         alert("Your recipe is now in our database.");
+    }
+
+    async function addNewRecipe() {
+        try {
+            await setDoc(doc(db, "Recipes", name), {
+                id: recipe_count,
+                name: name,
+                image: image,
+                youtube: null,
+                area: area,
+                instructions: instructions,
+                tags: tag_list,
+                ingredients: ingredients_list,
+                measurements: measurement_list,
+            });
+        }
+        catch (error) {
+            console.log(error.code + error.message);
+            alert(error.message);
+        }
     }
 
     const TagDeleteIndex = (index) => {
