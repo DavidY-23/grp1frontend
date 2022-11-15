@@ -161,12 +161,6 @@ function RecipeCreate() {
         //     ingredients: ingredients_list,
         //     measurements: measurement_list,
         // }
-        //Pushing new recipe into json 
-        // CopyRecipeList.push(recipe_object);
-
-        // copy_of_recipe.push(recipe_object);
-        // console.log(copy_of_recipe);
-        // console.log(CopyRecipeList);
         setname('');
         setImage('');
         setarea('');
