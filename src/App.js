@@ -15,9 +15,9 @@ import RecipeDetails from "./components/RecipeDetails";
 import SearchResults from "./components/SearchResultsPage";
 import RecipeCreate from "./components/RecipeCreate.js";
 import ParseR from "./components/Parse.js";
-
+import Filter from "./components/Filter";
 // Just added it here to test the mental health page
-import MentalHealth  from "./components/MentalHealth";
+import MentalHealth from "./components/MentalHealth";
 import JournalEntry from "./components/JournalEntry";
 
 function App() {
@@ -35,9 +35,10 @@ function App() {
         <Route path="/home/recipesearch/RecipeDetails/:state" element={<RecipeDetails />} />
         <Route path="/home/recipesearch/SearchResults" element={<SearchResults />} />
         <Route path="/RecipeCreate" element={<RecipeCreate />} />
-        <Route path = '/ParseR' element={<ParseR/>} />
+        <Route path='/ParseR' element={<ParseR />} />
         <Route path="/MentalHealth" element={<MentalHealth />} />
         <Route path="/JournalEntry" element={<JournalEntry />} />
+        <Route path="/home/Filter" element={<Filter />} />
       </Routes>
     </div>
   );
