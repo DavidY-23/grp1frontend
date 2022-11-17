@@ -78,3 +78,31 @@
 #info {
   text-align: center;
 }
+
+.filter-box {
+  position: fixed;
+  background-color: lightgrey;
+  border: solid green;
+  padding: 20px;
+  width: 250px;
+  right: 5%;
+  top: 5%;
+  text-align: center;
+}
+
+.filter-text {
+  text-decoration: underline;
+}
+
+.x-button {
+  background-color: lightgrey;
+  border: solid lightgrey;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.x-button:hover {
+  opacity: 1;
+  color: red;
+}

@@ -15,7 +15,6 @@ function RecipeSearch() {
         //convert input text to lower case
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
-
         setSearch(e.target.value);
     };
 

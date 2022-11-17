@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "./styles/Filter.css"
 import db from './firebase.js';
 import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
+import { setRef } from "@mui/material";
 
 function Filter() {
     const [data, setdata] = useState([]);
     const [ingredient_names, set_ingredient_names] = useState([]);
+    const [filter_list, set_filter_list] = useState([])
+
     useEffect(() => {
         collectData();
         // setdata(data.sort()) //Putting data in alphabetical order
@@ -19,9 +22,8 @@ function Filter() {
         RecipeDatabase.forEach((doc) => {
             collection_array.push(doc.data());
         });
-        setdata(collection_array);
-        for (let i = 0; i < data.length; i++) {
-            let current_index = data[i].ingredients; //Array of ingredients for current index
+        for (let i = 0; i < collection_array.length; i++) {
+            let current_index = collection_array[i].ingredients; //Array of ingredients for current index
             for (let j = 0; j < current_index.length; j++) {
                 temporary_ingred_array.push(current_index[j])
                 // set_ingredient_names((prevArray => [...prevArray, current_index[j]]))
@@ -30,6 +32,7 @@ function Filter() {
         let lower_case = temporary_ingred_array.map(element => {
             return element.toLowerCase();
         })
+        console.log(lower_case)
         let removeDuplicates = [...new Set(lower_case)];
         removeDuplicates = removeDuplicates.sort();
         for (let i = 0; i < removeDuplicates.length; i++) {
@@ -43,8 +46,36 @@ function Filter() {
             }
         }
         removeDuplicates = [...new Set(removeDuplicates)];
+        removeDuplicates.splice(2, 1); //removes the element that has allspice in one word
+        removeDuplicates.splice(44, 1); //removes the elmeent that has blackberrys since it is mispelt
         set_ingredient_names(removeDuplicates);
         console.log(removeDuplicates);
+    }
+
+    const addToFilter = (element, index) => {
+        let new_array = [];
+        set_filter_list((prevArray => [...prevArray, element]));
+        new_array = [...ingredient_names];
+        new_array.splice(index, 1);
+        console.log(new_array[index] + " Removed")
+        set_ingredient_names(new_array);
+    }
+
+    const DeleteFilter = (element, index) => {
+        let new_array = [];
+        let old_ingredient_list = ingredient_names;
+        for (let i = 0; i < filter_list.length; i++) {
+            if (i === index) {
+                continue;
+            }
+            else {
+                new_array.push(filter_list[i]);
+            }
+        }
+        old_ingredient_list.push(element);
+        old_ingredient_list.sort();
+        set_ingredient_names(old_ingredient_list);
+        set_filter_list(new_array);
     }
 
     const inputFilter = () => {
@@ -68,12 +99,34 @@ function Filter() {
     return (
         <div>
             <input type="text" onChange={inputFilter} id='user_text' className="user_text" placeholder="Search for ingredients.." title="Type in a name" />
+            <form>
+                <div className="filter-box">
+                    <h4 className="filter-text">Filters Added</h4>
+                    <ul>
+                        {
+                            filter_list.map((filter_element, index) => {
+                                return (
+                                    <div>
+                                        <li key={index}>{filter_element}
+                                            <button type="button" className="x-button" onClick={() => DeleteFilter(filter_element, index)}>x</button>
+                                        </li>
+                                    </div>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            </form>
             <ul id="ingredient_listing" className="ingredient_listing">
-                <li><a>Edward</a></li>
-                <li><a>Joel</a></li>
-                <li><a>Eric</a></li>
-                <li><a>Anthony</a></li>
-                <li><a>Beth</a></li>
+                {
+                    ingredient_names.map((ingredients, index) => {
+                        return (
+                            <li>
+                                <a onClick={() => addToFilter(ingredients, index)}>{ingredients}</a>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </div>
     )
