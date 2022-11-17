@@ -54,11 +54,13 @@ function Filter(props) {
 
     const addToFilter = (element, index) => {
         let new_array = [];
-        props.setFilter((prevArray => [...prevArray, element]));
+        props.setFilter((prevArray => [...prevArray, { ingredient: element, index: index }]));
         new_array = [...props.ingredient_names];
-        new_array.splice(index, 1);
+        new_array[index] = "FILTERED: " + element;
+        // new_array.splice(index, 1);
         console.log(new_array[index] + " Removed")
         props.set_ingredient_names(new_array);
+        console.log(props.filters)
     }
 
     const DeleteFilter = (element, index) => {
@@ -72,8 +74,9 @@ function Filter(props) {
                 new_array.push(props.filters[i]);
             }
         }
-        old_ingredient_list.push(element);
-        old_ingredient_list.sort();
+        old_ingredient_list[index] = element; //CHANGE STUFF STARTING HERE
+        // old_ingredient_list.push(element);
+        // old_ingredient_list.sort();
         props.set_ingredient_names(old_ingredient_list);
         props.setFilter(new_array);
     }
@@ -93,6 +96,7 @@ function Filter(props) {
                 list[i].style.display = "none";
             }
         }
+        console.log(filter)
     }
     return (
         <div>
@@ -102,11 +106,11 @@ function Filter(props) {
                     <h4 className="filter-text">Filters Added</h4>
                     <ul>
                         {
-                            props.filters.map((filter_element, index) => {
+                            props.filters.map((filter_element, index_of) => {
                                 return (
                                     <div>
-                                        <li key={index}>{filter_element}
-                                            <button type="button" className="x-button" onClick={() => DeleteFilter(filter_element, index)}>x</button>
+                                        <li key={index_of}>{filter_element.element}
+                                            <button type="button" className="x-button" onClick={() => DeleteFilter(filter_element.element, filter_element.index)}>x</button>
                                         </li>
                                     </div>
                                 )
