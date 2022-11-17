@@ -34,7 +34,8 @@ function FirstTimeLogin(props) {
         height: props.height,
         allergies: props.allergies,
         injury: props.injury,
-        filters: props.filters
+        filters: props.filters,
+        ingredient_names: props.ingredient_names
       });
     }
     catch (error) {

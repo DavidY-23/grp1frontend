@@ -5,10 +5,10 @@ import db from './firebase.js';
 import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { setRef } from "@mui/material";
 
-function Filter() {
+function Filter(props) {
     const [data, setdata] = useState([]);
-    const [ingredient_names, set_ingredient_names] = useState([]);
-    const [filter_list, set_filter_list] = useState([])
+    // const [ingredient_names, set_ingredient_names] = useState([]);
+    // const [filter_list, set_filter_list] = useState([])
 
     useEffect(() => {
         collectData();
@@ -48,34 +48,34 @@ function Filter() {
         removeDuplicates = [...new Set(removeDuplicates)];
         removeDuplicates.splice(2, 1); //removes the element that has allspice in one word
         removeDuplicates.splice(44, 1); //removes the elmeent that has blackberrys since it is mispelt
-        set_ingredient_names(removeDuplicates);
+        props.set_ingredient_names(removeDuplicates);
         console.log(removeDuplicates);
     }
 
     const addToFilter = (element, index) => {
         let new_array = [];
-        set_filter_list((prevArray => [...prevArray, element]));
-        new_array = [...ingredient_names];
+        props.setFilter((prevArray => [...prevArray, element]));
+        new_array = [...props.ingredient_names];
         new_array.splice(index, 1);
         console.log(new_array[index] + " Removed")
-        set_ingredient_names(new_array);
+        props.set_ingredient_names(new_array);
     }
 
     const DeleteFilter = (element, index) => {
         let new_array = [];
-        let old_ingredient_list = ingredient_names;
-        for (let i = 0; i < filter_list.length; i++) {
+        let old_ingredient_list = props.ingredient_names;
+        for (let i = 0; i < props.filters.length; i++) {
             if (i === index) {
                 continue;
             }
             else {
-                new_array.push(filter_list[i]);
+                new_array.push(props.filters[i]);
             }
         }
         old_ingredient_list.push(element);
         old_ingredient_list.sort();
-        set_ingredient_names(old_ingredient_list);
-        set_filter_list(new_array);
+        props.set_ingredient_names(old_ingredient_list);
+        props.setFilter(new_array);
     }
 
     const inputFilter = () => {
@@ -102,7 +102,7 @@ function Filter() {
                     <h4 className="filter-text">Filters Added</h4>
                     <ul>
                         {
-                            filter_list.map((filter_element, index) => {
+                            props.filters.map((filter_element, index) => {
                                 return (
                                     <div>
                                         <li key={index}>{filter_element}
@@ -117,7 +117,7 @@ function Filter() {
             </form>
             <ul id="ingredient_listing" className="ingredient_listing">
                 {
-                    ingredient_names.map((ingredients, index) => {
+                    props.ingredient_names.map((ingredients, index) => {
                         return (
                             <li>
                                 <a className="elements" onClick={() => addToFilter(ingredients, index)}>{ingredients}</a>
