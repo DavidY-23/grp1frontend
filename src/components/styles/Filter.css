@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-.ingredient_listing li a {
+.elements {
     border: 1px solid #ddd;
     margin-top: -1px;
     /* Prevent double borders */
@@ -17,7 +17,7 @@
     width: 60%;
 }
 
-.ingredient_listing li a:hover:not(.header) {
+.elements:hover:not(.header) {
     background-color: #eee;
 }
 
@@ -29,4 +29,33 @@
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
+}
+
+
+.filter-box {
+    position: fixed;
+    background-color: lightgrey;
+    border: solid green;
+    padding: 20px;
+    width: 250px;
+    right: 5%;
+    top: 5%;
+    text-align: center;
+}
+
+.filter-text {
+    text-decoration: underline;
+}
+
+.x-button {
+    background-color: lightgrey;
+    border: solid lightgrey;
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.x-button:hover {
+    opacity: 1;
+    color: red;
 }

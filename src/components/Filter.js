@@ -122,7 +122,7 @@ function Filter() {
                     ingredient_names.map((ingredients, index) => {
                         return (
                             <li>
-                                <a onClick={() => addToFilter(ingredients, index)}>{ingredients}</a>
+                                <a className="elements" onClick={() => addToFilter(ingredients, index)}>{ingredients}</a>
                             </li>
                         )
                     })

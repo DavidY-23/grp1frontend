@@ -137,16 +137,16 @@ button:focus {
   color: purple;
 }
 
-.return-link
+/* .return-link
 {
-  /* position: fixed;
+  position: fixed;
   background-color: purple;
   padding: 10px;
   text-decoration: none;
   color: black;
-  left: 100px; */
+  left: 100px;
   
-}
+} */
 /* .entirepage
 {
     width: auto;
