@@ -1,0 +1,61 @@
+.ingredient_listing {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.elements {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    width: 60%;
+}
+
+.elements:hover:not(.header) {
+    background-color: #eee;
+}
+
+.user_text {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 60%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+
+.filter-box {
+    position: fixed;
+    background-color: lightgrey;
+    border: solid green;
+    padding: 20px;
+    width: 250px;
+    right: 5%;
+    top: 5%;
+    text-align: center;
+}
+
+.filter-text {
+    text-decoration: underline;
+}
+
+.x-button {
+    background-color: lightgrey;
+    border: solid lightgrey;
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.x-button:hover {
+    opacity: 1;
+    color: red;
+}

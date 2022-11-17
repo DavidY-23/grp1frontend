@@ -10,81 +10,80 @@ import { useLocation } from "react-router-dom";
 import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
-function Overview() {
-  const location = useLocation();
+function Overview(props) {
   const navigate = useNavigate();
-  const [first_name, set_firstname] = useState(location.state.firstName);
-  const [last_name, set_lastname] = useState(location.state.lastName);
-  const [weight, setweight] = useState(location.state.weight);
-  const [height, setheight] = useState(location.state.height);
-  const [gender, setgender] = useState(location.state.gender);
-  const [age, setage] = useState(location.state.age);
-  const [allergies, setAllergies] = useState(location.state.allergies);
-  const [injury, setInjury] = useState(location.state.injury);
-  const [redirect, setredirect] = useState(false);
+  // const [first_name, set_firstname] = useState(props.firstName);
+  // const [last_name, set_lastname] = useState(props.lastName);
+  // const [weight, setweight] = useState(props.weight);
+  // const [height, setheight] = useState(props.height);
+  // const [gender, setgender] = useState(props.gender);
+  // const [age, setage] = useState(props.age);
+  // const [allergies, setAllergies] = useState(props.allergies);
+  // const [injury, setInjury] = useState(props.injury);
+  // const [redirect, setredirect] = useState(false);
 
 
   useEffect(() => {
     //Checking Gender
-    if (location.state.gender == "Male") {
+    if (props.gender == "Male") {
       let male = document.getElementById("male-check");
       male.checked = true;
     }
-    if (location.state.gender == "Female") {
+    if (props.gender == "Female") {
       let female = document.getElementById("female_check");
       female.checked = true;
     }
-    if (location.state.gender == "Other") {
+    if (props.gender == "Other") {
       let other = document.getElementById("other-check");
       other.checked = true;
     }
     //Checking Allergies Array
-    if (location.state.allergies.includes("Milk")) {
+    if (props.allergies.includes("Milk")) {
       let allergy_input = document.getElementById('Milk');
       allergy_input.checked = true;
       // setAllergies((prevArray => [...prevArray, allergies]))
     }
-    if (location.state.allergies.includes("Nuts")) {
+    if (props.allergies.includes("Nuts")) {
       let nuts = document.getElementById('Nuts');
       nuts.checked = true;
     }
-    if (location.state.allergies.includes("Eggs")) {
+    if (props.allergies.includes("Eggs")) {
       let eggs = document.getElementById('Eggs');
       eggs.checked = true;
     }
-    if (location.state.allergies.includes("Fish")) {
+    if (props.allergies.includes("Fish")) {
       let fish = document.getElementById('Fish');
       fish.checked = true;
     }
-    if (location.state.allergies.includes("Wheat")) {
+    if (props.allergies.includes("Wheat")) {
       let wheat = document.getElementById('Wheat');
       wheat.checked = true;
     }
-    if (location.state.allergies.includes("Shellfish")) {
+    if (props.allergies.includes("Shellfish")) {
       let shellfish = document.getElementById('Shellfish');
       shellfish.checked = true;
     }
-    if (location.state.allergies.includes("Soybeans")) {
+    if (props.allergies.includes("Soybeans")) {
       let soybeans = document.getElementById('Soybeans');
       soybeans.checked = true;
     }
     //Checking Injuries Array
-    if(location.state.injury.includes("Arms"))
+    if(props.injury.includes("Arms"))
     {
       let arms = document.getElementById('Arms');
       arms.checked = true;
     }
-    if(location.state.injury.includes("Legs"))
+    if(props.injury.includes("Legs"))
     {
       let legs = document.getElementById('Legs');
       legs.checked = true;
     }
-    if(location.state.injury.includes("Shoulders"))
+    if(props.injury.includes("Shoulders"))
     {
       let shoulders = document.getElementById('Shoulders');
       shoulders.checked = true;
     }
-    if(location.state.injury.includes("Chest"))
+    if(props.injury.includes("Chest"))
     {
       let chest = document.getElementById('Chest');
       chest.checked = true;
@@ -93,16 +92,16 @@ function Overview() {
 
   async function changeUserInformation() {
     try {
-      await setDoc(doc(db, "Users", location.state.userID), {
-        uniqueId: location.state.userID,
-        firstName: first_name,
-        lastName: last_name,
-        age: age,
-        gender: gender,
-        weight: weight,
-        height: height,
-        allergies: allergies,
-        injury: injury
+      await setDoc(doc(db, "Users", props.userID), {
+        uniqueId: props.userID,
+        firstName: props.firstName,
+        lastName: props.lastName,
+        age: props.age,
+        gender: props.gender,
+        weight: props.weight,
+        height: props.height,
+        allergies: props.allergies,
+        injury: props.injury
       });
     }
     catch (error) {
@@ -113,27 +112,15 @@ function Overview() {
   const handleSubmit = async event => {
     event.preventDefault();
     changeUserInformation();
-    navigate("/home/profile", {
-      state: {
-        firstName: first_name,
-        lastName: last_name,
-        age: age,
-        gender: gender,
-        weight: weight,
-        height: height,
-        allergies: allergies,
-        injury: injury,
-        userID: location.state.userID,
-      }
-    })
+    navigate("/home/profile");
   }
 
 
   const handleInjury = async (event) => {
     if (event.target.checked) {
-      setInjury((oldArray) => [...oldArray, event.target.value]);
+      props.setInjury((oldArray) => [...oldArray, event.target.value]);
     } else {
-      setInjury((prevState) =>
+      props.setInjury((prevState) =>
         prevState.filter((prevItem) => prevItem !== event.target.value)
       );
     }
@@ -141,9 +128,9 @@ function Overview() {
 
   const handleAllergy = async (event) => {
     if (event.target.checked) {
-      setAllergies((oldArray) => [...oldArray, event.target.value]);
+      props.setAllergies((oldArray) => [...oldArray, event.target.value]);
     } else {
-      setAllergies((prevState) =>
+      props.setAllergies((prevState) =>
         prevState.filter((prevItem) => prevItem !== event.target.value)
       );
     }
@@ -160,15 +147,15 @@ function Overview() {
           <img src={triangle} alt='' align='right' ></img>
         </div>
         <label for='first_name_box' > First Name
-          <input id='first_name_box' placeholder='First Name' class='form-control' name='first_name' value={first_name} onChange={(e) => set_firstname(e.target.value)} />
+          <input id='first_name_box' placeholder='First Name' class='form-control' name='props.firstName' value={props.firstName} onChange={(e) => props.setFirstName(e.target.value)} />
         </label>
         <br />
         <label for='last_name_id' >Last Name
-          <input placeholder='Last Name' id='last_name_id' class='form-control' name='last_name' value={last_name} onChange={(e) => set_lastname(e.target.value)} />
+          <input placeholder='Last Name' id='last_name_id' class='form-control' name='props.lastName' value={props.lastName} onChange={(e) => props.setLastName(e.target.value)} />
         </label>
         <br />
         <label for='age_id' >Age
-          <input id='age_id' class='form-control' type='number' name='age' value={age} onChange={(e) => setage(e.target.value)} />
+          <input id='age_id' class='form-control' type='number' name='props.age' value={props.age} onChange={(e) => props.setAge(e.target.value)} />
         </label>
         <br />
         <br />
@@ -186,8 +173,8 @@ function Overview() {
           <input class="form-check-input"
             type="radio"
             value="Male"
-            name="gender"
-            onChange={(e) => setgender(e.target.value)}
+            name="props.gender"
+            onChange={(e) => props.setGender(e.target.value)}
             id='male-check'
           />
           <label class='form-check-label' for='male-check'>Male </label>
@@ -196,9 +183,9 @@ function Overview() {
           <input class="form-check-input"
             type="radio"
             value="Female"
-            name="gender"
+            name="props.gender"
             id = 'female_check'
-            onChange={(e) => setgender(e.target.value)}
+            onChange={(e) => props.setGender(e.target.value)}
           />
           <label class='form-check-label' for='male-check'>Female </label>
         </div>
@@ -206,19 +193,19 @@ function Overview() {
           <input class="form-check-input"
             type="radio"
             value="Other"
-            name="gender"
+            name="props.gender"
             id = 'other-check'
-            onChange={(e) => setgender(e.target.value)}
+            onChange={(e) => props.setGender(e.target.value)}
           />
           <label class='form-check-label' for='male-check'>Other </label>
 
         </div>
         <br />
         <label for='weight_box' >Weight
-          <input placeholder='Weight' class='form-control' id='weight_box' type='number' name='weight' value={weight} onChange={(e) => setweight(e.target.value)} />
+          <input placeholder='Weight' class='form-control' id='weight_box' type='number' name='props.weight' value={props.weight} onChange={(e) => props.setWeight(e.target.value)} />
         </label>
         <label for='height_box' >Height (Inches)
-          <input class='form-control' placeholder='Height' id='height_box' type='number' name='height' value={height} onChange={(e) => setheight(e.target.value)} />
+          <input class='form-control' placeholder='Height' id='height_box' type='number' name='props.height' value={props.height} onChange={(e) => props.setHeight(e.target.value)} />
         </label>
         {/* <div className='about_me' >About Me
           <textarea className='about_container' size="100" name='about_user' value={about_user} onChange={(e) => setabout_user(e.target.value)} />
