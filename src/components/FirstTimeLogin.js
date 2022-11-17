@@ -33,7 +33,8 @@ function FirstTimeLogin(props) {
         weight: props.weight,
         height: props.height,
         allergies: props.allergies,
-        injury: props.injury
+        injury: props.injury,
+        filters: props.filters
       });
     }
     catch (error) {
