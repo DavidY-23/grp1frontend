@@ -94,8 +94,6 @@ function Filter() {
             }
         }
     }
-
-
     return (
         <div>
             <input type="text" onChange={inputFilter} id='user_text' className="user_text" placeholder="Search for ingredients.." title="Type in a name" />

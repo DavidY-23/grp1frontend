@@ -7,7 +7,7 @@ import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-function CreateAccount() {
+function CreateAccount(props) {
     // The reference to the collection of Users
     const colRef = collection(db, "Users");
 
@@ -25,9 +25,8 @@ function CreateAccount() {
                 uniqueId: user.user.uid,
                 userEmail: email,
             });
-            // window.location.href = "FirstTimeLogin";
-            navigate('/FirstTimeLogin', { state: { userID: user.user.uid, UserEmail: email } });
-
+            navigate('/FirstTimeLogin');
+            props.setUserID(user.user.uid);
         } catch (error) {
             console.log(error.code + error.message);
             alert(error.message);

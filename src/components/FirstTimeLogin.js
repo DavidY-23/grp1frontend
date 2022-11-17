@@ -4,20 +4,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
-function FirstTimeLogin() {
+function FirstTimeLogin(props) {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [age, setAge] = useState("");
+  // const [gender, setGender] = useState("");
+  // const [weight, setWeight] = useState("");
+  // const [height, setHeight] = useState("");
   const [page, setPage] = useState(0);
-  const [allergies, setAllergies] = useState([]);
-  const [injury, setInjury] = useState([]);
+  // const [allergies, setAllergies] = useState([]);
+  // const [injury, setInjury] = useState([]);
   const [checked, setChecked] = useState(false);
-  const { state } = useLocation();
-  const { userID, UserEmail } = state;
+  // const { userID } = state;
 
   const handlePrevious = () => {
     setPage(0);
@@ -25,17 +24,16 @@ function FirstTimeLogin() {
 
   async function addExtras() {
     try {
-      await setDoc(doc(db, "Users", userID), {
-        uniqueId: userID,
-        userEmail: UserEmail,
-        firstName: firstName,
-        lastName: lastName,
-        age: age,
-        gender: gender,
-        weight: weight,
-        height: height,
-        allergies: allergies,
-        injury: injury
+      await setDoc(doc(db, "Users", props.userID), {
+        uniqueId: props.userID,
+        firstName: props.firstName,
+        lastName: props.lastName,
+        age: props.age,
+        gender: props.gender,
+        weight: props.weight,
+        height: props.height,
+        allergies: props.allergies,
+        injury: props.injury
       });
     }
     catch (error) {
@@ -50,27 +48,16 @@ function FirstTimeLogin() {
       return;
     }
     if (page === 1)
-      navigate("/home/profile", {
-        state: {
-          firstName: firstName,
-          lastName: lastName,
-          age: age,
-          gender: gender,
-          weight: weight,
-          height: height,
-          allergies: allergies,
-          injury: injury,
-          userID: userID,
-        },
-      });
+      navigate("/home/profile");
     addExtras();
+    console.log(props)
   };
 
   const handleAllergy = async (event) => {
     if (event.target.checked) {
-      setAllergies((oldArray) => [...oldArray, event.target.value]);
+      props.setAllergies((oldArray) => [...oldArray, event.target.value]);
     } else {
-      setAllergies((prevState) =>
+      props.setAllergies((prevState) =>
         prevState.filter((prevItem) => prevItem !== event.target.value)
       );
     }
@@ -78,9 +65,9 @@ function FirstTimeLogin() {
 
   const handleInjury = async (event) => {
     if (event.target.checked) {
-      setInjury((oldArray) => [...oldArray, event.target.value]);
+      props.setInjury((oldArray) => [...oldArray, event.target.value]);
     } else {
-      setInjury((prevState) =>
+      props.setInjury((prevState) =>
         prevState.filter((prevItem) => prevItem !== event.target.value)
       );
     }
@@ -100,16 +87,16 @@ function FirstTimeLogin() {
               First Name:
               <input
                 type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={props.firstName}
+                onChange={(e) => props.setFirstName(e.target.value)}
               />
             </label>
             <label className="loginLabel">
               Last Name:
               <input
                 type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                value={props.lastName}
+                onChange={(e) => props.setLastName(e.target.value)}
               />
             </label>
             <hr></hr>
@@ -118,8 +105,8 @@ function FirstTimeLogin() {
               <input
                 className="numberForm"
                 type="number"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
+                value={props.age}
+                onChange={(e) => props.setAge(e.target.value)}
               />
             </label>
             <label className="loginLabel">
@@ -129,7 +116,7 @@ function FirstTimeLogin() {
                   type="radio"
                   value="Male"
                   name="gender"
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={(e) => props.setGender(e.target.value)}
                 />
                 Male
               </label>
@@ -138,7 +125,7 @@ function FirstTimeLogin() {
                   type="radio"
                   value="Female"
                   name="gender"
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={(e) => props.setGender(e.target.value)}
                 />
                 Female
               </label>
@@ -147,7 +134,7 @@ function FirstTimeLogin() {
                   type="radio"
                   value="Other"
                   name="gender"
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={(e) => props.setGender(e.target.value)}
                 />
                 Other
               </label>
@@ -158,8 +145,8 @@ function FirstTimeLogin() {
               <input
                 type="number"
                 className="numberForm"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
+                value={props.weight}
+                onChange={(e) => props.setWeight(e.target.value)}
               />
             </label>
             <label className="loginLabel">
@@ -167,8 +154,8 @@ function FirstTimeLogin() {
               <input
                 type="number"
                 className="numberForm"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
+                value={props.height}
+                onChange={(e) => props.setHeight(e.target.value)}
               />
             </label>
             <input className="button" type="submit" value="Next" />
