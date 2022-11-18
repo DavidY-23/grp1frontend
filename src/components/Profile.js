@@ -28,7 +28,7 @@ function Profile(props) {
   }
 
   let injuries = "";
-  for (let i = 0; i < props.injury.length; i++) {
+  for (let i = 0; i < props?.injury.length; i++) {
     injuries += props?.injury[i] + " ";
   }
   if (props?.injury.length === undefined) {
