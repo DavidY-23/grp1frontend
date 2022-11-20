@@ -4,7 +4,10 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/LoginForm.css";
 import { auth } from "./firebase.js"
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
+import { doc, getDoc } from 'firebase/firestore';
+import { signInWithEmailAndPassword, onAuthStateChanged  } from 'firebase/auth';
+import db from './firebase.js';
+
 
 function LoginForm({ Login, error }) {
   /* global google */
@@ -15,29 +18,36 @@ function LoginForm({ Login, error }) {
     e.preventDefault();
 
     // Login(details);
+
     
     signInWithEmailAndPassword(auth, details.email, details.password)
         .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        
+        const docRef = doc(db, "Users", user.uid);
+        getDoc(docRef)
+          .then((doc) => {
+            const userData = doc.data();
+            // console.log(doc.data(), doc.id, doc.data()["age"])
+          
         navigate("/home/profile",
           {
             state: {                    //temporary values for passing state
               userUID : user.uid,
-              firstName: "joe",
-              lastName: "mama",
-              age: "",
-              gender: "",
-              weight: "",
-              height: "",
-              allergies: "",
-              injury: "",
+              firstName: userData["firstName"],
+              lastName: userData["lastName"],
+              age: userData["age"],
+              gender: userData["gender"],
+              weight: userData["weight"],
+              height: userData["height"],
+              allergies: userData["allergies"],
+              injury: userData["injury"],
             }
           }
         );
+      })
         console.log("signed in user", user.uid);
-
+        
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -46,6 +56,12 @@ function LoginForm({ Login, error }) {
             console.log(errorCode + errorMessage)
         });
   };
+
+  
+
+
+
+
 
   useEffect(() => {
     /* global google */
