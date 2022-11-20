@@ -9,21 +9,21 @@
 }
 
 .containertwo {
-    background-position: top; 
-    background-size: cover; 
+    background-position: top;
+    background-size: cover;
     width: 100%;
     min-height: 100vh;
     padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .searchbartwo {
     width: 100%;
     max-width: 700px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     display: block;
     align-items: center;
     border-radius: 60px;
@@ -40,7 +40,7 @@
     outline: none;
     width: 100%;
 }
- 
+
 /* .searchbartwo button{
     background-image: url("../../images/searchIcon.png");
     background-repeat: no-repeat;
@@ -64,7 +64,7 @@
     border: 5px solid white;
     padding: 20px;
     width: 25%;
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -74,7 +74,7 @@
     flex-wrap: wrap;
 }
 
-.padtwo img{
+.padtwo img {
     width: 70%;
     height: auto;
 }
@@ -84,22 +84,22 @@
     font-size: 18px;
 }
 
-.padtwo a:link{
+.padtwo a:link {
     text-decoration: none;
     color: white;
 }
 
-.padtwo a:visited{
+.padtwo a:visited {
     text-decoration: none;
     color: white;
 }
 
-.padtwo a:hover{
+.padtwo a:hover {
     text-decoration: underline;
     font-weight: bold;
 }
 
-.padtwo a:active{
+.padtwo a:active {
     text-decoration: underline;
     font-weight: bold;
 }
@@ -126,4 +126,22 @@ div.search3 {
     height: 10%;
     margin: auto;
     z-index: 1;
+}
+
+.filter-button {
+    position: absolute;
+    top: 9%;
+    right: 2.5%;
+}
+
+.filter-checkbox {
+    position: absolute;
+    top: 18%;
+    right: 2%
+}
+
+.allergy-checkbox{
+    position: absolute;
+    top: 23%;
+    right: 3.5%
 }

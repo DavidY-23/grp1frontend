@@ -7,8 +7,6 @@ import { setRef } from "@mui/material";
 
 function Filter(props) {
     const [data, setdata] = useState([]);
-    // const [ingredient_names, set_ingredient_names] = useState([]);
-    // const [filter_list, set_filter_list] = useState([])
 
     useEffect(() => {
         collectData();
