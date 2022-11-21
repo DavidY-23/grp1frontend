@@ -32,7 +32,6 @@ function App() {
   const [userID, setUserID] = useState("");
 
   if (userID != "") {
-    console.log("cock");
     return (
       <div>
         <Routes>
@@ -324,7 +323,6 @@ function App() {
       </div>
     );
   } else {
-    console.log("balls");
     return (
       <div>
         <Routes>
