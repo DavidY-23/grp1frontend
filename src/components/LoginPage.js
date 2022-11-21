@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LoginForm from './LoginForm';
 
-function LoginPage() {
+function LoginPage(props) {
     /* global google */
     const adminUser = {
         email: "admin@admin.com",
@@ -55,7 +55,7 @@ function LoginPage() {
           <h2>Welcome, <span>{user.email}</span></h2>
           <button onClick={Logout}>Logout</button>
         </div>
-      ) : (<LoginForm Login={Login} error={error}/>
+      ) : (<LoginForm firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} Login={Login} error={error}/>
       )}
 
       </div> 
