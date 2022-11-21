@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
-div .container-fluid {
-  padding-left: 0%;
+div .main-page {
+  padding: 0%;
+  overflow: auto;
+}
+
+div .nav-bar {
+  padding: 0%;
+}
+
+div .main-content {
+  padding: 0%;
 }

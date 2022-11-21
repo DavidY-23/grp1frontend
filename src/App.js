@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,29 +29,414 @@ function App() {
   const [height, setHeight] = useState("");
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
-  const [userID, setUserID] = useState('')
+  const [userID, setUserID] = useState("");
 
-  return (
-    <div>
-      <Routes>
-        {/* Add routes/your page components here  */}
-        <Route path="/home/:state" element={<HomePage firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route exact path="/" element={<WelcomePage firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route exact path="/About" element={<AboutPage />} />
-        <Route exact path="/Contact" element={<ContactPage />} />
-        <Route path="/CreateAccount" element={<CreateAccount firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/FirstTimeLogin" element={<FirstTimeLogin firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/LoginPage" element={<LoginPage firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/home/recipesearch/RecipeDetails/:state" element={<RecipeDetails firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/home/recipesearch/SearchResults" element={<SearchResults firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/RecipeCreate" element={<RecipeCreate firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path='/ParseR' element={<ParseR />} />
-        <Route path="/MentalHealth" element={<MentalHealth firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/JournalEntry" element={<JournalEntry firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-        <Route path="/home/Filter" element={<Filter firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-      </Routes>
-    </div>
-  );
+  if (userID != "") {
+    console.log("cock");
+    return (
+      <div>
+        <Routes>
+          {/* Add routes/your page components here  */}
+          <Route path="/home">
+            <Route index element={<Navigate to="/home/overview" replace />} />
+            <Route
+              path=":state"
+              element={
+                <HomePage
+                  firstName={firstName}
+                  setFirstName={setFirstName}
+                  lastName={lastName}
+                  setLastName={setLastName}
+                  age={age}
+                  setAge={setAge}
+                  gender={gender}
+                  setGender={setGender}
+                  weight={weight}
+                  setWeight={setWeight}
+                  height={height}
+                  setHeight={setHeight}
+                  allergies={allergies}
+                  setAllergies={setAllergies}
+                  injury={injury}
+                  setInjury={setInjury}
+                  userID={userID}
+                  setUserID={setUserID}
+                />
+              }
+            />
+          </Route>
+          <Route
+            exact
+            path="/"
+            element={
+              <WelcomePage
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route exact path="/About" element={<AboutPage />} />
+          <Route exact path="/Contact" element={<ContactPage />} />
+          <Route
+            path="/CreateAccount"
+            element={
+              <CreateAccount
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/FirstTimeLogin"
+            element={
+              <FirstTimeLogin
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/LoginPage"
+            element={
+              <LoginPage
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/home/recipesearch/RecipeDetails/:state"
+            element={
+              <RecipeDetails
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/home/recipesearch/SearchResults"
+            element={
+              <SearchResults
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/RecipeCreate"
+            element={
+              <RecipeCreate
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route path="/ParseR" element={<ParseR />} />
+          <Route
+            path="/MentalHealth"
+            element={
+              <MentalHealth
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/JournalEntry"
+            element={
+              <JournalEntry
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/home/Filter"
+            element={
+              <Filter
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    );
+  } else {
+    console.log("balls");
+    return (
+      <div>
+        <Routes>
+          {/* Add routes/your page components here  */}
+          <Route
+            exact
+            path="/"
+            element={
+              <WelcomePage
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route exact path="/About" element={<AboutPage />} />
+          <Route exact path="/Contact" element={<ContactPage />} />
+          <Route
+            path="/CreateAccount"
+            element={
+              <CreateAccount
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/FirstTimeLogin"
+            element={
+              <FirstTimeLogin
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/LoginPage"
+            element={
+              <LoginPage
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;
