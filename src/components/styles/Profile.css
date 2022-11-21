@@ -40,3 +40,7 @@
 .edit:hover {
   background-image: linear-gradient(to right, #021791, #70c2d9);
 }
+
+.centered-content {
+  text-align: center;
+}

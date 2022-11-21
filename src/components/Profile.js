@@ -3,8 +3,9 @@ import Grid from "@mui/material/Grid";
 import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
-function Profile() {
+function RenderContent() {
   //Temporary way to demostrate form until we have backend working
   const location = useLocation();
   let BMI =
@@ -72,40 +73,49 @@ function Profile() {
     navigate(path);
   };
   return (
-    <div className="profile">
-      <div className="profileGrid">
-        <Grid
-          container
-          spacing={3}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item>
-            {name}
-            <br></br>
-            {weight}
-            <br></br>
-            {height} <br></br>
-            {BMI} <br></br>
-          </Grid>
-          <Grid item>
-            <img src={profilepic} alt=""></img>
-          </Grid>
-          <Grid item>
-            {age}
-            <br></br>
-            {gender}
-            <br></br>
-            Allergies: {allergies} <br></br>
-            Current injuries: {injuries}
-          </Grid>
-        </Grid>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-4 centered-content">
+          {name}
+          <br />
+          {weight}
+          <br />
+          {BMI}
+          <br />
+        </div>
+        <div className="col-4 centered-content">
+          <img src={profilepic} alt=""></img>
+        </div>
+        <div className="col-4 centered-content">
+          {age}
+          <br />
+          {gender}
+          <br />
+          Allergies: {allergies} <br />
+          Current injuries: {injuries}
+        </div>
       </div>
-      <button className="edit" onClick={redirect}>
-        {" "}
-        Edit Profile{" "}
-      </button>
+      <row>
+        <div className="col-12 centered-content">
+          <button className="" onClick={redirect}>
+            {" "}
+            Edit Profile{" "}
+          </button>
+        </div>
+      </row>
+    </div>
+  );
+}
+
+function Profile() {
+  return (
+    <div className="container-fluid main-page">
+      <div className="row">
+        <div className="col-2 nav-bar">
+          <NavBar selected={"profile"} />
+        </div>
+        <div className="col-10 main-content">{RenderContent()}</div>
+      </div>
     </div>
   );
 }

@@ -25,25 +25,26 @@ const NavBar = (props) => {
         </Link>
       </div>
       <div className="row">
-        <Link to="/home/recipesearch">
+        <Link to="/home/recipe">
           <div
-            className={
-              props.selected === "recipesearch" ? "selected-nav-tab" : ""
-            }
+            className={props.selected === "recipe" ? "selected-nav-tab" : ""}
           >
             Recipe Search
           </div>
         </Link>
       </div>
       <div className="row">
-        <Link to="/home/exercisesearch">
+        <Link to="/home/exercise">
           <div
-            className={
-              props.selected === "exercisesearch" ? "selected-nav-tab" : ""
-            }
+            className={props.selected === "exercise" ? "selected-nav-tab" : ""}
           >
             Exercise Search
           </div>
+        </Link>
+      </div>
+      <div className="row">
+        <Link to="/LoginPage">
+          <div>Logout</div>
         </Link>
       </div>
     </div>
