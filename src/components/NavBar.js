@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/NavBar.css";
 import { Link } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 //to do: code clarity can be improved
 const NavBar = (props) => {

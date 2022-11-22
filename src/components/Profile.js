@@ -4,65 +4,65 @@ import "./styles/Profile.css";
 import profilepic from "../images/defaultpic.jpg";
 import { useNavigate } from "react-router-dom";
 
-function Profile() {
+function Profile(props) {
   //Temporary way to demostrate form until we have backend working
-  const location = useLocation();
+
   let BMI =
     "BMI " +
     (
-      (location.state?.weight /
-        (location.state?.height * location.state?.height)) *
+      (props?.weight /
+        (props?.height * props?.height)) *
       703
     ).toFixed(1);
   if (
-    location.state?.height === undefined &&
-    location.state?.height === undefined
+    props?.height === undefined &&
+    props?.height === undefined
   ) {
     BMI = "BMI N/A";
   }
-  const feet = Math.floor(location.state?.height / 12);
-  const inches = location.state?.height % 12;
+  const feet = Math.floor(props?.height / 12);
+  const inches = props?.height % 12;
   let height = feet + "ft " + inches + " inches";
-  if (location.state?.height === undefined) {
+  if (props?.height === undefined) {
     height = "Height N/A";
   }
 
   let injuries = "";
-  for (let i = 0; i < location.state?.injury.length; i++) {
-    injuries += location.state?.injury[i] + " ";
+  for (let i = 0; i < props?.injury.length; i++) {
+    injuries += props?.injury[i] + " ";
   }
-  if (location.state?.injury.length === undefined) {
+  if (props?.injury.length === undefined) {
     injuries = "None";
   }
 
   let allergies = "";
-  for (let i = 0; i < location.state?.allergies.length; i++) {
-    allergies += location.state?.allergies[i] + " ";
+  for (let i = 0; i < props?.allergies.length; i++) {
+    allergies += props?.allergies[i] + " ";
   }
-  if (location.state?.allergies.length === undefined) {
+  if (props?.allergies.length === undefined) {
     allergies = "None";
   }
 
-  let name = location.state?.firstName + " " + location.state?.lastName;
+  let name = props?.firstName + " " + props?.lastName;
   if (
-    location.state?.firstName === undefined &&
-    location.state?.lastName === undefined
+    props?.firstName === undefined &&
+    props?.lastName === undefined
   ) {
     name = "Name N/A";
   }
 
-  let weight = location.state?.weight + " lbs";
-  if (location.state?.weight === undefined) {
+  let weight = props?.weight + " lbs";
+  if (props?.weight === undefined) {
     weight = "Weight N/A";
   }
 
-  let age = location.state?.age + " years old";
-  if (location.state?.age === undefined) {
+  let age = props?.age + " years old";
+  if (props?.age === undefined) {
     age = "Age N/A";
   }
 
-  let gender = location.state?.gender;
-  if (location.state?.gender === undefined) {
+  let gender = props?.gender;
+  if (props?.gender === undefined) {
     gender = "Gender N/A";
   }
 

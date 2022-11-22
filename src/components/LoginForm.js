@@ -1,18 +1,78 @@
 import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/LoginForm.css";
+import { auth } from "./firebase.js"
+import { doc, getDoc } from 'firebase/firestore';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import db from './firebase.js';
 
-function LoginForm({ Login, error }) {
+
+function LoginForm(props, { Login, error }) {
+  console.log(props)
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    Login(details);
+    // Login(details);
+
+
+    signInWithEmailAndPassword(auth, details.email, details.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        const docRef = doc(db, "Users", user.uid);
+        getDoc(docRef)
+          .then((doc) => {
+            const userData = doc.data();
+            // console.log(doc.data(), doc.id, doc.data()["age"])
+            props.setUserID(user.uid);
+            props.setFirstName(userData["firstName"]);
+            props.setLastName(userData["lastName"]);
+            props.setAge(userData["age"]);
+            props.setGender(userData["gender"]);
+            props.setWeight(userData["weight"]);
+            props.setHeight(userData["height"]);
+            props.setAllergies(userData["allergies"]);
+            props.setInjury(userData["injury"]);
+            navigate("/home/profile");
+
+
+            //   {
+            //     state: {                    //temporary values for passing state
+            //       userUID : user.uid,
+            //       firstName: userData["firstName"],
+            //       lastName: userData["lastName"],
+            //       age: userData["age"],
+            //       gender: userData["gender"],
+            //       weight: userData["weight"],
+            //       height: userData["height"],
+            //       allergies: userData["allergies"],
+            //       injury: userData["injury"],
+            //     }
+            //   }
+            // );
+          })
+        console.log("signed in user", user.uid);
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode + errorMessage)
+      });
   };
+
+
+
+
+
+
 
   useEffect(() => {
     /* global google */
@@ -37,6 +97,7 @@ function LoginForm({ Login, error }) {
     console.log(userObject);
     setDetails({ ...details, email: userObject.email });
   }
+
 
   return (
     <form id="LogForm" onSubmit={submitHandler}>
