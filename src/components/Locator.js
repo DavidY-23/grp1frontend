@@ -28,14 +28,12 @@ function Locator() {
   const geolocation = useGeolocation();
 
   if (initial === 0 && geolocation.latitude !== null) {
-    console.log("Apple!!");
     setLatForm(geolocation.latitude);
     setLongForm(geolocation.longitude);
     fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${geolocation.latitude},${geolocation.longitude}&radius=15000&types=gym&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
     .then(res => res.json())
     .then(
       (result) => {
-        console.log("hello fetch!", result.results)
         if (result.results.length < 5) {
           var resultLen = result.results.length 
         }
@@ -48,7 +46,6 @@ function Locator() {
         
       },
       (error) => {
-        console.log("guh");
       }
     )
 
@@ -56,7 +53,6 @@ function Locator() {
     .then(res => res.json())
     .then(
     (result) => {
-      console.log("hello fetch!", result.results)
       if (result.results.length < 5) {
         var resultLen = result.results.length 
       }
@@ -71,7 +67,6 @@ function Locator() {
       
     },
     (error) => {
-      console.log("guh");
     }
     )
     setInitial(1);
@@ -87,7 +82,6 @@ function Locator() {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
     setMap(map)
-    console.log("hello coords", coords);
   }, [])
   
 
@@ -109,20 +103,16 @@ function Locator() {
   Geocode.fromAddress(formLocation).then(
     (response) => {
       const { lat, lng } = response.results[0].geometry.location;
-      console.log(lat, lng);
       if (lat !== latForm) {
         setLatForm(parseFloat(lat));
       }
       if (lng !== longForm) {
         setLongForm(parseFloat(lng));
       }
-      console.log("inside geocode", lat, lng)
-
       fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=15000&types=gym&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
       .then(res => res.json())
       .then(
       (result) => {
-        console.log("hello fetch!", result.results)
         if (result.results.length < 5) {
           var resultLen = result.results.length 
         }
@@ -137,14 +127,12 @@ function Locator() {
         
       },
       (error) => {
-        console.log("guh");
       }
     )
     fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=15000&types=park&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
     .then(res => res.json())
     .then(
     (result) => {
-      console.log("hello fetch!", result.results)
       if (result.results.length < 5) {
         var resultLen = result.results.length 
       }
@@ -159,14 +147,12 @@ function Locator() {
       
     },
     (error) => {
-      console.log("guh");
     }
   )
 
 
     },
     (error) => {
-      console.error(error);
     }
   );
   
@@ -175,7 +161,6 @@ function Locator() {
     maxZoom: 14,
   }
 
-  console.log("form", formLocation);
   return isLoaded ? (
     <div>
       <GoogleMap
@@ -193,10 +178,7 @@ function Locator() {
           ref={inputRef}
           apiKey={"AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY"}
           onPlaceSelected={(selected, a, c) => {
-            //convert geolocation here
-            console.log("geolocation after search", selected);
-            setFormLocation(selected.formatted_address);
-            
+            setFormLocation(selected.formatted_address);            
           }}
           options={{
             types: ["geocode", "establishment"],
