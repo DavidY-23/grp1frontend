@@ -20,27 +20,10 @@ function Locator() {
     libraries: ["places"]
   })
 
- 
-  useEffect(() => {
-    fetch("https://cors-anywhere.herokuapp.com/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log("hello", result)
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          console.log("guh");
-        }
-      )
-  }, [])
-
-
   const [initial, setInitial] = useState(0);
-  const [latForm, setLatForm] = useState(-10);
-  const [longForm, setLongForm] = useState(-5);
+  const [latForm, setLatForm] = useState(0);
+  const [longForm, setLongForm] = useState(0);
+  const [location, setLocation] = useState("");
 
   const geolocation = useGeolocation();
 
@@ -48,6 +31,49 @@ function Locator() {
     console.log("Apple!!");
     setLatForm(geolocation.latitude);
     setLongForm(geolocation.longitude);
+    fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${geolocation.latitude},${geolocation.longitude}&radius=15000&types=gym&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log("hello fetch!", result.results)
+        if (result.results.length < 5) {
+          var resultLen = result.results.length 
+        }
+        else {
+          resultLen = 5;
+        }
+        for (let i = 0; i < resultLen; i++) {
+          new window.google.maps.Marker({position: {lat: result.results[i].geometry.location.lat, lng: result.results[i].geometry.location.lng}, map: map}); 
+        }
+        
+      },
+      (error) => {
+        console.log("guh");
+      }
+    )
+
+    fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${geolocation.latitude},${geolocation.longitude}&radius=15000&types=park&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
+    .then(res => res.json())
+    .then(
+    (result) => {
+      console.log("hello fetch!", result.results)
+      if (result.results.length < 5) {
+        var resultLen = result.results.length 
+      }
+      else {
+        resultLen = 5;
+      }
+      for (let i = 0; i < resultLen; i++) {
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+        new window.google.maps.Marker({position: {lat: result.results[i].geometry.location.lat, lng: result.results[i].geometry.location.lng}, map: map, icon: iconBase + 'parking_lot_maps.png'        }); 
+      }
+      
+    },
+    (error) => {
+      console.log("guh");
+    }
+    )
     setInitial(1);
   }
 
@@ -61,27 +87,7 @@ function Locator() {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
     setMap(map)
-
-
-    let request = {
-      query: "L&B Spumoni Gardens",
-      fields: ["name", "geometry"]
-    };
-
-    let service = new window.google.maps.places.PlacesService(map);
-
-    service.findPlaceFromQuery(request, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          coords.push(results[i]);
-        }
-        setCoordsResult(coords);
-      }
-
-    });
     console.log("hello coords", coords);
-
-
   }, [])
   
 
@@ -110,6 +116,54 @@ function Locator() {
       if (lng !== longForm) {
         setLongForm(parseFloat(lng));
       }
+      console.log("inside geocode", lat, lng)
+
+      fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=15000&types=gym&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
+      .then(res => res.json())
+      .then(
+      (result) => {
+        console.log("hello fetch!", result.results)
+        if (result.results.length < 5) {
+          var resultLen = result.results.length 
+        }
+        else {
+          resultLen = 5;
+        }
+        for (let i = 0; i < resultLen; i++) {
+          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+          new window.google.maps.Marker({position: {lat: result.results[i].geometry.location.lat, lng: result.results[i].geometry.location.lng}, map: map }); 
+        }
+        
+      },
+      (error) => {
+        console.log("guh");
+      }
+    )
+    fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=15000&types=park&key=AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY`)
+    .then(res => res.json())
+    .then(
+    (result) => {
+      console.log("hello fetch!", result.results)
+      if (result.results.length < 5) {
+        var resultLen = result.results.length 
+      }
+      else {
+        resultLen = 5;
+      }
+      for (let i = 0; i < resultLen; i++) {
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+        new window.google.maps.Marker({position: {lat: result.results[i].geometry.location.lat, lng: result.results[i].geometry.location.lng}, map: map, icon: iconBase + 'parking_lot_maps.png'        }); 
+      }
+      
+    },
+    (error) => {
+      console.log("guh");
+    }
+  )
+
+
     },
     (error) => {
       console.error(error);
@@ -131,13 +185,6 @@ function Locator() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-          {coordsResult !== [] &&
-            coordsResult.map(function (results, i) {
-              return (
-                <Marker key={i} position={results.geometry.location}>
-                </Marker>
-              );
-            })}
       </GoogleMap>
       <br></br>
       <div className="App">
@@ -147,14 +194,16 @@ function Locator() {
           apiKey={"AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY"}
           onPlaceSelected={(selected, a, c) => {
             //convert geolocation here
-            console.log("geolocation", selected);
+            console.log("geolocation after search", selected);
             setFormLocation(selected.formatted_address);
+            
           }}
           options={{
             types: ["geocode", "establishment"],
             componentRestrictions: { country },
           }}
         />
+        {<div><p>P - Parks <br />Red Marker - Gyms</p></div>}
     </div>
     </div>
 
