@@ -77,17 +77,16 @@ function RecipeSearch(props) {
                 props.set_ingredients_to_avoid([]);
             }
         }
-        // if(props.filters.length !==0)
-        // {
-        //     if(props.filter_check === true)
-        //     {
-        //         document.getElementById("filtercheck").checked = true;
-        //         props.
-        //     }
-        // }
+        if (props.filters.length !== 0) {
+            if (props.filter_check === true) {
+                document.getElementById("filtercheck").checked = true;
+            }
+            else if (props.filter_check === false) {
+                document.getElementById("filtercheck").checked = false;
+            }
+        }
     }, []);
-    // console.log(props.allergy_check) 
-
+console.log(props)
     const allergyCheck = () => {
         // If checked...
         // console.log(props.ingredients_to_avoid)
@@ -155,36 +154,63 @@ function RecipeSearch(props) {
 
     const filterCheck = () => {
         // If checked...
-
+        let filters = document.getElementById("filtercheck")
+        if (filters.checked === true) {
+            props.setfilter_check(true);
+        }
         // If not checked...
-        console.log("Add functionality here")
+        else if (filters.checked === false) {
+            props.setfilter_check(false);
+        }
     }
-
-    if (props.allergies.length === 0) { //If there are no allergies
+    console.log(props)
+    if (props.allergies.length === 0 && props.filters.length !== 0) { //If there are no allergies
         return (
             <div>
-                <RecipeSearchHTML ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} />
+                <RecipeSearchHTML filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} />
                 {/* Applying Filter html */}
                 <div className="filter-checkbox">
                     <input onChange={filterCheck} type="checkbox" class="form-check-input" id="filtercheck" />
-                    <label class="form-check-label" for="filtercheck"> Apply personal filters</label>
+                    <label class="form-check-label" for="filtercheck"> <p class="text-white bg-dark">Filter Check</p></label>
                 </div>
                 <div className="filter-button"><button type="button" onClick={filter} class="btn btn-success">Narrow Search</button></div>
             </div>
         )
     }
+    else if (props.allergies.length !== 0 && props.filters.length === 0) {
+        return (
+            <div>
+                <RecipeSearchHTML filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} />
+                <div className="allergy-checkbox">
+                    <input onChange={allergyCheck} type="checkbox" class="form-check-input" id="allergycheck" />
+                    <label class="form-check-label" for="allergycheck"> <p class="text-white bg-dark">Allergy Filter</p></label>
+                </div>
+                <div className="filter-button"><button type="button" onClick={filter} class="btn btn-success">Narrow Search</button></div>
+
+            </div>
+        )
+    }
+    else if (props.allergies.length === 0 && props.filters.length === 0) {
+        return (
+            <div>
+                <RecipeSearchHTML filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} />
+                <div className="filter-button"><button type="button" onClick={filter} class="btn btn-success">Narrow Search</button></div>
+            </div>
+        )
+    }
+
     else {
         return (
             <div>
                 <RecipeSearchHTML filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} />
                 <div className="allergy-checkbox">
                     <input onChange={allergyCheck} type="checkbox" class="form-check-input" id="allergycheck" />
-                    <label class="form-check-label" for="allergycheck"> Allergy filter</label>
+                    <label class="form-check-label" for="allergycheck"> <p class="text-white bg-dark">Allergy Filter</p></label>
                 </div>
                 {/* Applying Filter html */}
                 <div className="filter-checkbox">
                     <input onChange={filterCheck} type="checkbox" class="form-check-input" id="filtercheck" />
-                    <label class="form-check-label" for="filtercheck"> Apply personal filters</label>
+                    <label class="form-check-label" for="filtercheck"> <p class="text-white bg-dark">Apply Filters</p></label>
                 </div>
                 <div className="filter-button"><button type="button" onClick={filter} class="btn btn-success">Narrow Search</button></div>
             </div>

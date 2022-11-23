@@ -28,19 +28,42 @@ const SearchResults = (props) => {
         RecipeDatabase.forEach((doc) => {
             collection_array.push(doc.data());
         });
-        if (props.allergy_check === true) {
+        if (props.allergy_check === true && props.filter_check === true) {
             allergyFilter(collection_array);
         }
-        ///////////////////////////////////ATTEMPT FOR FILTER IMPLEMENTATION//////////////////////////////////////////
-        // else if()
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        else if (props.allergy_check === true) {
+            allergyFilter(collection_array);
+        }
+        else if (props.filter_check === true) {
+            personFilters(collection_array);
+        }
         else {
             setdata(collection_array)
         }
-
         console.log('COLLECTION CALLED')
     }
-    console.log(data);
+    console.log(props);
+
+    async function personFilters(array) {
+        let personal_array = [];
+        let ingredients_to_prioritize = [];
+        for (let i = 0; i < props.filters.length; i++) {
+            ingredients_to_prioritize.push(props.filters[i].ingredient)
+        }
+        FilterLoop: for (let i = 0; i < array.length; i++) {
+            let ingredient_array = array[i].ingredients;
+            ingredient_array = ingredient_array.map(ingredients => {
+                return ingredients = ingredients.toLowerCase();
+            });
+            const found = ingredients_to_prioritize.some(r => ingredient_array.includes(r));
+            if (found === false) {
+                continue FilterLoop;
+            }
+            personal_array.push(array[i]);
+            console.log(personal_array)
+        }
+        setdata(personal_array);
+    }
 
     async function allergyFilter(array) {
         let data_with_allergy_filter = [];
@@ -61,6 +84,10 @@ const SearchResults = (props) => {
                 }
             }
             data_with_allergy_filter.push(array[i]);
+        }
+        if (props.filter_check === true) {
+            personFilters(data_with_allergy_filter);
+            return;
         }
         setdata(data_with_allergy_filter)
     }
