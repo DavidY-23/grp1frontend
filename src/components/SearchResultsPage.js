@@ -40,6 +40,7 @@ const SearchResults = (props) => {
 
         console.log('COLLECTION CALLED')
     }
+    console.log(data);
 
     async function allergyFilter(array) {
         let data_with_allergy_filter = [];
@@ -95,7 +96,8 @@ const SearchResults = (props) => {
                                 <img src={item.image} alt="" className="PreviewSRP" />
                                 <div className="TextWrapperSRP">
                                     <div className="NameWrapperSRP">
-                                        <Link style={{ textDecoration: 'none' }} to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements }}>
+                                        <Link
+                                            style={{ textDecoration: 'none' }} to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements }}>
                                             <span className="NameSRP" id="NameSRP">{item.name}</span>
                                         </Link>
                                     </div> <br />

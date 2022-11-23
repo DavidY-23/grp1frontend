@@ -5,8 +5,10 @@ import db from './firebase.js';
 import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { setRef } from "@mui/material";
 
+
 function Filter(props) {
     const [data, setdata] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         collectData();
@@ -74,7 +76,7 @@ function Filter(props) {
                 new_array.push(props.filters[i]);
             }
         }
-        old_ingredient_list[filterlist_index] = element; 
+        old_ingredient_list[filterlist_index] = element;
         props.set_ingredient_names(old_ingredient_list);
         props.setFilter(new_array);
     }
@@ -96,6 +98,10 @@ function Filter(props) {
         }
         console.log(filter)
     }
+    const onReturn = () => {
+        navigate('/home/recipesearch')
+    }
+
     return (
         <div>
             <input type="text" onChange={inputFilter} id='user_text' className="user_text" placeholder="Search for ingredients.." title="Type in a name" />
@@ -128,6 +134,7 @@ function Filter(props) {
                     })
                 }
             </ul>
+            <div className="return-to-search-button-from-filter"><button type="button" onClick={onReturn} class="btn btn-success">Return</button></div>
         </div>
     )
 }
