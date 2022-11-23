@@ -79,18 +79,31 @@ function RecipeSearchHTML(props) {
 
 function RecipeSearch(props) {
     useEffect(() => {
-        if (props.allergy_check === true) {
-            document.getElementById("allergycheck").checked = true;
+        if (props.allergies.length !== 0) {
+            if (props.allergy_check === true) {
+                document.getElementById("allergycheck").checked = true;
+                props.set_ingredients_to_avoid([]);
+                allergyCheck();
+            }
+            else if (props.allergy_check === false) {
+                document.getElementById("allergycheck").checked = false;
+                props.set_ingredients_to_avoid([]);
+            }
         }
-        else if (props.allergy_check === false) {
-            document.getElementById("allergycheck").checked = false;
-        }
-        console.log(props.ingredients_to_avoid)
+        // if(props.filters.length !==0)
+        // {
+        //     if(props.filter_check === true)
+        //     {
+        //         document.getElementById("filtercheck").checked = true;
+        //         props.
+        //     }
+        // }
     }, []);
-    console.log(props.allergy_check)
+    // console.log(props.allergy_check) 
 
     const allergyCheck = () => {
         // If checked...
+        // console.log(props.ingredients_to_avoid)
         let allergies = document.getElementById("allergycheck")
         if (allergies.checked === true) {
             props.set_allergycheck(true);
@@ -165,6 +178,16 @@ function RecipeSearch(props) {
                     <input onChange={allergyCheck} type="checkbox" class="form-check-input" id="allergycheck" />
                     <label class="form-check-label" for="allergycheck"> Allergy filter</label>
                 </div>
+                {/* <ul>
+                {
+                    props.ingredients_to_avoid.map((ingredients, index) => {
+                        return (
+                            <li>{ingredients}
+                            </li>
+                        )
+                    })
+                }
+                </ul> */}
             </div>
         )
     }

@@ -6,7 +6,7 @@ import "./styles/LoginForm.css";
 import { auth } from "./firebase.js"
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js"
 
-function LoginForm({ Login, error }) {
+function LoginForm(props, { Login, error }) {
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();
