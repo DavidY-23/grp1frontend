@@ -2,7 +2,7 @@ import React, { FC, RefObject, useRef, useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 
-function AutocompleteForm() {  
+function AutocompleteForm(props) {  
   const inputRef = useRef(null);
   const [country, setCountry] = useState("us");
 
