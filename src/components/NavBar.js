@@ -46,6 +46,13 @@ const NavBar = (props) => {
             Exercise Search
           </div>
         </Link>
+        <Link to="/home/locator">
+          <div
+            className={props.selected === "locator" ? "selected-nav-tab" : ""}
+          >
+            Locator
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -77,6 +77,7 @@ function FirstTimeLogin(props) {
     return (
       <div id="back">
         <div className="form-part">
+          <div className="form-text">
           <h3>Welcome to Diet Unquiet! Please tell us about yourself</h3>
           <p id="info">
             Every field is optional, although filling it out will help us create
@@ -160,6 +161,7 @@ function FirstTimeLogin(props) {
             </label>
             <input className="button" type="submit" value="Next" />
           </form>
+          </div>
         </div>
       </div>
     );

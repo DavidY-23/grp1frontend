@@ -5,10 +5,11 @@
   background-color: #87cefe;
   display: flex;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   left: 0;
   top: 0;
   margin: 0px;
+  overflow: hidden;
 }
 
 .form-part label {
@@ -21,7 +22,7 @@
   border-radius: 7px;
   padding: 7px;
   border: 1px solid black;
-  appearance: auto;
+max-height: 100%;
 }
 
 .form-part {
@@ -31,12 +32,12 @@
   left: 50%;
   top: 50%;
   width: 40vw;
-  height: fit-content(90%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: black;
   background-color: white;
   border-radius: 7px;
+  zoom: 75%;
 }
 
 .form-part h3 {
@@ -44,6 +45,9 @@
   text-align: center;
 }
 
+.form-text {
+  overflow: auto;
+}
 .button {
   background-color: #87cefe;
   border: none;
@@ -72,7 +76,7 @@
 }
 
 .numberForm {
-  width: 9%;
+  width: 20%;
 }
 
 #info {
