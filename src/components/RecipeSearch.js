@@ -101,7 +101,7 @@ console.log(props)
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, lactose_intolerance]);
             }
             if (props.allergies.includes("Nuts")) {
-                let nut_allergy = ["peanut oil", "arachis oil", "nuts", "nut", "peanut", "peanuts"];
+                let nut_allergy = ["peanut oil", "arachis oil", "nuts", "nut", "peanut", "peanuts", "pine nuts"];
                 nut_allergy.map((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
