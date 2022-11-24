@@ -12,7 +12,7 @@ const containerStyle = {
 };
 
 
-function Locator() {
+function Locator(props) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     //hide this before commit
