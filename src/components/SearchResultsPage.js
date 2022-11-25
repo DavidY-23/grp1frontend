@@ -59,9 +59,19 @@ const SearchResults = (props) => {
             if (found === false) {
                 continue FilterLoop;
             }
-            personal_array.push(array[i]);
-            console.log(personal_array)
-        } //YOU NEED TO FIND AWAY TO MAKE THE FILTER MAKE THE RECIPE CONTAIN EVERY INGREDIENT IN INGREDIENTS TO PRIORITIZE
+            else if (found === true) {
+                let counter = 0;
+                for (let j = 0; j < ingredients_to_prioritize.length; j++) {
+                    if (ingredient_array.includes(ingredients_to_prioritize[j])) {
+                        counter++;
+                    }
+                    if (counter === props.filters.length) {
+                        personal_array.push(array[i]);
+                        console.log(personal_array)
+                    }
+                }
+            }
+        }
         setdata(personal_array);
     }
 

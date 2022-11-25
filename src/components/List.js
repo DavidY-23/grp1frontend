@@ -7,7 +7,6 @@ import db from './firebase.js';
 
 function List(props) {
     const [data, setdata] = useState([]);
-    console.log(props)
     //Gathering API data through our backend 
     useEffect(() => {
         collectData();
@@ -51,9 +50,19 @@ function List(props) {
             if (found === false) {
                 continue FilterLoop;
             }
-            personal_array.push(array[i]);
-            console.log(personal_array)
-        }
+            else if (found === true) {
+                let counter = 0;
+                for (let j = 0; j < ingredients_to_prioritize.length; j++) {
+                    if (ingredient_array.includes(ingredients_to_prioritize[j])) {
+                        counter++;
+                    }
+                    if (counter === props.filters.length) {
+                        personal_array.push(array[i]);
+                        console.log(personal_array)
+                    }
+                }
+            }
+        } 
         setdata(personal_array);
     }
 
