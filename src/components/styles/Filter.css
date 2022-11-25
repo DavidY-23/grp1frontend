@@ -38,8 +38,8 @@
     border: solid green;
     padding: 20px;
     width: 250px;
-    right: 5%;
-    top: 5%;
+    right: 8%;
+    top: 2.5%;
     text-align: center;
 }
 
@@ -58,4 +58,10 @@
 .x-button:hover {
     opacity: 1;
     color: red;
+}
+
+.return-to-search-button-from-filter{
+    position: absolute;
+    top:5%;
+    right:2% 
 }

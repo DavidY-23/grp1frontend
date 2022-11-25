@@ -101,7 +101,12 @@ function Overview(props) {
         weight: props.weight,
         height: props.height,
         allergies: props.allergies,
-        injury: props.injury
+        injury: props.injury,
+        filters: props.filters,
+        ingredient_names: props.ingredient_names,
+        ingredients_to_avoid: props.ingredients_to_avoid,
+        filter_check: props.filter_check,
+        allergy_check: props.allergy_check,
       });
     }
     catch (error) {

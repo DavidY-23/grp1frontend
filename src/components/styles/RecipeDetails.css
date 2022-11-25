@@ -202,7 +202,7 @@ div.Instructions {
     color: #487160;
 }
 
-input[type=checkbox] {
+.detail-checkbox {
     visibility: hidden;
 }
 

@@ -6,17 +6,8 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 
 function FirstTimeLogin(props) {
   const navigate = useNavigate();
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [age, setAge] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [weight, setWeight] = useState("");
-  // const [height, setHeight] = useState("");
   const [page, setPage] = useState(0);
-  // const [allergies, setAllergies] = useState([]);
-  // const [injury, setInjury] = useState([]);
   const [checked, setChecked] = useState(false);
-  // const { userID } = state;
 
   const handlePrevious = () => {
     setPage(0);
@@ -33,7 +24,12 @@ function FirstTimeLogin(props) {
         weight: props.weight,
         height: props.height,
         allergies: props.allergies,
-        injury: props.injury
+        injury: props.injury,
+        filters: props.filters,
+        ingredient_names: props.ingredient_names,
+        ingredients_to_avoid: props.ingredients_to_avoid,
+        filter_check: props.filter_check,
+        allergy_check: props.allergy_check,
       });
     }
     catch (error) {

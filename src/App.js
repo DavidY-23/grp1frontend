@@ -29,6 +29,11 @@ function App() {
   const [height, setHeight] = useState("");
   const [allergies, setAllergies] = useState([]);
   const [injury, setInjury] = useState([]);
+  const [filters, setFilter] = useState([]);
+  const [ingredient_names, set_ingredient_names] = useState([]);
+  const [ingredients_to_avoid, set_ingredients_to_avoid] = useState([]);
+  const [filter_check, setfilter_check] = useState(false);
+  const [allergy_check, set_allergycheck] = useState(false);
   const [userID, setUserID] = useState("");
 
   if (userID != "") {
@@ -42,24 +47,7 @@ function App() {
               path=":state"
               element={
                 <HomePage
-                  firstName={firstName}
-                  setFirstName={setFirstName}
-                  lastName={lastName}
-                  setLastName={setLastName}
-                  age={age}
-                  setAge={setAge}
-                  gender={gender}
-                  setGender={setGender}
-                  weight={weight}
-                  setWeight={setWeight}
-                  height={height}
-                  setHeight={setHeight}
-                  allergies={allergies}
-                  setAllergies={setAllergies}
-                  injury={injury}
-                  setInjury={setInjury}
-                  userID={userID}
-                  setUserID={setUserID}
+                  filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
                 />
               }
             />
@@ -69,24 +57,7 @@ function App() {
             path="/"
             element={
               <WelcomePage
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -97,24 +68,7 @@ function App() {
             path="/CreateAccount"
             element={
               <CreateAccount
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -122,24 +76,7 @@ function App() {
             path="/FirstTimeLogin"
             element={
               <FirstTimeLogin
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -147,24 +84,7 @@ function App() {
             path="/LoginPage"
             element={
               <LoginPage
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -172,24 +92,7 @@ function App() {
             path="/home/recipesearch/RecipeDetails/:state"
             element={
               <RecipeDetails
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -197,24 +100,7 @@ function App() {
             path="/home/recipesearch/SearchResults"
             element={
               <SearchResults
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -222,24 +108,7 @@ function App() {
             path="/RecipeCreate"
             element={
               <RecipeCreate
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -248,24 +117,7 @@ function App() {
             path="/MentalHealth"
             element={
               <MentalHealth
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -273,24 +125,7 @@ function App() {
             path="/JournalEntry"
             element={
               <JournalEntry
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -298,24 +133,7 @@ function App() {
             path="/home/Filter"
             element={
               <Filter
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -332,24 +150,7 @@ function App() {
             path="/"
             element={
               <WelcomePage
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -360,24 +161,7 @@ function App() {
             path="/CreateAccount"
             element={
               <CreateAccount
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -385,24 +169,7 @@ function App() {
             path="/FirstTimeLogin"
             element={
               <FirstTimeLogin
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />
@@ -410,24 +177,7 @@ function App() {
             path="/LoginPage"
             element={
               <LoginPage
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                gender={gender}
-                setGender={setGender}
-                weight={weight}
-                setWeight={setWeight}
-                height={height}
-                setHeight={setHeight}
-                allergies={allergies}
-                setAllergies={setAllergies}
-                injury={injury}
-                setInjury={setInjury}
-                userID={userID}
-                setUserID={setUserID}
+                filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
           />

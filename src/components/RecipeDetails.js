@@ -51,7 +51,7 @@ const RecipeDetails = (props) => {
                     <Link to="/home/recipesearch"><img className="SearchIcon" src={search}/></Link>
                 </div>
                 <label id="NavCheck" className="detailsNavMain">
-                    <input type="checkbox" onChange={onNavCheck}/>
+                    <input className="detail-checkbox" type="checkbox" onChange={onNavCheck}/>
                     <span className="detailsNavCheck"></span>
                 </label>
             </div>
@@ -92,7 +92,7 @@ const RecipeDetails = (props) => {
             
             <div className="FAB">
                 <label className="fabMain">
-                    <input type="checkbox" onChange={onCheck}/>
+                    <input className="detail-checkbox" type="checkbox" onChange={onCheck}/>
                     <span className="fabCheck"></span>
                 </label>
             </div>

@@ -39,6 +39,10 @@ function LoginForm(props, { Login, error }) {
             props.setHeight(userData["height"]);
             props.setAllergies(userData["allergies"]);
             props.setInjury(userData["injury"]);
+            props.setFilter(userData["filters"]);
+            props.set_ingredients_to_avoid(userData["ingredients_to_avoid"]);
+            props.setfilter_check(userData["filter_check"]);
+            props.set_allergycheck(userData["allergy_check"]);
             navigate("/home/profile");
 
 
