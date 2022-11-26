@@ -8,7 +8,7 @@ import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { setRef } from "@mui/material";
 
 
-function RecipeCreate() {
+function RecipeCreate(props) {
     const [message, setmessage] = useState("");
     const [ingredients_list, setingredients_list] = useState([]);
     const [tag_list, settag_list] = useState([]);
@@ -195,6 +195,16 @@ function RecipeCreate() {
             console.log(error.code + error.message);
             alert(error.message);
         }
+        collectData();
+    }
+
+    async function collectData() {
+        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
+        let collection_array = [];
+        RecipeDatabase.forEach((doc) => {
+            collection_array.push(doc.data());
+        });
+        props.setdata(collection_array);
     }
 
     const TagDeleteIndex = (index) => {

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Profile(props) {
   //Temporary way to demostrate form until we have backend working
 
+  console.log(props)
   let BMI =
     "BMI " +
     (

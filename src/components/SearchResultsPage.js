@@ -1,11 +1,8 @@
 import React, { useState, useEffect, cloneElement } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-// import data from "./JSON files/recipelistAll.json"
 import { Link } from 'react-router-dom';
 import './styles/SearchResultsPage.css'
 import { fontSize, sizeHeight } from "@mui/system";
-import db from './firebase.js';
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,35 +11,26 @@ const SearchResults = (props) => {
     const { searchName } = state;
     const navigate = useNavigate();
     const [newSearch, setNewSearch] = useState(searchName);
-    const [data, setdata] = useState([]);
+    const [data, setdata] = useState(props.data);
+    // const [collection_array, setcollection_array] = useState(props.data)
 
     //Gathering API data through our backend 
     useEffect(() => {
         collectData();
-        console.log(data);
-    }, []);
+    }, []); 
 
-    async function collectData() {
-        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
-        let collection_array = [];
-        RecipeDatabase.forEach((doc) => {
-            collection_array.push(doc.data());
-        });
+    const collectData = () => {
+        console.log(data)
         if (props.allergy_check === true && props.filter_check === true) {
-            allergyFilter(collection_array);
+            allergyFilter(data);
         }
         else if (props.allergy_check === true) {
-            allergyFilter(collection_array);
+            allergyFilter(data);
         }
         else if (props.filter_check === true) {
-            personFilters(collection_array);
+            personFilters(data);
         }
-        else {
-            setdata(collection_array)
-        }
-        console.log('COLLECTION CALLED')
     }
-    console.log(props);
 
     async function personFilters(array) {
         let personal_array = [];

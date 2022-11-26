@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Filter.css"
-import db from './firebase.js';
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { setRef } from "@mui/material";
 
-
 function Filter(props) {
-    const [data, setdata] = useState([]);
+    const [collection_array, set_collection_array] = useState(props.data);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,13 +13,7 @@ function Filter(props) {
     }, []);
 
     async function collectData() {
-        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
-        let collection_array = [];
         let temporary_ingred_array = [];
-        RecipeDatabase.forEach((doc) => {
-            collection_array.push(doc.data());
-        });
-
         for (let i = 0; i < collection_array.length; i++) {
             let current_index = collection_array[i].ingredients; //Array of ingredients for current index
             for (let j = 0; j < current_index.length; j++) {

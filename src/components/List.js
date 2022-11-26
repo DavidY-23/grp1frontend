@@ -1,39 +1,26 @@
 import { React, useState, useEffect } from 'react';
 // import data from "./JSON files/recipelistAll.json"
 import { Link } from 'react-router-dom';
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import './styles/SearchResults.css';
-import db from './firebase.js';
 
 function List(props) {
-    const [data, setdata] = useState([]);
-    //Gathering API data through our backend 
+    const [data, setdata] = useState(props.data);
     useEffect(() => {
         collectData();
-        console.log(data);
     }, []);
 
-    async function collectData() {
-        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
-        let collection_array = [];
-        RecipeDatabase.forEach((doc) => {
-            collection_array.push(doc.data());
-        });
+    const collectData = () => {
+        console.log(data)
         if (props.allergy_check === true && props.filter_check === true) {
-            allergyFilter(collection_array);
+            allergyFilter(data);
         }
         else if (props.allergy_check === true) {
-            allergyFilter(collection_array);
+            allergyFilter(data);
         }
         else if (props.filter_check === true) {
-            personFilters(collection_array);
+            personFilters(data);
         }
-        else {
-            setdata(collection_array)
-        }
-        console.log('COLLECTION CALLED')
     }
-    console.log(props);
 
     async function personFilters(array) {
         let personal_array = [];
@@ -62,7 +49,7 @@ function List(props) {
                     }
                 }
             }
-        } 
+        }
         setdata(personal_array);
     }
 
