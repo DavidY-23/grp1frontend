@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import db from './components/firebase.js';
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs, getDoc } from 'firebase/firestore';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import your components here
@@ -45,12 +45,17 @@ function App() {
   }, []);
 
   async function collectData() {
-    const RecipeDatabase = await getDocs(collection(db, "Recipes"));
-    let collection_array = [];
-    RecipeDatabase.forEach((doc) => {
-      collection_array.push(doc.data());
-    });
-    setdata(collection_array);
+    // const RecipeDatabase = await getDocs(collection(db, "Recipes"));
+    // let collection_array = [];
+    // RecipeDatabase.forEach((doc) => {
+    //   console.log(doc.id, " => ", doc.data());
+    //   // collection_array.push(doc.data());
+    // });
+    // setdata(collection_array);
+    const recipes_list = doc(db, "Recipes", "RecipeArray");
+    const recipe_snap = await getDoc(recipes_list);
+    console.log(recipe_snap.data().Recipes);
+    setdata(recipe_snap.data().Recipes);
   }
 
   if (userID != "") {
