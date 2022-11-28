@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
+
 function FirstTimeLogin(props) {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
@@ -37,6 +38,7 @@ function FirstTimeLogin(props) {
       alert(error.message);
     }
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (page === 0) {
