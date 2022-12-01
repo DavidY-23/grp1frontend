@@ -29,7 +29,7 @@ function ExerciseCreate(props) {
         if ((imagelink.trim().length || !imagelink) || (name.trim().length || !name)(instructions.trim().length || !instructions)) {
             setmessage("SUBMISSION DENIED: All fields must be filled.  If you do not require a tool for this, then you may leave it empty");
         }
-        addNewExercise();
+        // addNewExercise();
         setmessage('');
         setimagelink('');
         settools([]);
@@ -39,7 +39,24 @@ function ExerciseCreate(props) {
     }
 
     async function addNewExercise() {
-        console.log("not implemented yet")
+        let exercise_value = props.exercise_data;
+        let object = {
+            Name: name,
+            ToolS: tools,
+            imgE: imagelink,
+            Instructions: instructions,
+        }
+        exercise_value.push(object);
+        try {
+            await setDoc(doc(db, "Exercises", "ExerciseArray"), {
+                Exercises: exercise_value
+            });
+        }
+        catch (error) {
+            console.log(error.code + error.message);
+            alert(error.message);
+        }
+        props.setexercise_data(exercise_value)
     }
 
     const deleteTool = (index) => {
