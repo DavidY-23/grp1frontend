@@ -1,26 +1,26 @@
-import "./styles/FirstTimeLogin.css";
+import "./styles/ExerciseCreate.css";
 import React, { useState, useEffect } from "react";
 import CopyRecipeList from './JSON files/recipelistAll.json'
 import './styles/RecipeCreate.css'
 import { Link } from 'react-router-dom';
 import db from './firebase.js';
 import { collection, doc, setDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
-import { setRef } from "@mui/material";
+import { setRef, tooltipClasses } from "@mui/material";
 
 
 function ExerciseCreate(props) {
     const [message, setmessage] = useState("")
     const [imagelink, setimagelink] = useState("");
-    const [tools, settools] = useState([]);
+    const [tools, settools] = useState("");
     const [name, setname] = useState("");
     const [instructions, setinstructions] = useState("");
-
+    const [tool_list, settool_list] = useState([]);
     const addTool = () => {
         if (!tools.trim().length || !tools) {
             alert("Please do not leave only whitespace or an empty value");
             return;
         }
-        settools((prevArray => [...prevArray, tools]));
+        settool_list((prevArray => [...prevArray, tools]));
         settools('');
     }
 
@@ -61,56 +61,59 @@ function ExerciseCreate(props) {
 
     const deleteTool = (index) => {
         let new_array = [];
-        for (let i = 0; i < tools.length; i++) {
+        for (let i = 0; i < tool_list.length; i++) {
             if (i === index) {
                 continue;
             }
             else {
-                new_array.push(tools[i]);
+                new_array.push(tool_list[i]);
             }
         }
-        settools(new_array);
+        settool_list(new_array);
     }
     return (
         <div className="exercisepage">
-            <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitExercise}>
-                <div>
-                    <label className="exercise-name">Exercise Name
-                        <input className="name-box" type="text" placeholder="Name of Exercise" value={name} onChange={(e) => setname(e.target.value)}></input>
-                    </label><br />
-                    <label className="image-ex">Image Link for Exercise
-                        <input className="imagebox-ex" type='text' placeholder="Image Link" value={imagelink} onChange={(e) => setimagelink(e.target.value)}></input>
-                    </label><br />
-                    <label>Tools
-                        <input className="tool-box" type='text' value={tools} onChange={(e) => settools(e.target.value)}></input>
-                    </label><br />
-                    <button type='button' className="tool-button" onClick={addTool}>Add tool</button>
-                    <label>
-                        <textarea className="instruc-box" type='text' value={instructions} placeholder="Instructions" onChange={(e) => setinstructions(e.target.value)}></textarea>
-                    </label>
-                    <button className="submit-exercise">Submit Exercise</button>
+            <div className="entirepage">
+
+                <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitExercise}>
+                    <div>
+                        <label className="exercise-name">Exercise Name
+                            <input className="name-box" type="text" placeholder="Name of Exercise" value={name} onChange={(e) => setname(e.target.value)}></input>
+                        </label><br />
+                        <label className="image-ex">Image Link for Exercise
+                            <input className="imagebox-ex" type='text' placeholder="Image Link" value={imagelink} onChange={(e) => setimagelink(e.target.value)}></input>
+                        </label><br />
+                        <label>Tools
+                            <input placeholder="Tools" className="tool-box" type='text' value={tools} onChange={(e) => settools(e.target.value)}></input>
+                        </label>
+                        <button type='button' className="tool-button" onClick={addTool}>Add tool</button>
+                        <label> Instructions
+                            <textarea className="text-input" type='text' value={instructions} placeholder="Instructions" onChange={(e) => setinstructions(e.target.value)}></textarea>
+                        </label><br />
+                        <button className="submit-exercise">Submit Exercise</button>
+                    </div>
+                </form>
+                <form>
+                    <div className="tools-display">
+                        <h4 className="tools-header">Tools</h4>
+                        <ul> 
+                            {
+                                tool_list.map((tags, index) => {
+                                    return (
+                                        <div>
+                                            <li key={index}>{tags}
+                                                <button type='button' className="close" onClick={() => deleteTool(index)}>x</button>
+                                            </li>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </form>
+                <div className="restriction">
+                    {message}
                 </div>
-            </form>
-            <form>
-                <div className="tools-display">
-                    <h4 className="tools-header">Tools</h4>
-                    <ul>
-                        {
-                            tools.map((tags, index) => {
-                                return (
-                                    <div>
-                                        <li key={index}>{tags}
-                                            <button type='button' className="exit-" onClick={() => deleteTool(index)}></button>
-                                        </li>
-                                    </div>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </form>
-            <div className="restriction">
-                {message}
             </div>
         </div>
     );
