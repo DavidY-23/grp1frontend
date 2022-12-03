@@ -1,11 +1,11 @@
 import "./styles/ExerciseCreate.css";
-import React, { useState, useEffect } from "react";
-import CopyRecipeList from './JSON files/recipelistAll.json'
+import React, { useState } from "react";
+// import CopyRecipeList from './JSON files/recipelistAll.json'
 import './styles/RecipeCreate.css'
 import { Link } from 'react-router-dom';
 import db from './firebase.js';
-import { collection, doc, setDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
-import { setRef, tooltipClasses } from "@mui/material";
+import { doc, setDoc } from 'firebase/firestore';
+// import { setRef, tooltipClasses } from "@mui/material";
 
  
 function ExerciseCreate(props) {

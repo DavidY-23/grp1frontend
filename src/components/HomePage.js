@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React /*, { useEffect }*/ from "react";
 import NavBar from "./NavBar";
 import Overview from "./Overview";
 import RecipeSearch from "./RecipeSearch";
 import ExerciseSearch from "./ExerciseSearch";
 import Profile from "./Profile";
 import Locator from "./Locator";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams /*, useNavigate*/ } from "react-router-dom";
 
 const renderContent = (props, state) => {
   switch (state) {
