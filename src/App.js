@@ -17,6 +17,7 @@ import SearchResults from "./components/SearchResultsPage";
 import RecipeCreate from "./components/RecipeCreate.js";
 import ParseR from "./components/Parse.js";
 import Filter from "./components/Filter";
+import ExerciseCreate from "./components/ExerciseCreate";
 // Just added it here to test the mental health page
 import MentalHealth from "./components/MentalHealth";
 import JournalEntry from "./components/JournalEntry";
@@ -136,6 +137,14 @@ function App() {
               />
             }
           />
+          <Route
+            path='/ExerciseCreate'
+            element={
+              <ExerciseCreate
+                exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+              />
+            }
+          />
           <Route path="/ParseR" element={<ParseR />} />
           <Route
             path="/MentalHealth"
@@ -181,6 +190,14 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
           <Route exact path="/About" element={<AboutPage />} />
           <Route exact path="/Contact" element={<ContactPage />} />
+          <Route
+            path='/ExerciseCreate'
+            element={
+              <ExerciseCreate
+                exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+              />
+            }
+          />
           <Route
             path="/CreateAccount"
             element={
