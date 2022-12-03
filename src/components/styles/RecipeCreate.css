@@ -1,3 +1,10 @@
+.createBody{
+  background-color: #0599ad;
+  width: 100vw;
+  min-height: 100vh;
+  position:fixed; 
+}
+
 .entirepage input {
   display: block;
   width: 100%;
@@ -29,6 +36,7 @@
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 .ing-meas-button {
   display: block;
   width: 100%;
@@ -125,16 +133,23 @@ button:focus {
   width: 20px;
   height: 20px;
 }
+
 .close:hover {
   opacity: 1;
   color: red;
 }
 
-.restriction
-{
+.restriction {
   width: 100%;
   text-align: center;
   color: purple;
+}
+
+
+.button-move {
+  position: absolute;
+  top: 3%;
+  left: 2%
 }
 
 /* .return-link
