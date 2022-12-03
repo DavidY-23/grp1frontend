@@ -145,3 +145,10 @@ div.search3 {
     top: 23%;
     right: 3.3%
 }
+
+.recipe-create
+{
+    position: absolute;
+    top: 3.5%;
+    right: 2.3%; 
+}
