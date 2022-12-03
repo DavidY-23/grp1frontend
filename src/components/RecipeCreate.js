@@ -4,7 +4,7 @@ import CopyRecipeList from './JSON files/recipelistAll.json'
 import './styles/RecipeCreate.css'
 import { Link } from 'react-router-dom';
 import db from './firebase.js';
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs, getDoc } from 'firebase/firestore';
 import { setRef } from "@mui/material";
 
 
@@ -150,23 +150,6 @@ function RecipeCreate(props) {
             return;
         }
         addNewRecipe(); //Adding recipe to backend Database
-        // let recipe_object =
-        // {
-        //     name: name,
-        //     image: image,
-        //     youtube: null,
-        //     area: area,
-        //     instructions: instructions,
-        //     tags: tag_list,
-        //     ingredients: ingredients_list,
-        //     measurements: measurement_list,
-        // }
-        //Pushing new recipe into json 
-        // CopyRecipeList.push(recipe_object);
-
-        // copy_of_recipe.push(recipe_object);
-        // console.log(copy_of_recipe);
-        // console.log(CopyRecipeList);
         setname('');
         setImage('');
         setarea('');
@@ -178,34 +161,46 @@ function RecipeCreate(props) {
     }
 
     async function addNewRecipe() {
+        let new_recipe = props.data;
+        let object =
+        {
+            id: recipe_count,
+            name: name,
+            image: image,
+            youtube: null,
+            area: area,
+            instructions: instructions,
+            tags: tag_list,
+            ingredients: ingredients_list,
+            measurements: measurement_list,
+        }
+        new_recipe.push(object)
         try {
-            await setDoc(doc(db, "Recipes", name), {
-                id: recipe_count,
-                name: name,
-                image: image,
-                youtube: null,
-                area: area,
-                instructions: instructions,
-                tags: tag_list,
-                ingredients: ingredients_list,
-                measurements: measurement_list,
+            await setDoc(doc(db, "Recipes", "RecipeArray"), {
+                Recipes: new_recipe
             });
         }
         catch (error) {
             console.log(error.code + error.message);
             alert(error.message);
         }
-        collectData();
+        props.setdata(new_recipe)
+        // collectData();
     }
 
-    async function collectData() {
-        const RecipeDatabase = await getDocs(collection(db, "Recipes"));
-        let collection_array = [];
-        RecipeDatabase.forEach((doc) => {
-            collection_array.push(doc.data());
-        });
-        props.setdata(collection_array);
-    }
+    // async function collectData() {
+    //     // const RecipeDatabase = await getDocs(collection(db, "Recipes"));
+    //     // let collection_array = [];
+    //     // RecipeDatabase.forEach((doc) => {
+    //     //   console.log(doc.id, " => ", doc.data());
+    //     //   // collection_array.push(doc.data());
+    //     // });
+    //     // setdata(collection_array);
+    //     const recipes_list = doc(db, "Recipes", "RecipeArray");
+    //     const recipe_snap = await getDoc(recipes_list);
+    //     console.log(recipe_snap.data().Recipes);
+    //     props.setdata(recipe_snap.data().Recipes);
+    // }
 
     const TagDeleteIndex = (index) => {
         // console.log(tag_list);
@@ -244,60 +239,61 @@ function RecipeCreate(props) {
 
 
     return (
-        <div className="entirepage">
-            <Link to={'/RecipeSearch'} className="btn btn-primary position-absolute" >Return to Search Page</Link>
-            <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitRecipe}>
-                <div>
-                    <label className="recipe-name">Recipe Name
-                        <input className="recipe-box" type="text" placeholder="Name of Meal" value={name} onChange={(e) => setname(e.target.value)}></input>
-                    </label><br />
-                    <label className="imagelink-name">Image Link
-                        <input placeholder="Image URL" className="image-box" type="text" value={image} onChange={(e) => setImage(e.target.value)}></input>
-                    </label> <br />
-                    <label>Origin of meal
-                        <input type="text" placeholder="Origin Location" value={area} onChange={(e) => setarea(e.target.value)}></input>
-                    </label><br />
-                    <label>Tag(s)
-                        <input type="text" placeholder="Meal Tag" value={tags} onChange={(e) => setTag(e.target.value)}></input>
-                    </label>
-                    <button className="tag-button" type='button' onClick={addTag}>Add Tag </button><br />
-                    <label>Ingredient
-                        <input type="text" value={ingredients} placeholder="Ingredient" onChange={(e) => setingredients(e.target.value)}></input>
-                        {/* <button type="button" onClick={AddIngredients}>Add Ingredient</button><br /> */}
-                    </label>
-                    <label>Measurement
-                        <input type="text" value={measurements} placeholder="Measurement" onChange={(e) => setmeasurements(e.target.value)}></input>
-                    </label>
-                    {/* <button type='button' onClick={AddMeasurements}>Add Measurement </button><br /> */}
-                    <button type='button' className="ing-meas-button" onClick={addBoth}>Add Ingredient w/ Measurement</button>
+        <div className="createBody">
+            <div className="entirepage">
+                <div className="button-move"> <Link to={'/home/recipesearch'} className="btn btn-primary" >Return to Search Page</Link></div>
+                <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitRecipe}>
+                    <div>
+                        <label className="recipe-name">Recipe Name
+                            <input className="recipe-box" type="text" placeholder="Name of Meal" value={name} onChange={(e) => setname(e.target.value)}></input>
+                        </label><br />
+                        <label className="imagelink-name">Image Link
+                            <input placeholder="Image URL" className="image-box" type="text" value={image} onChange={(e) => setImage(e.target.value)}></input>
+                        </label> <br />
+                        <label>Origin of meal
+                            <input type="text" placeholder="Origin Location" value={area} onChange={(e) => setarea(e.target.value)}></input>
+                        </label><br />
+                        <label>Tag(s)
+                            <input type="text" placeholder="Meal Tag" value={tags} onChange={(e) => setTag(e.target.value)}></input>
+                        </label>
+                        <button className="tag-button" type='button' onClick={addTag}>Add Tag </button><br />
+                        <label>Ingredient
+                            <input type="text" value={ingredients} placeholder="Ingredient" onChange={(e) => setingredients(e.target.value)}></input>
+                            {/* <button type="button" onClick={AddIngredients}>Add Ingredient</button><br /> */}
+                        </label>
+                        <label>Measurement
+                            <input type="text" value={measurements} placeholder="Measurement" onChange={(e) => setmeasurements(e.target.value)}></input>
+                        </label>
+                        {/* <button type='button' onClick={AddMeasurements}>Add Measurement </button><br /> */}
+                        <button type='button' className="ing-meas-button" onClick={addBoth}>Add Ingredient w/ Measurement</button>
 
-                    <label>Instructions
-                        <textarea className="text-input" type="text" value={instructions} placeholder="Instructions" onChange={(e) => setinstructions(e.target.value)}></textarea>
-                    </label><br />
-                    <br />
-                    <br />
-                    <button className="submit-button">Submit Recipe</button>
-                </div>
-            </form>
-            <form>
-                <div className="tag-box">
-                    <h4 className="header-text">Tags</h4>
-                    <ul>
-                        {
-                            tag_list.map((tags, index) => {
-                                return (
-                                    <div>
-                                        <li key={index}>{tags}
-                                            <button type="button" className="close" onClick={() => TagDeleteIndex(index)}>x</button>
-                                        </li>
-                                    </div>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-                {/* Use this to test Ingredients and Measurements Array Live */}
-                {/* <h4>Ingredients added</h4>
+                        <label>Instructions
+                            <textarea className="text-input" type="text" value={instructions} placeholder="Instructions" onChange={(e) => setinstructions(e.target.value)}></textarea>
+                        </label><br />
+                        <br />
+                        <br />
+                        <button className="submit-button">Submit Recipe</button>
+                    </div>
+                </form>
+                <form>
+                    <div className="tag-box">
+                        <h4 className="header-text">Tags</h4>
+                        <ul>
+                            {
+                                tag_list.map((tags, index) => {
+                                    return (
+                                        <div>
+                                            <li key={index}>{tags}
+                                                <button type="button" className="close" onClick={() => TagDeleteIndex(index)}>x</button>
+                                            </li>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                    {/* Use this to test Ingredients and Measurements Array Live */}
+                    {/* <h4>Ingredients added</h4>
                 <ul>
                     {
                         ingredients_list.map((ingredients, i) => {
@@ -317,28 +313,28 @@ function RecipeCreate(props) {
                         })
                     }
                 </ul> */}
-                <div className="ingred-measure-box">
-                    <h4 className="header-text ">Ingredients & Measurements</h4>
-                    <ul>
-                        {
-                            ingred_and_measure.map((both, both_index) => {
-                                return (
-                                    <div>
-                                        <li key={both_index}>{both}
-                                            <button type="button" className="close" onClick={() => DeleteMeasureAndIngredient(both_index)}>x</button>
-                                        </li>
-                                    </div>
-                                )
-                            })
-                        }
-                    </ul>
+                    <div className="ingred-measure-box">
+                        <h4 className="header-text ">Ingredients & Measurements</h4>
+                        <ul>
+                            {
+                                ingred_and_measure.map((both, both_index) => {
+                                    return (
+                                        <div>
+                                            <li key={both_index}>{both}
+                                                <button type="button" className="close" onClick={() => DeleteMeasureAndIngredient(both_index)}>x</button>
+                                            </li>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </form>
+                <div className="restriction">
+                    {message}
                 </div>
-            </form>
-            <div className="restriction">
-                {message}
             </div>
         </div>
-
     );
 }
 

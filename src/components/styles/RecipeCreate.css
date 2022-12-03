@@ -1,3 +1,10 @@
+.createBody {
+  background-color: #0599ad;
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+}
+
 .entirepage input {
   display: block;
   width: 100%;
@@ -6,7 +13,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #292628;
   background-color: rgb(255, 255, 255);
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -22,13 +29,14 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #262729;
   background-color: rgb(118, 0, 253);
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 .ing-meas-button {
   display: block;
   width: 100%;
@@ -36,7 +44,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #262729;
   background-color: rgb(118, 0, 253);
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -44,13 +52,46 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-button:hover {
+.ing-meas-button:hover {
+  opacity: 0.8;
+}
+
+.ing-meas-button:focus {
+  outline: none !important;
+}
+
+.submit-button:hover {
+  opacity: 0.8;
+}
+
+.submit-button:focus {
+  outline: none !important;
+}
+
+.close:hover {
+  opacity: 0.8;
+}
+
+.close:focus {
+  outline: none !important;
+}
+
+.tag-button:hover {
+  opacity: 0.8;
+}
+
+.tag-button:focus {
+  outline: none !important;
+}
+
+
+/* button:hover {
   opacity: 0.8;
 }
 
 button:focus {
   outline: none !important;
-}
+} */
 
 .regForm {
   background-color: #ffffff;
@@ -66,7 +107,7 @@ button:focus {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #262729;
   background-color: rgb(118, 0, 253);
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -82,7 +123,7 @@ button:focus {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #262729;
   background-color: rgb(255, 255, 255);
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -125,16 +166,23 @@ button:focus {
   width: 20px;
   height: 20px;
 }
+
 .close:hover {
   opacity: 1;
   color: red;
 }
 
-.restriction
-{
+.restriction {
   width: 100%;
   text-align: center;
   color: purple;
+}
+
+
+.button-move {
+  position: absolute;
+  top: 3%;
+  left: 2%
 }
 
 /* .return-link

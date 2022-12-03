@@ -1,6 +1,7 @@
 .OverviewBody {
     background-color: #0599ad;
     min-height: 100vh;
+    padding-left: 10px;
   }
 
   .triangle-image img {
