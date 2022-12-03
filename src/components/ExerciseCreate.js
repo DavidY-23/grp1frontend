@@ -7,7 +7,7 @@ import db from './firebase.js';
 import { collection, doc, setDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
 import { setRef, tooltipClasses } from "@mui/material";
 
-
+ 
 function ExerciseCreate(props) {
     const [message, setmessage] = useState("")
     const [imagelink, setimagelink] = useState("");
@@ -29,20 +29,20 @@ function ExerciseCreate(props) {
         if ((imagelink.trim().length || !imagelink) || (name.trim().length || !name)(instructions.trim().length || !instructions)) {
             setmessage("SUBMISSION DENIED: All fields must be filled.  If you do not require a tool for this, then you may leave it empty");
         }
-        // addNewExercise();
+        addNewExercise();
         setmessage('');
         setimagelink('');
         settools([]);
         setname('');
         setinstructions('');
-        alert("Your exercise is now in your database")
+        alert("Your exercise is now in our database")
     }
 
     async function addNewExercise() {
         let exercise_value = props.exercise_data;
         let object = {
             Name: name,
-            ToolS: tools,
+            ToolS: tool_list,
             imgE: imagelink,
             Instructions: instructions,
         }
@@ -74,7 +74,7 @@ function ExerciseCreate(props) {
     return (
         <div className="exercisepage">
             <div className="entirepage">
-
+            <div className="button-move"> <Link to={'/home/exercisesearch'} className="btn btn-primary" >Return to Search Page</Link></div>
                 <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitExercise}>
                     <div>
                         <label className="exercise-name">Exercise Name
