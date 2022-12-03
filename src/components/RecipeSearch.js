@@ -94,49 +94,49 @@ function RecipeSearch(props) {
             props.set_allergycheck(true);
             if (props.allergies.includes("Milk")) {
                 let lactose_intolerance = ["milk", "cheese", "butter", "yogurt", "ice cream", "buttermilk", "sour cream", "whipped cream"]
-                lactose_intolerance.map((element) => {
+                lactose_intolerance.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, lactose_intolerance]);
             }
             if (props.allergies.includes("Nuts")) {
                 let nut_allergy = ["peanut oil", "arachis oil", "nuts", "nut", "peanut", "peanuts", "pine nuts"];
-                nut_allergy.map((element) => {
+                nut_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, nut_allergy]);
             }
             if (props.allergies.includes("Eggs")) {
                 let egg_allergy = ["egg", "eggs"];
-                egg_allergy.map((element) => {
+                egg_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, egg_allergy]);
             }
             if (props.allergies.includes("Fish")) {
                 let fish_allergy = ["fish", "anchovies", "bass", "catfish", "cod", "flounder", "grouper", "haddock", "hake", "halibut", "herring", "mahi mahi", "perch", "pike", "pollock", "salmon", "scrod", "sole", "snapper", "swordfish", "tilapia", "trout", "tuna"];
-                fish_allergy.map((element) => {
+                fish_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, fish_allergy]);
             }
             if (props.allergies.includes("Wheat")) {
                 let wheat_allergy = ["wheat", "whole wheat"];
-                wheat_allergy.map((element) => {
+                wheat_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, wheat_allergy]);
             }
             if (props.allergies.includes("Shellfish")) {
                 let shell_fish_allergy = ["barnacle", "crab", "crawfish", "krill", "lobster", "prawns", "shrimp", "scampi"];
-                shell_fish_allergy.map((element) => {
+                shell_fish_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, shell_fish_allergy]);
             }
             if (props.allergies.includes("Soybeans")) {
                 let soybean_allergy = ["soy", "soybean"];
-                soybean_allergy.map((element) => {
+                soybean_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, soybean_allergy]);
