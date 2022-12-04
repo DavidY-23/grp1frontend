@@ -11,13 +11,16 @@ function CreateAccount(props) {
     // The reference to the collection of Users
     const colRef = collection(db, "Users");
 
+    // The reference to the Collection of JounralEntries
+    const journalRef=collection(db, "JournalEntry");
+
     // The states for the user infor (email, password, confirm password)
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [confirm_password, setconfirm_password] = useState('');
     const navigate = useNavigate();
 
-
+    // Create an account for a brand new user 
     async function createAccount() {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
@@ -25,6 +28,14 @@ function CreateAccount(props) {
                 uniqueId: user.user.uid,
                 userEmail: email,
             });
+
+            // For Jounral Entry 
+            const newDocForJorunalEntry = await setDoc(doc(db, 'JournalEntry', user.user.uid), {
+                id: user.user.uid,
+                userEmail: email,
+                entries: [{title: "Enter Title", entry: "Entry Here"},]
+            });
+            
             navigate('/FirstTimeLogin');
             props.setUserID(user.user.uid);
         } catch (error) {
