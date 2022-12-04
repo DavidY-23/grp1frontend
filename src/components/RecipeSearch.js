@@ -36,7 +36,7 @@ function RecipeSearchHTML(props) {
                 <div className="searchbartwo">
                     {/* <input type="text" id="searchBar3" onChange={inputHandler} /> */}
                     <input type="text" className='searchbarText' placeholder="Search the Best Recipes for you!" onChange={inputHandler} onKeyDown={handleKeyDown} />
-                    {(inputText !== "") ?
+                    {(inputText !== "" || props.filter_check) ?
                         (<List exercise_data={props.exercise_data} setexercise_data={props.setexercise_data} data={props.data} setdata={props.setdata} filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} input={inputText} />) : (<h2 />)
                     }
                 </div>

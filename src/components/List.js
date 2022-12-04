@@ -167,8 +167,11 @@ function List(props) {
 
     const filteredData = data.filter((el) => {
         //return the item which contains the user input
-        if(props.input !== "" || props.filter_check) {
+        if(props.input !== "") {
             var keep = true;
+            if(finalComparison.length === 0){
+                return false;
+            }
             for(const row of finalComparison)
             {
                 if(keep)
@@ -195,6 +198,9 @@ function List(props) {
             return true;
         }
         // if no input the return the original
+        else if(props.filter_check){
+            return true;
+        }
         else{
             return '';
         }
@@ -204,7 +210,7 @@ function List(props) {
             <div >
                 {filteredData.map((item) => (
                     <div key={item.name}>
-                        <Link to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements }}>
+                        <Link to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements, tags: item.tags, area: item.area }}>
                             <button className="searchResults">{item.name}</button>
                             {/* <hr className="borderBottom"/> */}
                         </Link><br />

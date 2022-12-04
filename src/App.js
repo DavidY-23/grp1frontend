@@ -15,6 +15,7 @@ import HomePage from "./components/HomePage";
 import RecipeDetails from "./components/RecipeDetails";
 import ExerciseDetails from "./components/ExerciseDetails";
 import SearchResults from "./components/SearchResultsPage";
+import ExerciseSearchResults from "./components/ExerciseSearchResults";
 import RecipeCreate from "./components/RecipeCreate.js";
 import ParseR from "./components/Parse.js";
 import Filter from "./components/Filter";
@@ -150,6 +151,14 @@ function App() {
             path="/home/exercisesearch/ExerciseDetails/:state"
             element={
               <ExerciseDetails
+                exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/home/exercisesearch/SearchResults"
+            element={
+              <ExerciseSearchResults
                 exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
               />
             }
