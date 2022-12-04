@@ -284,13 +284,13 @@ function FirstTimeLogin(props) {
               <label>
                 <input
                   type="checkbox"
-                  value="Shoulders"
-                  name="Shoulders"
-                  id="Shoulders"
+                  value="Back"
+                  name="Back"
+                  id="Back"
                   style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
-                Shoulders
+                Back
               </label>
               <label>
                 <input

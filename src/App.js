@@ -41,6 +41,7 @@ function App() {
   const [userID, setUserID] = useState("");
   const [data, setdata] = useState([]);
   const [exercise_data, setexercise_data] = useState([]);
+  // const []
 
   useEffect(() => {
     collectData();

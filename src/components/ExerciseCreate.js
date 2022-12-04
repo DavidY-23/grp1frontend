@@ -7,7 +7,7 @@ import db from './firebase.js';
 import { doc, setDoc } from 'firebase/firestore';
 // import { setRef, tooltipClasses } from "@mui/material";
 
- 
+
 function ExerciseCreate(props) {
     const [message, setmessage] = useState("")
     const [imagelink, setimagelink] = useState("");
@@ -15,6 +15,11 @@ function ExerciseCreate(props) {
     const [name, setname] = useState("");
     const [instructions, setinstructions] = useState("");
     const [tool_list, settool_list] = useState([]);
+    const [part, setpart] = useState("");
+    // const [legs, setlegs] = useState("");
+    // const [chest, setchest] = useState("");
+    // const [back, setback] = useState("");
+
     const addTool = () => {
         if (!tools.trim().length || !tools) {
             alert("Please do not leave only whitespace or an empty value");
@@ -26,8 +31,13 @@ function ExerciseCreate(props) {
 
     const SubmitExercise = async (event) => {
         event.preventDefault();
-        if ((imagelink.trim().length || !imagelink) || (name.trim().length || !name)(instructions.trim().length || !instructions)) {
+        if ((!imagelink.trim().length || !imagelink) || (!name.trim().length || !name) || (!instructions.trim().length || !instructions)) {
             setmessage("SUBMISSION DENIED: All fields must be filled.  If you do not require a tool for this, then you may leave it empty");
+            return;
+        }
+        if (part === "") {
+            setmessage("You must specify which body part is utilized");
+            return;
         }
         addNewExercise();
         setmessage('');
@@ -45,6 +55,7 @@ function ExerciseCreate(props) {
             ToolS: tool_list,
             imgE: imagelink,
             Instructions: instructions,
+            Part: part
         }
         exercise_value.push(object);
         try {
@@ -74,7 +85,7 @@ function ExerciseCreate(props) {
     return (
         <div className="exercisepage">
             <div className="entirepage">
-            <div className="button-move"> <Link to={'/home/exercisesearch'} className="btn btn-primary" >Return to Search Page</Link></div>
+                <div className="button-move"> <Link to={'/home/exercisesearch'} className="btn btn-primary" >Return to Search Page</Link></div>
                 <form className="container mt-5 mb-5 d-flex justify-content-center" onSubmit={SubmitExercise}>
                     <div>
                         <label className="exercise-name">Exercise Name
@@ -96,7 +107,7 @@ function ExerciseCreate(props) {
                 <form>
                     <div className="tools-display">
                         <h4 className="tools-header">Tools</h4>
-                        <ul> 
+                        <ul>
                             {
                                 tool_list.map((tags, index) => {
                                     return (
@@ -114,6 +125,50 @@ function ExerciseCreate(props) {
                 <div className="restriction">
                     {message}
                 </div>
+            </div>
+            <div className="radios">
+                <form>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                            id="arms1"
+                            type="radio"
+                            value="arms"
+                            name="part"
+                            onChange={(e) => setpart(e.target.value)}
+                        />
+                        <label class='form-check-label' for='arms1'>Arms</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                            type="radio"
+                            id="legs1"
+                            value="legs"
+                            name="part"
+                            onChange={(e) => setpart(e.target.value)}
+                        />
+                        <label class='form-check-label' for='legs1'>Legs</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="part"
+                            value="chest"
+                            id="chest1"
+                            onChange={(e) => setpart(e.target.value)}
+                        />
+                        <label class='form-check-label' for='chest1'>Chest</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="part"
+                            value="back"
+                            id="back1"
+                            onChange={(e) => setpart(e.target.value)}
+                        />
+                        <label class='form-check-label' for='back1'>Back</label>
+                    </div>
+                </form>
             </div>
         </div>
     );

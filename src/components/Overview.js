@@ -78,10 +78,10 @@ function Overview(props) {
       let legs = document.getElementById('Legs');
       legs.checked = true;
     }
-    if(props.injury.includes("Shoulders"))
+    if(props.injury.includes("Back"))
     {
-      let shoulders = document.getElementById('Shoulders');
-      shoulders.checked = true;
+      let Back = document.getElementById('Back');
+      Back.checked = true;
     }
     if(props.injury.includes("Chest"))
     {
@@ -337,13 +337,13 @@ function Overview(props) {
           <label>
             <input
               type="checkbox"
-              value="Shoulders"
-              name="Shoulders"
-              id="Shoulders"
+              value="Back"
+              name="Back"
+              id="Back"
               style={{ visibility: "visible" }}
               onChange={handleInjury}
             />
-            Shoulders
+            Back
           </label>
           <br />
           <label>

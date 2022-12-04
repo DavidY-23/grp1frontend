@@ -6,6 +6,8 @@ import recipeRight from '../images/recipeRight.png';
 import List from "./List";
 import { useNavigate } from "react-router-dom";
 import { propTypes } from "react-bootstrap/esm/Image";
+import db from './firebase.js';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 function RecipeSearchHTML(props) {
     const [inputText, setInputText] = useState("");
