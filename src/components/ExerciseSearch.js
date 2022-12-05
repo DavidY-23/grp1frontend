@@ -198,14 +198,14 @@ function ExerciseSearch(props) {
                 <div className="imagescollect">
                     <div className="pad">
                         <img src={armsPic} alt="oops" />
-                        <a href="https://vast-teal-ostrich-ring.cyclic.app/arms">Arms</a>
+                        <a href="https://vast-teal-ostrich-ring.cyclic.app/arms" target="_blank" rel="noreferrer noopener">Arms</a>
                     </div>
                     <div className="pad">
                         <img src={legsPic} alt="oops" />
-                        <a href="https://vast-teal-ostrich-ring.cyclic.app/legs">Legs</a>
+                        <a href="https://vast-teal-ostrich-ring.cyclic.app/legs" target="_blank" rel="noreferrer noopener">Legs</a>
                     </div>
                     <div className="pad">
-                        <a href="https://vast-teal-ostrich-ring.cyclic.app">And Much More</a>
+                        <a href="https://vast-teal-ostrich-ring.cyclic.app" target="_blank" rel="noreferrer noopener">And Much More</a>
                     </div>
                 </div>
             </div>

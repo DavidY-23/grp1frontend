@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { propTypes } from "react-bootstrap/esm/Image";
 import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import Slideshow from "./styles/Carousel/Slideshow";
 
 function RecipeSearchHTML(props) {
     const [inputText, setInputText] = useState("");
@@ -27,6 +28,10 @@ function RecipeSearchHTML(props) {
         }
     };
 
+    const randInd1 = Math.floor(Math.random() * 93);
+    const randInd2 = Math.floor(Math.random() * 93);
+    const randInd3 = Math.floor(Math.random() * 93);
+
     return (
         <div className="wholepagetwo">
             <div className="containertwo">
@@ -45,16 +50,20 @@ function RecipeSearchHTML(props) {
 
                 <div className="imagescollecttwo">
                     <div className="padtwo">
-                        <img src={recipeLeft} alt="" />
-                        <a href="https://feelgoodfoodie.net/recipe/avocado-toast-with-egg-3-ways/">Toast with eggs and avocado</a>
+                        {/* <img src={recipeLeft} alt="" />
+                        <a href="https://feelgoodfoodie.net/recipe/avocado-toast-with-egg-3-ways/">Toast with eggs and avocado</a> */}
+                        <Slideshow lower={0} upper={93} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
+
                     </div>
                     <div className="padtwo">
-                        <img src={recipeMiddle} alt="" />
-                        <a href="https://therecipecritic.com/trail-mix/">Trail Mix</a>
+                        {/* <img src={recipeMiddle} alt="" />
+                        <a href="https://therecipecritic.com/trail-mix/">Trail Mix</a> */}
+                        <Slideshow lower={94} upper={187} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
                     </div>
                     <div className="padtwo">
-                        <img src={recipeRight} alt="" />
-                        <a href="https://thefeedfeed.com/dieteticaesthetic/cream-cheese-lox-toast">Lox and cream cheese on Toast</a>
+                        {/* <img src={recipeRight} alt="" />
+                        <a href="https://thefeedfeed.com/dieteticaesthetic/cream-cheese-lox-toast">Lox and cream cheese on Toast</a> */}
+                        <Slideshow lower={188} upper={283} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
                     </div>
                 </div>
             </div>
