@@ -24,8 +24,8 @@ import ExerciseCreate from "./components/ExerciseCreate";
 import MentalHealth from "./components/MentalHealth";
 import JournalEntry from "./components/JournalEntry";
 
-
 function App() {
+  // All the states for the app
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
@@ -51,6 +51,8 @@ function App() {
   const [exercises, setexercises] = useState([]);
 
 
+
+  // Called only once since the second paramater(array) is empty 
   useEffect(() => {
     collectData();
     collectExercise();
@@ -173,7 +175,7 @@ function App() {
           />
           <Route path="/ParseR" element={<ParseR />} />
           <Route
-            path="/MentalHealth"
+            path="/home/MentalHealth"
             element={
               <MentalHealth
                 exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
@@ -181,7 +183,7 @@ function App() {
             }
           />
           <Route
-            path="/JournalEntry"
+            path="/home/MentalHealth/JournalEntry"
             element={
               <JournalEntry
                 exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
