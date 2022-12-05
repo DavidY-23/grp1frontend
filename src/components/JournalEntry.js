@@ -109,8 +109,8 @@ function JournalEntry(props) {
             setIndex(prevIndex=> prevIndex+1);
         }
     }
-    console.log("index", index);
-    console.log("number of entries", numberOfEntries);
+    //console.log("index", index);
+    //console.log("number of entries", numberOfEntries);
     return (
         <div className='JournalEntryPage'>
             <form className="formForEntry">
