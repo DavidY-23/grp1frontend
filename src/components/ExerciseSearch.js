@@ -8,25 +8,72 @@ import ListEx from './ListEx';
 
 function ExerciseSearch(props) {
     const navigate = useNavigate();
-    const [exercises, setexercises] = useState([])
+    const [arms_array, setarms_array] = useState([]);
+    const [legs_array, setlegs_array] = useState([]);
+    const [back_array, setback_array] = useState([]);
+    const [chest_array, setchest_array] = useState([]);
 
     useEffect(() => {
         exercisesAvailable();
-        // Checks();
-        //It is better to leave them all unchecked, if everything is unchecked, display all exercises, if one is checked, focus on that part
+        gatherArrays();
+        if (props.part_checks.Arms === true) {
+            document.getElementById("Arms").checked = true;
+        }
+        if (props.part_checks.Legs === true) {
+            document.getElementById("Legs").checked = true;
+        }
+        if (props.part_checks.Back === true) {
+            document.getElementById("Back").checked = true;
+        }
+        if (props.part_checks.Chest === true) {
+            document.getElementById("Chest").checked = true;
+        }
     }, []);
+
 
     const exercisesAvailable = () => {
         let array = ["Arms", "Legs", "Back", "Chest"];
+        let array_with_objects = [];
         let true_array = [];
         for (let i = 0; i < array.length; i++) {
             if (props.injury.includes(array[i]) === false) {
                 true_array.push(array[i])
             }
         }
-        setexercises(true_array);
+        let object = {
+
+        }
+        props.setexercises(true_array);
     }
 
+    const gatherArrays = () => {
+        let arms = [];
+        let legs = [];
+        let back = [];
+        let chest = [];
+        for (let i = 0; i < props.exercise_data.length; i++) {
+            if (props.exercise_data[i].Part === "arms") {
+                arms.push(props.exercise_data[i]);
+            }
+            if (props.exercise_data[i].Part === "legs") {
+                legs.push(props.exercise_data[i]);
+            }
+            if (props.exercise_data[i].Part === "back") {
+                back.push(props.exercise_data[i]);
+            }
+            if (props.exercise_data[i].Part === "chest") {
+                chest.push(props.exercise_data[i]);
+            }
+        }
+        setarms_array(arms);
+        setlegs_array(legs);
+        setback_array(back);
+        setchest_array(chest);
+        // console.log(arms) 
+        // console.log(legs)
+        // console.log(back)
+        // console.log(chest)    
+    }
     // const Checks = () => {
     //     for (let i = 0; i < exercises.length; i++) {
     //         document.getElementById(exercises[i]).checked = true;
@@ -54,16 +101,88 @@ function ExerciseSearch(props) {
         }
     };
 
-    let filterCheck = () => {
-        if (document.getElementById("inj").checked === true) {
-            if (props.injury.includes("Arms")) {
-                console.log(document.getElementById("arms").disabled === true)
+    const filterCheck = async (event) => {
+        console.log(event.target);
+        let arms_box = null;
+        let legs_box = null;
+        let back_box = null;
+        let chest_box = null;
+        if (event.target.checked === true) {
+            switch (event.target.id) {
+                case "Arms":
+                    props.setpart_checks({
+                        Arms: true,
+                        Legs: props.part_checks.Legs,
+                        Back: props.part_checks.Back,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Legs":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: true,
+                        Back: props.part_checks.Back,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Back":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: props.part_checks.Legs,
+                        Back: true,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Chest":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: props.part_checks.Legs,
+                        Back: props.part_checks.Back,
+                        Chest: true,
+                    });
+                    break;
+            }
+        }
+        if (event.target.checked === false) {
+            switch (event.target.id) {
+                case "Arms":
+                    props.setpart_checks({
+                        Arms: false,
+                        Legs: props.part_checks.Legs,
+                        Back: props.part_checks.Back,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Legs":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: false,
+                        Back: props.part_checks.Back,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Back":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: props.part_checks.Legs,
+                        Back: false,
+                        Chest: props.part_checks.Chest,
+                    });
+                    break;
+                case "Chest":
+                    props.setpart_checks({
+                        Arms: props.part_checks.Arms,
+                        Legs: props.part_checks.Legs,
+                        Back: props.part_checks.Back,
+                        Chest: false,
+                    });
+                    break;
             }
         }
     };
-    console.log(props)
+    console.log(props.part_checks)
     return (
-        <div className="wholepage">
+        <div id='test' className="wholepage">
             <div className="contnr">
                 {/* <form action="https://www.google.com/search" method="get" className="searchbar" target="_blank">
                     <input type="text" className='searchbarText' placeholder="Search for Exercises Best Suited for you!" />
@@ -96,13 +215,13 @@ function ExerciseSearch(props) {
                 {/* <input onChange={filterCheck} type="checkbox" class="form-check-input" id="inj" />
                 <label class="form-check-label" for="inj"> <p class="text-white bg-dark">Filter by Injury</p></label> */}
                 <br />
-                <ul>
+                <ul id='map-container'>
                     {
-                        exercises.map((element, index) => {
+                        props.exercises.map((element, index) => {
                             return (
                                 <div>
-                                    <input onChange={filterCheck} type="checkbox" class="form-check-input" id={element} />
-                                    <label class="form-check-label" for="part"><p class="text-white bg-dark">{element}</p></label>
+                                    <input key = {index} onChange={filterCheck} type="checkbox" class="form-check-input" id={element} />
+                                    <label class="form-check-label" for="part"><p class="text-white" style={{ paddingLeft: 10 }}>{element} </p></label>
                                 </div>
                             )
                         })
