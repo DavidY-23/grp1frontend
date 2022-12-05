@@ -111,5 +111,18 @@
 .ex-button {
     position: absolute;
     top: 3%;
-    right: 2%;
+    right: .2%;
+}
+
+.checkboxes {
+    position: absolute;
+    top: 13%;
+    right: 2%
+}
+
+.partslabel {
+    color: white;
+    position: absolute;
+    top: 11.5%;
+    right: .5%;
 }

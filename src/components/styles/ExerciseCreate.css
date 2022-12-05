@@ -42,4 +42,10 @@
     right: 15%;
     top: 5%;
     text-align: center;
-  }
+}
+
+.radios {
+    position: absolute;
+    top:8%;
+    right:46%;
+}

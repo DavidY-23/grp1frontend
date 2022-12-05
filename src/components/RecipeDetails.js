@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const RecipeDetails = (props) => {
     const location = useLocation();
-    const { name, yt, image, instructions, ingredients, measurements } = location.state;
+    const { name, yt, image, instructions, ingredients, measurements, area, tags } = location.state;
     // const siz = Object.keys(measurements).length;
     // console.log(name.length);
 
@@ -71,6 +71,11 @@ const RecipeDetails = (props) => {
                 </div>
                 <img className="RecipeImg" src={image} alt="Oops"/>
                 <a className="RecipeYT" href={yt}>Youtube Tutorial</a> <br/> <br/>
+
+                <div className="AreaAndTags">
+                    <h1 className="RecipeArea">{area.toUpperCase()}</h1>
+                    {(tags === undefined ? (<p/>) : (<ul>{tags.map((tag, index) => {return(<p className="DetailsTags">{tag.toUpperCase()}</p>)})}</ul>))}
+                </div>
 
                 <div className="IngredientsDiv">
                     <h2 className="Ingr">Ingredients</h2>

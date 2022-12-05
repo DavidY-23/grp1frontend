@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const ExerciseDetails = (props) => {
     const location = useLocation();
-    const { name, img, instructions, tools } = location.state;
+    const { name, img, instructions, tools, part } = location.state;
     // const siz = Object.keys(measurements).length;
     // console.log(name.length);
 
@@ -71,6 +71,10 @@ const ExerciseDetails = (props) => {
                 </div>
                 <img className="RecipeImg" src={img} alt="Oops"/>
                 <p className="RecipeYT"></p> <br/> <br/>
+
+                <div className="AreaAndTags">
+                    <h1 className="RecipeArea">{part.toUpperCase()}</h1>
+                </div>
 
                 <div className="IngredientsDiv">
                     <h2 className="Ingr">Tools</h2>

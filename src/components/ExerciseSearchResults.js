@@ -1,13 +1,22 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import './styles/SearchResults.css';
+import './styles/SearchResultsPage.css'
+// import { fontSize, sizeHeight } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 import dict from "./JSON files/ExerciseDictionary.json";
 import { distance } from 'fastest-levenshtein';
+import { Experimental_CssVarsProvider } from "@mui/material";
 var PriorityQueue = require('priorityqueuejs');
 
-function ListEx(props) {
-    const [data, setdata] = useState([]);
 
+const ExerciseSearchResults = (props) => {
+    const { state } = useLocation();
+    const { searchName } = state;
+    const navigate = useNavigate();
+    const [newSearch, setNewSearch] = useState(searchName);
+    const [data, setdata] = useState([]);
+    //Gathering API data through our backend 
     useEffect(() => {
         gatherArrays();
     }, []);
@@ -65,8 +74,23 @@ function ListEx(props) {
             setdata(filtered_array);
         }
     }
-    
-    var check = props.input;
+
+    let handleInput = (e) => {
+        setNewSearch(e.target.value.toLowerCase());
+    };
+
+    // const filteredData = data.filter((el) => {
+    //     // if no input the return the original
+    //     if (newSearch === '') {
+    //         //return el;
+    //         return '';
+    //     }
+    //     //return the item which contains the user input
+    //     else {
+    //         return el.name.toLowerCase().includes(newSearch);
+    //     }
+    // })
+    var check = newSearch;
     const checkArray = check.split(" ");
     var bufferMatrix = [];
     // For every word in the input string:
@@ -122,7 +146,7 @@ function ListEx(props) {
 
     const filteredData = data.filter((el) => {
         //return the item which contains the user input
-        if (props.input !== "") {
+        if (newSearch !== "") {
             var keep = true;
             if (finalComparison.length === 0) {
                 return false;
@@ -155,31 +179,42 @@ function ListEx(props) {
         }
     })
 
-    // const filteredData = data.filter((el) => {
-    //     // if no input the return the original
-    //     if (props.input === '') {
-    //         //return el;
-    //         return '';
-    //     }
-    //     //return the item which contains the user input
-    //     else {
-    //         return el.Name.toLowerCase().includes(props.input);
-    //     }
-    // })
+    const searchBar = () => {
+        navigate("/home/exercisesearch")
+    }
 
     return (
-        <ul className="SearchWrapper">
-            <div >
-                {filteredData.map((item) => (
-                    <div key={item.id}>
-                        <Link to={'/home/exercisesearch/ExerciseDetails/' + item.Name.replaceAll(" ", "-")} state={{ name: item.Name, instructions: item.Instructions, tools: item.ToolS, img: item.imgE, part: item.Part }}>
-                            <button className="searchResults">{item.Name}</button>
-                        </Link><br />
-                    </div>
-                ))}
+        <div className="SearchResultsPage">
+            <div className="SearchBarSRP">
+                <input type="Text" className="SearchBarTextSRP" value={newSearch} onChange={handleInput} />
+                {(newSearch !== "" || props.filter_check) ?
+                    (<div className="WrapperSRP">
+                        {filteredData.map((item) => (
+                            <div key={item.name}>
+                                <img src={item.imgE} alt="" className="PreviewSRP" />
+                                <div className="TextWrapperSRP">
+                                    <div className="NameWrapperSRP">
+                                        <Link
+                                            style={{ textDecoration: 'none' }} to={'/home/exercisesearch/ExerciseDetails/' + item.Name.replaceAll(" ", "-")} state={{ name: item.Name, instructions: item.Instructions, tools: item.ToolS, img: item.imgE, part: item.Part }}>
+                                            <span className="NameSRP" id="NameSRP">{item.Name}</span>
+                                        </Link>
+                                    </div> <br />
+                                    <div className="IngredientWrapperSRP">
+                                        {
+                                            item.ToolS.map((tool) => (
+                                                <span className="IngredientSRP">{tool.toUpperCase()}</span>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>) : (<h2 />)
+                }
             </div>
-        </ul>
-    )
-}
+            <div className="return-to-search-button"><button type="button" onClick={searchBar} class="btn btn-success">Return</button></div>
+        </div>
+    );
+};
 
-export default ListEx
+export default ExerciseSearchResults;
