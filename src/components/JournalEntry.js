@@ -17,6 +17,12 @@ function JournalEntry(props) {
         entryText: ""
     });
 
+    // Have a state variable that will store the entry in a object as a entryText property
+    const [copyEntry, setCopyEntry] =React.useState({
+        nameOfEntry:  "", 
+        entryText: ""
+    });
+
     // The reference to the Collection of JounralEntries
     const journalRef=collection(db, "JournalEntry");
 
@@ -27,6 +33,11 @@ function JournalEntry(props) {
     React.useEffect(()=> {
         getDoc(docRef).then((doc)=> {
             setNumber(doc.data().entries.length);
+            setCopyEntry({
+                nameOfEntry: doc.data().entries[index].title,
+                entryText: doc.data().entries[index].entry
+            });
+
             setEntry({
                 nameOfEntry: doc.data().entries[index].title,
                 entryText: doc.data().entries[index].entry
@@ -48,24 +59,29 @@ function JournalEntry(props) {
 
     // Handle the Create New Button
     function handleSave(e) {
-        // Will not rerender the page when Save button is pressed
-        //e.preventDefault();
-        // Update Document in Firestore 
-        const docRef=doc(db, "JournalEntry", props.userID);
-        getDoc(docRef).then((doc)=> {
-            // Updating the Journal Entries Array 
-            const allEntries=[...(doc.data().entries)];
-            const updateEntry={
-                entry : entry.entryText,
-                title: entry.nameOfEntry
-            };
-            allEntries[index]=updateEntry;
+        if((entry.entryText!=="Entry Here" && entry.nameOfEntry!=="Enter Title") && (copyEntry.entryText!==entry.entryText || copyEntry.nameOfEntry !==entry.nameOfEntry)) {
+            // Will not rerender the page when Save button is pressed
+            //e.preventDefault();
+            // Update Document in Firestore 
+            const docRef=doc(db, "JournalEntry", props.userID);
+            getDoc(docRef).then((doc)=> {
+                // Updating the Journal Entries Array 
+                const allEntries=[...(doc.data().entries)];
+                const updateEntry={
+                    entry : entry.entryText,
+                    title: entry.nameOfEntry
+                };
+                allEntries[index]=updateEntry;
 
-            updateDoc(docRef, {
-                ...doc.data(),
-                entries: allEntries
+                updateDoc(docRef, {
+                    ...doc.data(),
+                    entries: allEntries
+                });
             });
-        });
+        }
+        else  {
+            alert("No Change Dectected");
+        }
     }
 
     // Handle Create New Button
