@@ -366,3 +366,61 @@ img.HomeIcon:hover, img.SearchIcon:hover {
         left: 0px;
     }   
 }
+
+/* For Area and tag Box */
+.AreaAndTags {
+    position: absolute;
+    right: 0;
+    top: 20vh;
+    width: 20vw;
+    background-color: #ffc8c894;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.DetailsTags {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-weight: 550;
+    transform: rotate(.5deg);
+    font-size: 12px;
+}
+.DetailsTags:hover {
+    font-size: 13px;
+    cursor: not-allowed;
+}
+
+.AreaAndTags p:nth-child(8n+1) {
+    color: #34568B;
+}
+.AreaAndTags p:nth-child(8n+2) {
+    color: #d04336;
+}
+.AreaAndTags p:nth-child(8n+3) {
+    color: #6B5B95;
+}
+.AreaAndTags p:nth-child(8n+4) {
+    color: #879b68;
+}
+.AreaAndTags p:nth-child(8n+5) {
+    color: #f9dede;
+}
+.AreaAndTags p:nth-child(8n+6) {
+    color: #955251;
+}
+.AreaAndTags p:nth-child(8n+7) {
+    color: #B565A7;
+}
+.AreaAndTags p:nth-child(8n+8) {
+    color: #009B77;
+}
+
+.RecipeArea {
+    font-size: 20px;
+    color: #0cafcb;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    margin-right: -20px;
+}
