@@ -6,6 +6,7 @@ import './styles/SearchResultsPage.css'
 import { useNavigate } from "react-router-dom";
 import dict from "./JSON files/ExerciseDictionary.json";
 import { distance } from 'fastest-levenshtein';
+import { Experimental_CssVarsProvider } from "@mui/material";
 var PriorityQueue = require('priorityqueuejs');
 
 
@@ -14,48 +15,12 @@ const ExerciseSearchResults = (props) => {
     const { searchName } = state;
     const navigate = useNavigate();
     const [newSearch, setNewSearch] = useState(searchName);
-    //const [data, setdata] = useState(props.data);
     const [data, setdata] = useState([]);
-    // const [collection_array, setcollection_array] = useState(props.data)
-    console.log(props.exercises)
-    console.log(props.part_checks)
     //Gathering API data through our backend 
     useEffect(() => {
-        collectData();
+        gatherArrays();
     }, []);
     console.log(data.length)
-    const collectData = () => {
-        let counter = 0;
-        let none_counter = 0;
-
-        for (let i = 0; i < props.part_checks.length; i++) {
-            if (props.exercises.length === none_counter) {
-                break;
-            }
-            else if (props.part_checks[i] === true) {
-                counter = counter + 1;
-            }
-            else if (props.part_checks[i] === false) {
-                none_counter = none_counter + 1;
-            }
-            console.log(none_counter)
-        }
-        //|| (props.part_checks.Arms === false) && (props.part_checks.Legs === false) && (props.part_checks.Back === false) && (props.part_checks.Chest === false)
-        if (counter === props.exercises.length) {
-            setdata(props.exercise_data);
-        }
-        else if ((none_counter === props.exercises.length) || (props.exercises.length === none_counter)) {
-            setdata(props.exercise_data);
-        }
-        // if (((props.part_checks.Arms === false) && (props.part_checks.Legs === false) && (props.part_checks.Back === false) && (props.part_checks.Chest === false)) || ((props.part_checks.Arms === true) && (props.part_checks.Legs === true) && (props.part_checks.Back === true) && (props.part_checks.Chest === true))) {
-        //     setdata(props.exercise_data);
-        // }
-        else {
-            gatherArrays();
-        }
-        // setdata(props.exercise_data);
-    }
-
     const gatherArrays = () => {
         let filtered_array = [];
         let arms = [];
@@ -96,9 +61,19 @@ const ExerciseSearchResults = (props) => {
                 filtered_array.push(chest[i]);
             }
         }
-        setdata(filtered_array);
+        if (filtered_array.length !== 0) {
+            setdata(filtered_array);
+        }
+        else {
+            for (let i = 0; i < props.exercise_data.length; i++) {
+                let string = props.exercise_data[i].Part.charAt(0).toUpperCase() + props.exercise_data[i].Part.slice(1)
+                if (props.exercises.includes(string)) {
+                    filtered_array.push(props.exercise_data[i]);
+                }
+            }
+            setdata(filtered_array);
+        }
     }
-
 
     // const collectData = () => {
     //     console.log(data)

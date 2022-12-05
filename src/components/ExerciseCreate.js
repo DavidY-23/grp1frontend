@@ -42,7 +42,9 @@ function ExerciseCreate(props) {
         addNewExercise();
         setmessage('');
         setimagelink('');
-        settools([]);
+        settools('');
+        settool_list([]);
+        setpart('')
         setname('');
         setinstructions('');
         alert("Your exercise is now in our database")
