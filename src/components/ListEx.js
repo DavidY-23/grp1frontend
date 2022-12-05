@@ -65,7 +65,7 @@ function ListEx(props) {
             setdata(filtered_array);
         }
     }
-
+    
     var check = props.input;
     const checkArray = check.split(" ");
     var bufferMatrix = [];
