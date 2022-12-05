@@ -31,6 +31,7 @@ function FirstTimeLogin(props) {
         ingredients_to_avoid: props.ingredients_to_avoid,
         filter_check: props.filter_check,
         allergy_check: props.allergy_check,
+        part_checks: props.part_checks,
       });
     }
     catch (error) {
@@ -284,13 +285,13 @@ function FirstTimeLogin(props) {
               <label>
                 <input
                   type="checkbox"
-                  value="Shoulders"
-                  name="Shoulders"
-                  id="Shoulders"
+                  value="Back"
+                  name="Back"
+                  id="Back"
                   style={{ visibility: "visible" }}
                   onChange={handleInjury}
                 />
-                Shoulders
+                Back
               </label>
               <label>
                 <input

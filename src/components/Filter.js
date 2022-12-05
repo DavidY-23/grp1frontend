@@ -149,6 +149,7 @@ function Filter(props) {
                 ingredients_to_avoid: props.ingredients_to_avoid,
                 filter_check: props.filter_check,
                 allergy_check: props.allergy_check,
+                part_checks: props.part_checks,
             });
         }
         catch (error) {
