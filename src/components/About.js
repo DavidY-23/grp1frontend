@@ -16,7 +16,7 @@ function AboutPage() {
       It also is capable of finding over 100 unique and fun recipes for everyones needs.
       </p>
       <h3 className="aboutheader3">Adding Your Own Recipes</h3>
-      <p className="aboutp">Ontop of the already amazing recipes which we have hand selected, we also have<br/> decided on letting the users experiment, and add their own recipes.<br/>
+      <p className="aboutp">On top of the already amazing recipes which we have hand selected, we also have<br/> decided on letting the users experiment, and add their own recipes.<br/>
       Doing this will not only grow our already diverse food network,<br/> but will also allow users to share their own ideas<br/> and help further grow our community.
       </p>
       <h3 className="aboutheader3">Exercise Search</h3>

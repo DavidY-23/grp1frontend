@@ -1,0 +1,55 @@
+.aboutbc {
+    background-image: url('../../images/background5.jpg');
+    text-align: center;
+    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: cursive, sans-serif;
+    font-size: 0.58vw;
+    background-attachment: fixed;
+}
+
+.aboutheaderc {
+    color: rgb(236, 194, 37);
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;  
+    font-size: 4vw;
+}
+
+.aboutheader2c {
+    color: blue;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 3vw;
+    
+}
+.aboutheader3c {
+    color: rgb(236, 194, 37);
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 2vw;
+}
+
+.aboutpc {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000; 
+    font-size: 1.5vw;
+}
+
+.aboutac {
+    color: darkblue;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;  
+    font-size: 1.5vw;
+}
+.buttonc {
+  border-radius: 25px;
+  background-color: lightblue;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+}

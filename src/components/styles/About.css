@@ -5,38 +5,46 @@
     background-size: cover;
     background-repeat: no-repeat;
     font-family: cursive, sans-serif;
-    font-size: 1vw;
+    font-size: 0.58vw;
     background-attachment: fixed;
 }
 
 .aboutheader {
     color: rgb(236, 194, 37);
+    text-decoration: none;
     text-shadow: 2px 2px 4px #000000;  
+    font-size: 4vw;
 }
 
 .aboutheader2 {
     color: blue;
+    text-decoration: none;
     text-shadow: 2px 2px 4px #000000;
+    font-size: 3vw;
+    
 }
 .aboutheader3 {
     color: rgb(236, 194, 37);
     text-shadow: 2px 2px 4px #000000;
+    font-size: 2vw;
 }
 
 .aboutp {
     color: white;
     text-decoration: none;
     text-shadow: 2px 2px 4px #000000; 
+    font-size: 1.5vw;
 }
 
 .abouta {
     color: darkblue;
     text-decoration: none;
     text-shadow: 2px 2px 4px #000000;  
+    font-size: 1.5vw;
 }
 .button {
   border-radius: 25px;
-  background-color: lightblue; /* Green */
+  background-color: lightblue;
   border: none;
   color: white;
   padding: 15px 32px;
