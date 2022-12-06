@@ -1,0 +1,47 @@
+.aboutb {
+    background-image: url('../../images/background5.jpg');
+    text-align: center;
+    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: cursive, sans-serif;
+    font-size: 1vw;
+    background-attachment: fixed;
+}
+
+.aboutheader {
+    color: rgb(236, 194, 37);
+    text-shadow: 2px 2px 4px #000000;  
+}
+
+.aboutheader2 {
+    color: blue;
+    text-shadow: 2px 2px 4px #000000;
+}
+.aboutheader3 {
+    color: rgb(236, 194, 37);
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.aboutp {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000; 
+}
+
+.abouta {
+    color: darkblue;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;  
+}
+.button {
+  border-radius: 25px;
+  background-color: lightblue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+}
