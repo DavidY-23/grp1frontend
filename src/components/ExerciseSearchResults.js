@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './styles/SearchResultsPage.css'
 // import { fontSize, sizeHeight } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-import dict from "./JSON files/ExerciseDictionary.json";
+// import dict from "./JSON files/ExerciseDictionary.json";
 import { distance } from 'fastest-levenshtein';
 import { Experimental_CssVarsProvider } from "@mui/material";
 var PriorityQueue = require('priorityqueuejs');
@@ -98,7 +98,8 @@ const ExerciseSearchResults = (props) => {
         // Ignore spaces
         if (word !== "") {
             // If word exists in dictionary, do not find Lev, just put into queue
-            if (dict.includes(word)) {
+            //if (dict.includes(word)) {
+            if (props.exercise_dict.includes(word)) {
                 var queue = new PriorityQueue(function (a, b) { return b.lev - a.lev; });
                 queue.enq({ lev: 0, inputWord: word });
                 bufferMatrix.push(queue);
@@ -108,7 +109,8 @@ const ExerciseSearchResults = (props) => {
                 var queue2 = new PriorityQueue(function (a, b) { return b.lev - a.lev; });
 
                 // For every word in the dictionary:
-                for (const dictWord of dict) {
+                //for (const dictWord of dict) {
+                for (const dictWord of props.exercise_dict) {
                     // If word is less than 3 characters long, then set threshold to length of input word
                     const thresh = Math.min(word.length, 3);
 
