@@ -15,7 +15,7 @@ function Calorie() {
         console.log("hello!!!");
         console.log(currWeight, goalWeight, days);
         var calories = ((parseFloat(currWeight) - parseFloat(goalWeight)) * 3500)/parseFloat(days);
-        setCalculate(`You would need to eat ${calories} less calories a day`) 
+        setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`) 
       };
     
     return (

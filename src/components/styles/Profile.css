@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
+
 .profile {
   font-family: "Ubuntu";
   background-color: #87cefe;
@@ -9,12 +10,85 @@
   left: 0;
 }
 
-.profileGrid {
-  font-size: 30px;
+.profile {
+  color: white;
+
 }
 
-.profile {
-  border-right: solid;
+.profileGrid {
+  box-sizing: border-box;
+  font-size: 30px;
+  padding: 1rem;
+}
+
+.profile-body {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
+}
+
+.body-box {
+  color:black;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 300px;
+  height: fit-content;
+  background-color: white;
+  padding:1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 150px;
+  background-color: gray;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.banner-left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%
+}
+
+.banner-right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%
+}
+
+.username {
+  font-size: 1.5rem;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-icon {
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
+
+.edit-icon {
+  height: 24px;
+  weight: 24px;
+  background-color: skyblueÍ;
 }
 
 .edit {
