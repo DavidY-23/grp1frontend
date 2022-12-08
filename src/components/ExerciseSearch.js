@@ -33,15 +33,11 @@ function ExerciseSearch(props) {
 
     const exercisesAvailable = () => {
         let array = ["Arms", "Legs", "Back", "Chest"];
-        let array_with_objects = [];
         let true_array = [];
         for (let i = 0; i < array.length; i++) {
             if (props.injury.includes(array[i]) === false) {
                 true_array.push(array[i])
             }
-        }
-        let object = {
-
         }
         props.setexercises(true_array);
     }
