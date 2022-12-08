@@ -68,23 +68,19 @@ function Overview(props) {
       soybeans.checked = true;
     }
     //Checking Injuries Array
-    if(props.injury.includes("Arms"))
-    {
+    if (props.injury.includes("Arms")) {
       let arms = document.getElementById('Arms');
       arms.checked = true;
     }
-    if(props.injury.includes("Legs"))
-    {
+    if (props.injury.includes("Legs")) {
       let legs = document.getElementById('Legs');
       legs.checked = true;
     }
-    if(props.injury.includes("Shoulders"))
-    {
-      let shoulders = document.getElementById('Shoulders');
-      shoulders.checked = true;
+    if (props.injury.includes("Back")) {
+      let Back = document.getElementById('Back');
+      Back.checked = true;
     }
-    if(props.injury.includes("Chest"))
-    {
+    if (props.injury.includes("Chest")) {
       let chest = document.getElementById('Chest');
       chest.checked = true;
     }
@@ -128,6 +124,42 @@ function Overview(props) {
       props.setInjury((prevState) =>
         prevState.filter((prevItem) => prevItem !== event.target.value)
       );
+    }
+    if (event.target.checked === true) {
+      switch (event.target.id) {
+        case "Arms":
+          props.setpart_checks({
+            Arms: false,
+            Legs: props.part_checks.Legs,
+            Back: props.part_checks.Back,
+            Chest: props.part_checks.Chest,
+          });
+          break;
+        case "Legs":
+          props.setpart_checks({
+            Arms: props.part_checks.Arms,
+            Legs: false,
+            Back: props.part_checks.Back,
+            Chest: props.part_checks.Chest,
+          });
+          break;
+        case "Back":
+          props.setpart_checks({
+            Arms: props.part_checks.Arms,
+            Legs: props.part_checks.Legs,
+            Back: false,
+            Chest: props.part_checks.Chest,
+          });
+          break;
+        case "Chest":
+          props.setpart_checks({
+            Arms: props.part_checks.Arms,
+            Legs: props.part_checks.Legs,
+            Back: props.part_checks.Back,
+            Chest: false,
+          });
+          break;
+      }
     }
   };
 
@@ -189,7 +221,7 @@ function Overview(props) {
             type="radio"
             value="Female"
             name="props.gender"
-            id = 'female_check'
+            id='female_check'
             onChange={(e) => props.setGender(e.target.value)}
           />
           <label class='form-check-label' for='male-check'>Female </label>
@@ -199,7 +231,7 @@ function Overview(props) {
             type="radio"
             value="Other"
             name="props.gender"
-            id = 'other-check'
+            id='other-check'
             onChange={(e) => props.setGender(e.target.value)}
           />
           <label class='form-check-label' for='male-check'>Other </label>
@@ -337,13 +369,13 @@ function Overview(props) {
           <label>
             <input
               type="checkbox"
-              value="Shoulders"
-              name="Shoulders"
-              id="Shoulders"
+              value="Back"
+              name="Back"
+              id="Back"
               style={{ visibility: "visible" }}
               onChange={handleInjury}
             />
-            Shoulders
+            Back
           </label>
           <br />
           <label>

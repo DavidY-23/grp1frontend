@@ -43,6 +43,8 @@ function LoginForm(props, { Login, error }) {
             props.set_ingredients_to_avoid(userData["ingredients_to_avoid"]);
             props.setfilter_check(userData["filter_check"]);
             props.set_allergycheck(userData["allergy_check"]);
+            props.set_ingredient_names(userData["ingredient_names"]);
+            props.setpart_checks(userData["part_checks"]);
             navigate("/home/profile");
 
 

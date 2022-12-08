@@ -4,6 +4,14 @@ import newData from "./JSON files/recipelist.json";
 import ModifiedList from "./JSON files/ModifiedRecipeList.json";
 import recipeAll from "./JSON files/recipelistAll.json"
 function ParseR(props) {
+    const apiCall = async () => {
+        const response = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Arms`) //looping through all meals a-z
+        const json = await response.json(); //Gathering data from API call
+        console.log(json)
+    }
+    apiCall();
+
+
     // let recipe_data = [];
     // for (let i = 0; i < recipeAll.length; i++) {
     //     let new_object =
@@ -157,9 +165,92 @@ function ParseR(props) {
     //       }
     //     }
     //   }
-    
 
 
+    ////////////////////////////////////
+
+
+//   // // Exercise Upload
+//   const apiCall = async () => {
+//     let alldata = [];
+//     const response = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Arms`) //looping through all meals a-z
+//     const json = await response.json(); //Gathering data from API call
+//     for (let i = 0; i < json.length; i++) {
+//         let object = {
+//             Name: json[i].Name,
+//             ToolS: json[i].ToolS,
+//             id: json[i].id,
+//             imgE: json[i].imgE,
+//             Instructions: json[i].Instructions,
+//             Part: "arms"
+//         }
+//         alldata.push(object)
+//     }
+//     const response1 = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Legs`)
+//     const json1 = await response1.json();
+//     for (let i = 0; i < json1.length; i++) {
+//         let object = {
+//             Name: json1[i].Name,
+//             ToolS: json1[i].ToolS,
+//             id: json1[i].id,
+//             imgE: json1[i].imgE,
+//             Instructions: json1[i].Instructions,
+//             Part: "legs"
+//         }
+//         alldata.push(object)
+//     }
+//     const response2 = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Chest`)
+//     const json2 = await response2.json();
+//     for (let i = 0; i < json2.length; i++) {
+//         let object = {
+//             Name: json2[i].Name,
+//             ToolS: json2[i].ToolS,
+//             id: json2[i].id,
+//             imgE: json2[i].imgE,
+//             Instructions: json2[i].Instructions,
+//             Part: "chest"
+//         }
+//         alldata.push(object)
+//     }
+//     const response3 = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Back`)
+//     const json3 = await response3.json();
+//     for (let i = 0; i < json3.length; i++) {
+//         let object = {
+//             Name: json3[i].Name,
+//             ToolS: json3[i].ToolS,
+//             id: json3[i].id,
+//             imgE: json3[i].imgE,
+//             Instructions: json3[i].Instructions,
+//             Part: "back"
+//         }
+//         alldata.push(object)
+//     }
+//     console.log(alldata)
+
+//     // for (let i = 0; i < alldata.length; i++) {
+//     //     alldata[i].id = i
+//     // }
+//     addJSON(alldata)
+// }
+// apiCall();
+
+
+// async function addJSON(array) {
+//     try {
+//         await setDoc(doc(db, "Exercises", "ExerciseArray"), {
+//             Exercises: array
+//         });
+//     }
+//     catch (error) {
+//         console.log(error.code + error.message);
+//         alert(error.message);
+//     }
+
+// }
+
+
+    ////////////////////
+    ///
     return (
         <div>
             {

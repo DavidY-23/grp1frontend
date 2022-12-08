@@ -2,17 +2,39 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Filter.css"
 import { setRef } from "@mui/material";
+import db from './firebase.js';
+import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 
 function Filter(props) {
     const [collection_array, set_collection_array] = useState(props.data);
     const navigate = useNavigate();
 
     useEffect(() => {
-        collectData();
+        if (props.ingredient_names.length === 0) {
+            collectData();
+        }
         // setdata(data.sort()) //Putting data in alphabetical order
     }, []);
 
-    async function collectData() {
+    // const LoginRefresh = () => {
+    //     //In case the user logs in
+    //     for (let i = 0; i < props.ingredient_names.length; i++) {
+    //         for (let j = 0; j < props.filters.length; j++) {
+    //             if (props.ingredient_names[i] === props.filters[j].ingredient) {
+    //                 // addToFilter(props.filters[j].ingredient, props.filters[j].index);
+    //                 // DeleteFilter(props.filters[j].ingredient, j, props.filters[j].index);
+    //                 console.log(props.filters[j])
+    //                 let replace = props.ingredient_names;
+    //                 replace[i] = "FILTERED " + props.filters[j].ingredient;
+    //                 console.log(replace)
+    //                 props.set_ingredient_names(replace);
+    //                 console.log(props.ingredient_names)
+    //             }
+    //         }
+    //     }
+    // }
+
+    const collectData = () => {
         let temporary_ingred_array = [];
         for (let i = 0; i < collection_array.length; i++) {
             let current_index = collection_array[i].ingredients; //Array of ingredients for current index
@@ -33,11 +55,11 @@ function Filter(props) {
         //         console.log(temporary_ingred_array[i])
         //         console.log("FILTER THIS WORD: " + s);  
         //     }
- 
+
         // } 
         //////////
         let lower_case = temporary_ingred_array.map(element => {
-            return element.toLowerCase(); 
+            return element.toLowerCase();
         })
         console.log(lower_case)
         let removeDuplicates = [...new Set(lower_case)];
@@ -106,8 +128,35 @@ function Filter(props) {
         }
         console.log(filter)
     }
-    const onReturn = () => {
-        navigate('/home/recipesearch')
+    // const onReturn = () => {
+    //     navigate('/home/recipesearch')
+    // }
+
+    const onReturn = async () => {
+        try {
+            await setDoc(doc(db, "Users", props.userID), {
+                uniqueId: props.userID,
+                firstName: props.firstName,
+                lastName: props.lastName,
+                age: props.age,
+                gender: props.gender,
+                weight: props.weight,
+                height: props.height,
+                allergies: props.allergies,
+                injury: props.injury,
+                filters: props.filters,
+                ingredient_names: props.ingredient_names,
+                ingredients_to_avoid: props.ingredients_to_avoid,
+                filter_check: props.filter_check,
+                allergy_check: props.allergy_check,
+                part_checks: props.part_checks,
+            });
+        }
+        catch (error) {
+            console.log(error.code + error.message);
+            alert(error.message);
+        }
+        navigate('/home/recipesearch');
     }
 
     return (

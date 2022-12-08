@@ -1,10 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom"; // Need this
 import "./styles/MentalHealth.css"
 import mentalHealth from "../images/MentalHealth.jpg"
 import notebook from "../images/notebook.png";
 
 function MentalHealth() {
+    // Array of links for Mental Health, a random link is selected 
+    const links=["http://www.bcmhsus.ca/about/news-stories/stories/10-tips-to-boost-your-mental-health",
+    "https://www.mhanational.org/31-tips-boost-your-mental-health",
+    "https://childadolescentpsych.cumc.columbia.edu/articles/11-tips-mental-health-well-being",
+    "https://uhs.umich.edu/tenthings"
+    ];
+
+    // State for random Index
+    const [randIndex, setindex]=useState(Math.floor(Math.random() * ((links.length-1)) ));
 
     return (
         <div className="MentalHealthPage">
@@ -21,18 +31,18 @@ function MentalHealth() {
                 <div className="MentalBox">
                     <h2 className='Theh1sh2s'>Tips</h2>
                     <p>
-                        <a href="http://www.bcmhsus.ca/about/news-stories/stories/10-tips-to-boost-your-mental-health" target="_blank">Ten Tips</a>
+                        <a href={links[randIndex]} target="_blank">Ten Tips</a>
                     </p>
                 </div>
                 <div className="MentalBox">
-                    <h2 className='Theh1sh2s'>Exercise</h2>
-                    <p>
-                        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1470658/" target="_blankpm ">Article Here</a>
-                    </p>
+                    <h2 className='Theh1sh2s'>Back to Home</h2>
+                    <Link to="/home/profile">
+                        <p>Profile</p>
+                    </Link>
                 </div>
                 <div className="MentalBox" id="journalbox">
                     <p>
-                        <Link to="/JournalEntry" id="JumpToJournal">
+                        <Link to="/home/MentalHealth/JournalEntry">
                             <h3 id="JournalTitle">Write a entry.</h3>
                         </Link>
                     </p>

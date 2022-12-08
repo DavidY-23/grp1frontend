@@ -23,6 +23,9 @@ function WelcomeNav() {
             <LinkContainer to="/Contact">
               <Nav.Link>Contact</Nav.Link>
             </LinkContainer>
+            <Nav.Link href="https://vast-teal-ostrich-ring.cyclic.app/">
+              API
+            </Nav.Link>
           </Nav>
           <Nav>
             <LinkContainer to="/LoginPage">

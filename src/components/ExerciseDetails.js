@@ -5,9 +5,9 @@ import home from "../images/homeIcon.png";
 import search from "../images/OtherSearchIcon.png";
 import { Link } from 'react-router-dom';
 
-const RecipeDetails = (props) => {
+const ExerciseDetails = (props) => {
     const location = useLocation();
-    const { name, yt, image, instructions, ingredients, measurements, area, tags } = location.state;
+    const { name, img, instructions, tools, part } = location.state;
     // const siz = Object.keys(measurements).length;
     // console.log(name.length);
 
@@ -47,8 +47,8 @@ const RecipeDetails = (props) => {
         <div className="detailsBG">
             <div className="detailsNav">
                 <div id="NavBox" className="detailsNavBox">
-                    <Link to="/home/profile"><img className="HomeIcon" src={home}/></Link>
-                    <Link to="/home/recipesearch"><img className="SearchIcon" src={search}/></Link>
+                    <Link to="/home/profile"><img className="HomeIcon" src={home} alt="oops"/></Link>
+                    <Link to="/home/exercisesearch"><img className="SearchIcon" src={search} alt="oops"/></Link>
                 </div>
                 <label id="NavCheck" className="detailsNavMain">
                     <input className="detail-checkbox" type="checkbox" onChange={onNavCheck}/>
@@ -69,20 +69,19 @@ const RecipeDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                <img className="RecipeImg" src={image} alt="Oops"/>
-                <a className="RecipeYT" href={yt}>Youtube Tutorial</a> <br/> <br/>
+                <img className="RecipeImg" src={img} alt="Oops"/>
+                <p className="RecipeYT"></p> <br/> <br/>
 
                 <div className="AreaAndTags">
-                    <h1 className="RecipeArea">{area.toUpperCase()}</h1>
-                    {(tags === undefined ? (<p/>) : (<ul>{tags.map((tag, index) => {return(<p className="DetailsTags">{tag.toUpperCase()}</p>)})}</ul>))}
+                    <h1 className="RecipeArea">{part.toUpperCase()}</h1>
                 </div>
 
                 <div className="IngredientsDiv">
-                    <h2 className="Ingr">Ingredients</h2>
+                    <h2 className="Ingr">Tools</h2>
                     <ul className="Ingredients">
-                        {measurements.map((mea, index) => {
+                        {tools.map((tool, index) => {
                             return(
-                                    <li className="ingredient" key={index}>{mea} {ingredients[index]}</li>
+                                    <li className="ingredient" key={index}>{tool}</li>
                             )
                         })} 
                     </ul>
@@ -105,4 +104,4 @@ const RecipeDetails = (props) => {
     );
 };
 
-export default RecipeDetails;
+export default ExerciseDetails;

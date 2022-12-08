@@ -10,21 +10,21 @@
 
 
 .contnr {
-    background-position: top; 
-    background-size: cover; 
+    background-position: top;
+    background-size: cover;
     width: 100%;
-    min-height: 100vh; 
+    min-height: 100vh;
     padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .searchbar {
     width: 100%;
     max-width: 700px;
-    background: rgba(17,204,68,0.4);
+    background: rgba(17, 204, 68, 0.4);
     display: flex;
     align-items: center;
     border-radius: 60px;
@@ -44,8 +44,8 @@
 .searchbarText::placeholder {
     color: white;
 }
- 
-.searchbar button{
+
+.searchbar button {
     background-image: url("../../images/searchIcon.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -68,7 +68,7 @@
     border: 5px solid white;
     padding: 20px;
     width: 25%;
-    background-color: rgba(17,204,68,0.4);
+    background-color: rgba(17, 204, 68, 0.4);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@
     flex-wrap: wrap;
 }
 
-.pad img{
+.pad img {
     width: 70%;
     height: auto;
 }
@@ -88,22 +88,41 @@
     font-size: 20px;
 }
 
-.pad a:link{
+.pad a:link {
     text-decoration: none;
     color: white;
 }
 
-.pad a:visited{
+.pad a:visited {
     text-decoration: none;
     color: white;
 }
 
-.pad a:hover{
+.pad a:hover {
     text-decoration: underline;
     font-weight: bold;
 }
 
-.pad a:active{
+.pad a:active {
     text-decoration: underline;
     font-weight: bold;
+}
+
+.ex-button {
+    position: absolute;
+    top: 3%;
+    right: .2%;
+}
+
+.checkboxes {
+    position: absolute;
+    top: 13%;
+    right: 2%
+}
+
+.partslabel {
+    color: white;
+    position: absolute;
+    top: 11.5%;
+    right: .5%;
 }

@@ -2,6 +2,28 @@ import { React, useState, useEffect } from 'react';
 // import data from "./JSON files/recipelistAll.json"
 import { Link } from 'react-router-dom';
 import './styles/SearchResults.css';
+import dict from "./JSON files/Dictionary.json";
+import { distance } from 'fastest-levenshtein';
+var PriorityQueue = require('priorityqueuejs');
+
+function lev(word1, word2, len1, len2)
+{
+    if (len1 === 0)
+    {
+        return len2;
+    }
+    else if (len2 === 0)
+    {
+        return len1;
+    }
+
+    if (word1[len1 - 1] === word2[len2 - 1])
+    {
+        return lev(word1, word2, len1 - 1, len2 - 1);
+    }
+ 
+    return 1 + Math.min(lev(word1, word2, len1, len2 - 1), lev(word1, word2, len1 - 1, len2), lev(word1, word2, len1 - 1, len2 - 1)); 
+}
 
 function List(props) {
     const [data, setdata] = useState(props.data);
@@ -10,7 +32,7 @@ function List(props) {
     }, []);
 
     const collectData = () => {
-        console.log(data)
+        //console.log(data)
         if (props.allergy_check === true && props.filter_check === true) {
             allergyFilter(data);
         }
@@ -45,7 +67,7 @@ function List(props) {
                     }
                     if (counter === props.filters.length) {
                         personal_array.push(array[i]);
-                        console.log(personal_array)
+                        //console.log(personal_array)
                     }
                 }
             }
@@ -80,15 +102,107 @@ function List(props) {
         setdata(data_with_allergy_filter)
     }
 
-    const filteredData = data.filter((el) => {
-        // if no input the return the original
-        if (props.input === '') {
-            //return el;
-            return '';
+    console.log(lev('test', 'test2', 4, 5));
+
+    var check = props.input;
+    const checkArray = check.split(" ");
+    var bufferMatrix = [];
+    // For every word in the input string:
+    checkArray.filter((word) => {
+        // Ignore spaces
+        if(word !== "")
+        {
+            // If word exists in dictionary, do not find Lev, just put into queue
+            if(dict.includes(word))
+            {
+                var queue = new PriorityQueue(function(a, b) { return b.lev - a.lev; });
+                queue.enq({lev: 0, inputWord: word});
+                bufferMatrix.push(queue);
+            }
+            else // Find Lev distance of every dictionary word
+            {
+                var queue2 = new PriorityQueue(function(a, b) { return b.lev - a.lev; });
+
+                // For every word in the dictionary:
+                for (const dictWord of dict)
+                {
+                    // If word is less than 3 characters long, then set threshold to length of input word
+                    const thresh = Math.min(word.length, 3);
+
+                    // Using the threshold, compare the lev distance of the input word to the current word in the dictionary
+                    var levDist = distance(word.toLowerCase(), dictWord);
+                    if(levDist <= thresh)
+                    {
+                        // Put dictionary word into queue with priority set to lev distance of input word
+                        queue2.enq({lev: levDist, inputWord: dictWord});
+                    }
+                }
+                // After going through dictionary, push the final queue
+                if(!queue2.isEmpty())
+                {
+                    bufferMatrix.push(queue2);
+                }
+            }
+            return true;
         }
+        else {return false;}
+    });
+    var finalComparison = [];
+    for(const q of bufferMatrix)
+    {
+        var counter = 0;
+        var newQ = [];
+        // Only take the 5 most relevant autocorrect words
+        while(!q.isEmpty() && counter < 5)
+        {
+            newQ.push(q.peek());
+            q.deq();
+            counter++;
+        }
+        counter = 0;
+        finalComparison.push(newQ);
+    }
+    // Empty the buffer
+    bufferMatrix.splice(0, bufferMatrix.length);
+
+    const filteredData = data.filter((el) => {
         //return the item which contains the user input
-        else {
-            return el.name.toLowerCase().includes(props.input)
+        if(props.input !== "") {
+            var keep = true;
+            if(finalComparison.length === 0){
+                return false;
+            }
+            for(const row of finalComparison)
+            {
+                if(keep)
+                {
+                    keep = false;
+                    for (const col of row)
+                    {
+                        var reg = new RegExp("(^|[^A-Za-z0-9_])" + col.inputWord + "($|[^A-Za-z0-9_]|S)", 'i');
+                        if(reg.test(el.name.toLowerCase()))
+                        {
+                            keep = true;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                if(!keep)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        // if no input the return the original
+        else if(props.filter_check){
+            return true;
+        }
+        else{
+            return '';
         }
     })
     return (
@@ -96,7 +210,7 @@ function List(props) {
             <div >
                 {filteredData.map((item) => (
                     <div key={item.name}>
-                        <Link to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements }}>
+                        <Link to={'/home/recipesearch/RecipeDetails/' + item.name.replaceAll(" ", "-")} state={{ name: item.name, yt: item.youtube, image: item.image, instructions: item.instructions, ingredients: item.ingredients, measurements: item.measurements, tags: item.tags, area: item.area }}>
                             <button className="searchResults">{item.name}</button>
                             {/* <hr className="borderBottom"/> */}
                         </Link><br />
