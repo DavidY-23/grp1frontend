@@ -54,6 +54,17 @@ const NavBar = (props) => {
           </div>
         </Link>
       </div>
+      <div className="row">
+        <Link to="/home/calorie">
+          <div
+            className={
+              props.selected === "calorie" ? "selected-nav-tab" : ""
+            }
+          >
+            Calorie Deficit
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

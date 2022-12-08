@@ -1,0 +1,12 @@
+.Calorie {
+    padding: 10px;
+    border: black 1px;
+    border-style: solid;
+    border-radius: 25px;
+    width: 50%;
+    justify-content: center;
+    margin: 10px;
+    margin: auto;
+    box-shadow: 5px 10px; 
+    margin-top: 10%;
+}
