@@ -10,6 +10,10 @@ import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import Slideshow from "./styles/Carousel/Slideshow";
 
+const randInd1 = Math.floor(Math.random() * 93);
+const randInd2 = Math.floor(Math.random() * 93);
+const randInd3 = Math.floor(Math.random() * 93);
+
 function RecipeSearchHTML(props) {
     const [inputText, setInputText] = useState("");
     const navigate = useNavigate();
@@ -27,10 +31,6 @@ function RecipeSearchHTML(props) {
             navigate('/home/recipesearch/SearchResults', { state: { searchName: search } });
         }
     };
-
-    const randInd1 = Math.floor(Math.random() * 93);
-    const randInd2 = Math.floor(Math.random() * 93);
-    const randInd3 = Math.floor(Math.random() * 93);
 
     return (
         <div className="wholepagetwo">
