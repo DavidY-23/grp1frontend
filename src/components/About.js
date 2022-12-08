@@ -1,12 +1,11 @@
 import "./styles/About.css";
 import WelcomeNav from "./WelcomeNav";
-import bg from "../images/About_BG.webp";
 
-function AboutPage() {
+function AboutPage(props) {
   return (
     <div className="aboutb">
       <WelcomeNav id="Welcomenav" />
-      <img className="BG" src={bg} />
+      {/* <img className="BG" src={bg} /> */}
       <h1 className="aboutheader">About Page</h1>
       <h2 className="aboutheader2">General Description</h2>
       <p className="aboutp">The purpose of Diet Unquiet is to be a dieting app that offers<br/>the user a creative, and efficient way to lose weight.<br/>The app is constructed to offer the users a variety of options and<br/>approaches when it comes to losing weight, and staying healthy.
