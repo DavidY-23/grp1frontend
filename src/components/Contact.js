@@ -1,12 +1,12 @@
 import "./styles/Contact.css";
 import WelcomeNav from "./WelcomeNav";
-import bg from "../images/background5.jpg";
+import bg1 from "../images/background5.jpg";
 
 function ContactPage() {
   return (
-    <div className="aboutbc">
+    <div width="100vw" height="100vh" className="aboutbc">
       <WelcomeNav id="Welcomenav" />
-      <img className="BG" src={bg} />
+      {<img className="BG" src={bg1} />}
       <h1 className="aboutheaderc">Contact Page</h1>
       <h2 className="aboutheader2c">Github Links</h2>
       <h3 className="aboutheader3c">Website Github:</h3>
