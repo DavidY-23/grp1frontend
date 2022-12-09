@@ -1,8 +1,12 @@
 .createBody {
-  background-color: #0599ad;
+  background-image: url('../../images/createrecipebackground.webp');
   width: 100vw;
+  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   position: fixed;
+  background-attachment: fixed;
 }
 
 .entirepage input {

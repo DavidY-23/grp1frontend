@@ -1,6 +1,10 @@
 .CreateAccountBody {
-  background-color: #0599ad;
+  background-image: url('../../images/createaccountimage.jpg');
   min-height: 100vh;
+  background-attachment: fixed;
+  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .password-checker {
