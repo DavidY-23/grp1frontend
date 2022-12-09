@@ -39,7 +39,7 @@ const NavBar = (props) => {
       try {
         console.log("logout button clicked");
         props.setUserID("");
-        props.setFirstName("test");
+        props.setFirstName("");
         props.setLastName("");
         props.setAge("");
         props.setGender("");
