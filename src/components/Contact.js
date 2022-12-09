@@ -2,7 +2,7 @@ import "./styles/Contact.css";
 import WelcomeNav from "./WelcomeNav";
 import bg1 from "../images/background5.jpg";
 
-function ContactPage() {
+function ContactPage(props) {
   return (
     <div className="aboutbc">
       <WelcomeNav id="Welcomenav" />

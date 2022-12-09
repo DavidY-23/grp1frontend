@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import logo from "../images/Logo11.png";
 
-function WelcomeNav() {
+function WelcomeNav(props) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -23,7 +23,7 @@ function WelcomeNav() {
             <LinkContainer to="/Contact">
               <Nav.Link>Contact</Nav.Link>
             </LinkContainer>
-            <Nav.Link href="https://vast-teal-ostrich-ring.cyclic.app/">
+            <Nav.Link target="_blank" href="https://vast-teal-ostrich-ring.cyclic.app/">
               API
             </Nav.Link>
           </Nav>

@@ -33,15 +33,11 @@ function ExerciseSearch(props) {
 
     const exercisesAvailable = () => {
         let array = ["Arms", "Legs", "Back", "Chest"];
-        let array_with_objects = [];
         let true_array = [];
         for (let i = 0; i < array.length; i++) {
             if (props.injury.includes(array[i]) === false) {
                 true_array.push(array[i])
             }
-        }
-        let object = {
-
         }
         props.setexercises(true_array);
     }
@@ -192,7 +188,7 @@ function ExerciseSearch(props) {
                     {/* <input type="text" id="searchBar3" onChange={inputHandler} /> */}
                     <input type="text" className='searchbarText' placeholder="Search the Best Exercises for you!" onChange={inputHandler} onKeyDown={handleKeyDown} />
                     {(inputText !== "" || props.filter_check) ?
-                        (<ListEx exercises={props.exercises} setexercises={props.setexercises} part_checks={props.part_checks} setpart_checks={props.setpart_checks} exercise_data={props.exercise_data} setexercise_data={props.setexercise_data} data={props.data} setdata={props.setdata} filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} input={inputText} />) : (<p />)
+                        (<ListEx exercise_dict={props.exercise_dict} exercises={props.exercises} setexercises={props.setexercises} part_checks={props.part_checks} setpart_checks={props.setpart_checks} exercise_data={props.exercise_data} setexercise_data={props.setexercise_data} data={props.data} setdata={props.setdata} filter_check={props.filter_check} setfilter_check={props.setfilter_check} allergy_check={props.allergy_check} set_allergycheck={props.set_allergycheck} ingredients_to_avoid={props.ingredients_to_avoid} set_ingredients_to_avoid={props.set_ingredients_to_avoid} ingredient_names={props.ingredient_names} set_ingredient_names={props.set_ingredient_names} filters={props.filters} setFilter={props.setFilter} firstName={props.firstName} setFirstName={props.setFirstName} lastName={props.lastName} setLastName={props.setLastName} age={props.age} setAge={props.setAge} gender={props.gender} setGender={props.setGender} weight={props.weight} setWeight={props.setWeight} height={props.height} setHeight={props.setHeight} allergies={props.allergies} setAllergies={props.setAllergies} injury={props.injury} setInjury={props.setInjury} userID={props.userID} setUserID={props.setUserID} input={inputText} />) : (<p />)
                     }
                 </div>
                 <div className="imagescollect">

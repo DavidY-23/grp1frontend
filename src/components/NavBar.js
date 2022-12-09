@@ -55,9 +55,20 @@ const NavBar = (props) => {
         </Link>
         <Link to="/home/MentalHealth">
           <div
-            className={props.selected === "locator" ? "selected-nav-tab" : ""}
+            className={props.selected === "MentalHealth" ? "selected-nav-tab" : ""}
           >
             Mental Health
+          </div>
+        </Link>
+      </div>
+      <div className="row">
+        <Link to="/home/calorie">
+          <div
+            className={
+              props.selected === "calorie" ? "selected-nav-tab" : ""
+            }
+          >
+            Calorie Deficit
           </div>
         </Link>
       </div>
