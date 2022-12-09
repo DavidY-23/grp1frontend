@@ -4,7 +4,7 @@ import bg1 from "../images/background5.jpg";
 
 function ContactPage() {
   return (
-    <div width="100vw" height="100vh" className="aboutbc">
+    <div className="aboutbc">
       <WelcomeNav id="Welcomenav" />
       {<img className="BG" src={bg1} />}
       <h1 className="aboutheaderc">Contact Page</h1>
