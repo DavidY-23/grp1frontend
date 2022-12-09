@@ -1,7 +1,6 @@
 .exercisepage {
     background-image: url('../../images/createrecipebackground.webp');
     width: 100vw;
-    background-size: contain;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
