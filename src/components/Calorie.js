@@ -33,7 +33,7 @@ function Calorie() {
           <Form.Label>Goal Weight</Form.Label>
         <Form.Control 
         required type="number"
-        placeholder="Enter goal" 
+        placeholder="Enter goal weight" 
         onChange={(e) => setGoalWeight(e.target.value)}
         />
         </Form.Group>
