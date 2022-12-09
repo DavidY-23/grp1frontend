@@ -3,15 +3,22 @@ import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/LoginForm.css";
-import { auth, provider } from "./firebase.js"
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getAdditionalUserInfo } from 'firebase/auth';
-import db from './firebase.js';
+import { auth, provider } from "./firebase.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getAdditionalUserInfo } from "firebase/auth";
+import db from "./firebase.js";
 import GoogleButton from 'react-google-button'
 
 
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
 function LoginForm(props, { Login, error }) {
+  console.log(props);
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -20,7 +27,6 @@ function LoginForm(props, { Login, error }) {
     e.preventDefault();
 
     // Login(details);
-
 
     signInWithEmailAndPassword(auth, details.email, details.password)
       .then((userCredential) => {
@@ -49,13 +55,12 @@ function LoginForm(props, { Login, error }) {
             navigate("/home/profile");
           })
         console.log("signed in user", user.uid);
-
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-        console.log(errorCode + errorMessage)
+        console.log(errorCode + errorMessage);
       });
   };
 
@@ -121,47 +126,21 @@ function LoginForm(props, { Login, error }) {
             userEmail: user.email,
         });
 
-        // For Jounral Entry 
-        const newDocForJorunalEntry = await setDoc(doc(db, 'JournalEntry', user.uid), {
-            id: user.uid,
-            userEmail: user.email,
-            entries: [{title: "Enter Title", entry: "Entry Here"},]
-        });
-        
-        navigate('/FirstTimeLogin');
-        props.setUserID(user.uid);
-    } catch (error) {
-        console.log(error.code + error.message);
-        alert(error.message);
-    }
-}
-  
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
 
-
-  // useEffect(() => {
-  //   /* global google */
-  //   google.accounts.id.initialize({
-  //     client_id:
-  //       "798847889156-58edh3an3ork1i4uh6c9f5rktprk3fgk.apps.googleusercontent.com",
-  //     callback: handleCallbackResponse,
-  //   });
-
-  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-  //     theme: "outline",
-  //     size: "large",
-  //   });
-  // }, []);
-
-  // function SetEmail(email) {
-  //   document.getElementById("email").setAttribute("value", email);
-  // }
-  // function handleCallbackResponse(response) {
-  //   console.log("Encoded JWT ID Token: " + response.credential);
-  //   var userObject = jwt_decode(response.credential);
-  //   console.log(userObject);
-  //   setDetails({ ...details, email: userObject.email });
-  // }
-
+  function SetEmail(email) {
+    document.getElementById("email").setAttribute("value", email);
+  }
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID Token: " + response.credential);
+    var userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setDetails({ ...details, email: userObject.email });
+  }
 
   return (
     <form id="LogForm" onSubmit={submitHandler}>
