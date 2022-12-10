@@ -5,10 +5,12 @@ import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import AutocompleteForm from './AutocompleteForm';
 import Geocode from "react-geocode";
 import axios from 'axios';
+import "./styles/Locator.css";
+
 
 const containerStyle = {
-  width: '1000px',
-  height: '400px'
+  width: '83%',
+  height: '50%',
 };
 
 
@@ -162,7 +164,7 @@ function Locator(props) {
   }
 
   return isLoaded ? (
-    <div>
+    <div className="Locator">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -174,7 +176,7 @@ function Locator(props) {
       <br></br>
       <div className="App">
         <Autocomplete
-          style={{ width: "1000px" }}
+          style={{ width: "83%" }}
           ref={inputRef}
           apiKey={"AIzaSyBncK9JqcnImcLkJqG8NJIMy9SMdPNDhBY"}
           onPlaceSelected={(selected, a, c) => {

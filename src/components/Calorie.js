@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./styles/Calorie.css";
 
-function Calorie() {
+function Calorie(props) {
 
     const [calculate, setCalculate] = useState("");
-    const [currWeight, setCurrWeight] = useState("");
+    const [currWeight, setCurrWeight] = useState(props?.weight);
     const [goalWeight, setGoalWeight] = useState("");
     const [days, setDays] = useState("");
     const handleSubmit = (event) => {
@@ -17,6 +17,8 @@ function Calorie() {
         var calories = ((parseFloat(currWeight) - parseFloat(goalWeight)) * 3500)/parseFloat(days);
         setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`) 
       };
+
+    console.log(props, "test");
     
     return (
         <div className="Calorie">
@@ -25,15 +27,16 @@ function Calorie() {
           <Form.Label>Current Weight</Form.Label>
           <Form.Control 
            required type="number"
-           placeholder="Enter current weight" 
+           placeholder="Enter current weight in lbs" 
            onChange={(e) => setCurrWeight(e.target.value)}
+            defaultValue={currWeight}
            />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Goal Weight</Form.Label>
         <Form.Control 
         required type="number"
-        placeholder="Enter goal" 
+        placeholder="Enter goal weight in lbs" 
         onChange={(e) => setGoalWeight(e.target.value)}
         />
         </Form.Group>
