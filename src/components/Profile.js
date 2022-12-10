@@ -106,7 +106,6 @@ function Profile(props) {
           <div className="banner-left-container">
             <span className="username">{props?.firstName} {props?.lastName}</span>
             <div style={{ display: 'flex', flexDirection: 'column' }} >
-              <div>Name</div>
               <HeightRow heightInInches={props?.height} />
               <WeightRow weightInPounds={props?.weight} />
               <BMI heightInInches={props?.height} weightInPounds={props?.weight} />

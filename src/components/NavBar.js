@@ -140,6 +140,13 @@ const NavBar = (props) => {
           >
             Mental Health
           </div>
+          </Link>
+          <Link to="/home/calorie">
+          <div
+            className={props.selected === "locator" ? "selected-nav-tab" : ""}
+          >
+            Calorie
+          </div>
         </Link>
         {/* <Link to="/">
           <div onClick={() => { logout() }}
