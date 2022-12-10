@@ -73,7 +73,7 @@ function CreateAccount(props) {
         else {
             // Now we add the user after the username and password is correct in terms of regex
             createAccount();
-            console.log("Created Account");
+            // console.log("Created Account");
             return;
         }
     };

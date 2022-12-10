@@ -98,7 +98,7 @@ function ExerciseSearch(props) {
     };
 
     const filterCheck = async (event) => {
-        console.log(event.target);
+        // console.log(event.target);
         let arms_box = null;
         let legs_box = null;
         let back_box = null;
@@ -176,7 +176,7 @@ function ExerciseSearch(props) {
             }
         }
     };
-    console.log(props.part_checks)
+    // console.log(props.part_checks)
     return (
         <div id='test' className="wholepage">
             <div className="contnr">

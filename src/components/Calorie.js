@@ -12,13 +12,13 @@ function Calorie(props) {
     const [days, setDays] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("hello!!!");
-        console.log(currWeight, goalWeight, days);
+        // console.log("hello!!!");
+        // console.log(currWeight, goalWeight, days);
         var calories = ((parseFloat(currWeight) - parseFloat(goalWeight)) * 3500)/parseFloat(days);
         setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`) 
       };
 
-    console.log(props, "test");
+    // console.log(props, "test");
     
     return (
         <div className="Calorie">

@@ -38,7 +38,7 @@ function RecipeCreate(props) {
         const RecipeDatabase = await getDocs(collection(db, "Recipes"));
         let RecipeLegnth = RecipeDatabase._snapshot.docChanges.length;
         set_recipe_count(RecipeLegnth); //Adding legnth to state
-        console.log(RecipeDatabase._snapshot.docChanges.length) //Gathering the length of the Recipe collection 
+        // console.log(RecipeDatabase._snapshot.docChanges.length) //Gathering the length of the Recipe collection 
     }
 
     // const apiCall = async () => {
@@ -95,7 +95,7 @@ function RecipeCreate(props) {
         }
         settag_list((prevArray => [...prevArray, tags]));
         setTag('');
-        console.log(tag_list);
+        // console.log(tag_list);
     }
 
     // const AddIngredients = () => {
@@ -233,8 +233,8 @@ function RecipeCreate(props) {
         setingred_and_measure(measure_and_ingredient_array);
         setingredients_list(temporary_ingredients_array);
         setmeasurement_list(temporary_measurements_array);
-        console.log(ingredients_list)
-        console.log(measurement_list)
+        // console.log(ingredients_list)
+        // console.log(measurement_list)
     }
 
 

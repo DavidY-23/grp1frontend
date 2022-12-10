@@ -96,7 +96,7 @@ function RecipeSearch(props) {
         }
     }, []);
 
-    console.log(props)
+    // console.log(props)
     const allergyCheck = () => {
         // If checked...
         // console.log(props.ingredients_to_avoid)
@@ -177,7 +177,7 @@ function RecipeSearch(props) {
             props.setfilter_check(false);
         }
     }
-    console.log(props)
+    // console.log(props)
     if (props.allergies.length === 0 && props.filters.length !== 0) { //If there are no allergies
         return (
             <div>

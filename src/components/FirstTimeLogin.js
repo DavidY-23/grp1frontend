@@ -49,7 +49,7 @@ function FirstTimeLogin(props) {
     if (page === 1)
       navigate("/home/profile");
     addExtras();
-    console.log(props)
+    // console.log(props)
   };
 
   const handleAllergy = async (event) => {

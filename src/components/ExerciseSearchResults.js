@@ -20,7 +20,7 @@ const ExerciseSearchResults = (props) => {
     useEffect(() => {
         gatherArrays();
     }, []);
-    console.log(data.length)
+    // console.log(data.length)
     const gatherArrays = () => {
         let filtered_array = [];
         let arms = [];

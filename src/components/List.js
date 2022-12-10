@@ -102,7 +102,7 @@ function List(props) {
         setdata(data_with_allergy_filter)
     }
 
-    console.log(lev('test', 'test2', 4, 5));
+    // console.log(lev('test', 'test2', 4, 5));
 
     var check = props.input;
     const checkArray = check.split(" ");

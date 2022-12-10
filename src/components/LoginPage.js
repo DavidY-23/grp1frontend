@@ -15,27 +15,27 @@ function LoginPage(props) {
     console.log(details);
 
     if (details.email == "cw191wc@gmail.com") {
-      console.log("Logged in");
+      // console.log("Logged in");
       setError("");
       setUser({
         email: details.email
       });
     }
     else if (details.email == adminUser.email && details.password == adminUser.password) {
-      console.log("Logged in");
+      // console.log("Logged in");
       setError("");
       setUser({
         email: details.email
       });
     }
     else {
-      console.log("Details do not match");
+      // console.log("Details do not match");
       setError("Details do not match");
     }
   }
 
   const Logout = () => {
-    console.log("Logout");
+    // console.log("Logout");
 
     setUser({ email: "" });
   }

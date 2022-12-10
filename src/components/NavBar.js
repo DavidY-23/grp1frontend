@@ -34,9 +34,9 @@ const NavBar = (props) => {
   });
   function logout() {
     signOut(auth).then(() => {
-      console.log(props);
+      // console.log(props);
       try {
-        console.log("logout button clicked");
+        // console.log("logout button clicked");
         props.setUserID("");
         props.setFirstName("");
         props.setLastName("");
@@ -83,7 +83,7 @@ const NavBar = (props) => {
     }).catch((error) => {
       console.log("logout failed");
     })
-    console.log(props.firstName);
+    // console.log(props.firstName);
   }
 
   return (

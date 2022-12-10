@@ -7,7 +7,7 @@ function ParseR(props) {
     const apiCall = async () => {
         const response = await fetch(`https://vast-teal-ostrich-ring.cyclic.app/Arms`) //looping through all meals a-z
         const json = await response.json(); //Gathering data from API call
-        console.log(json)
+        // console.log(json)
     }
     apiCall();
 
@@ -115,7 +115,7 @@ function ParseR(props) {
         // console.log(new_object);
         recipe_data.push(new_object);
     }
-    console.log(recipe_data)
+    // console.log(recipe_data)
     //console.log(newData);
     const inde = 22;
 
