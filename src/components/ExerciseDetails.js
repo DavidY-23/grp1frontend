@@ -69,7 +69,7 @@ const ExerciseDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                <img className="RecipeImg" src={img} alt="Oops"/>
+                <img className="RecipeImg" src={img} alt="Image Not Found"/>
                 <p className="RecipeYT"></p> <br/> <br/>
 
                 <div className="AreaAndTags">

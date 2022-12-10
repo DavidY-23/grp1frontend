@@ -47,8 +47,8 @@ const RecipeDetails = (props) => {
         <div className="detailsBG">
             <div className="detailsNav">
                 <div id="NavBox" className="detailsNavBox">
-                    <Link to="/home/profile"><img className="HomeIcon" src={home}/></Link>
-                    <Link to="/home/recipesearch"><img className="SearchIcon" src={search}/></Link>
+                    <Link to="/home/profile"><img className="HomeIcon" src={home} alt="Image Not Found"/></Link>
+                    <Link to="/home/recipesearch"><img className="SearchIcon" src={search} alt="Image Not Found"/></Link>
                 </div>
                 <label id="NavCheck" className="detailsNavMain">
                     <input className="detail-checkbox" type="checkbox" onChange={onNavCheck}/>
@@ -69,7 +69,7 @@ const RecipeDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                <img className="RecipeImg" src={image} alt="Oops"/>
+                <img className="RecipeImg" src={image} alt="Image Not Found"/>
                 <a className="RecipeYT" href={yt}>Youtube Tutorial</a> <br/> <br/>
 
                 <div className="AreaAndTags">

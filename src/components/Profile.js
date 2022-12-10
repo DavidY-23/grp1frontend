@@ -98,8 +98,6 @@ function Profile(props) {
     return <span>BMI : {bmi.toFixed(1)}</span>
   }
 
-  console.log(props.injury.length);
-
   return (
     <div className="profile">
       <div className="banner">
