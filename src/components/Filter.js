@@ -133,6 +133,9 @@ function Filter(props) {
     // }
 
     const onReturn = async () => {
+        if (props.filters.length === 0) {
+            props.setfilter_check(false)
+        }
         try {
             await setDoc(doc(db, "Users", props.userID), {
                 uniqueId: props.userID,
