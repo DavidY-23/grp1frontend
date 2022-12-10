@@ -65,6 +65,7 @@ function LoginForm(props, { Login, error }) {
         const errorMessage = error.message;
         // ..
         console.log(errorCode + errorMessage);
+        alert(errorMessage);
       });
   };
 
@@ -113,6 +114,7 @@ function LoginForm(props, { Login, error }) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage);
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.
