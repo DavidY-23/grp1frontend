@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import db from './components/firebase.js';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth } from "./components/firebase.js";
+import { doc, getDoc } from "firebase/firestore";
+import db from "./components/firebase.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import your components here
@@ -23,6 +24,22 @@ import ExerciseCreate from "./components/ExerciseCreate";
 // Just added it here to test the mental health page
 import MentalHealth from "./components/MentalHealth";
 import JournalEntry from "./components/JournalEntry";
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 function App() {
   // All the states for the app
@@ -51,9 +68,36 @@ function App() {
   const [exercises, setexercises] = useState([]);
   const [exercise_dict, setexercise_dict] = useState([]);
 
+  useEffect(() => {
+    const uidCookie = getCookie("userid");
+    if (uidCookie) {
+      try {
+        const docRef = doc(db, "Users", uidCookie);
+        getDoc(docRef).then((doc) => {
+          const userData = doc.data();
+          setUserID(uidCookie);
+          setFirstName(userData["firstName"]);
+          setLastName(userData["lastName"]);
+          setAge(userData["age"]);
+          setGender(userData["gender"]);
+          setWeight(userData["weight"]);
+          setHeight(userData["height"]);
+          setAllergies(userData["allergies"]);
+          setInjury(userData["injury"]);
+          //console.log("user dater " + JSON.stringify(userData));
+        });
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode + errorMessage);
+      }
+    }
+  }, []);
 
+  //console.log(userID);
 
-  // Called only once since the second paramater(array) is empty 
+  // Called only once since the second paramater(array) is empty
   useEffect(() => {
     collectData();
     collectExercise();
@@ -78,25 +122,24 @@ function App() {
     var exDict = [];
 
     //For every exercise in the array
-    ex_doc.data().Exercises.forEach(exer => {
+    ex_doc.data().Exercises.forEach((exer) => {
       // Split the name into individual words
       const check = exer.Name.split(" ");
 
       // For every word in the exercise name
-      check.forEach(wor => {
-          if(wor !== "") // Ignore the spaces
-          {
-              const low = wor.toLowerCase();
-              // Only add new words to the dictionary
-              if(!exDict.includes(low))
-              {
-                  exDict.push(low);
-              }
+      check.forEach((wor) => {
+        if (wor !== "") {
+          // Ignore the spaces
+          const low = wor.toLowerCase();
+          // Only add new words to the dictionary
+          if (!exDict.includes(low)) {
+            exDict.push(low);
           }
+        }
       });
 
       setexercise_dict(exDict);
-    })
+    });
   }
 
   if (userID !== "") {
@@ -110,7 +153,43 @@ function App() {
               path=":state"
               element={
                 <HomePage
-                exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                  exercise_dict={exercise_dict}
+                  exercises={exercises}
+                  setexercises={setexercises}
+                  part_checks={part_checks}
+                  setpart_checks={setpart_checks}
+                  exercise_data={exercise_data}
+                  setexercise_data={setexercise_data}
+                  data={data}
+                  setdata={setdata}
+                  filter_check={filter_check}
+                  setfilter_check={setfilter_check}
+                  allergy_check={allergy_check}
+                  set_allergycheck={set_allergycheck}
+                  ingredients_to_avoid={ingredients_to_avoid}
+                  set_ingredients_to_avoid={set_ingredients_to_avoid}
+                  ingredient_names={ingredient_names}
+                  set_ingredient_names={set_ingredient_names}
+                  filters={filters}
+                  setFilter={setFilter}
+                  firstName={firstName}
+                  setFirstName={setFirstName}
+                  lastName={lastName}
+                  setLastName={setLastName}
+                  age={age}
+                  setAge={setAge}
+                  gender={gender}
+                  setGender={setGender}
+                  weight={weight}
+                  setWeight={setWeight}
+                  height={height}
+                  setHeight={setHeight}
+                  allergies={allergies}
+                  setAllergies={setAllergies}
+                  injury={injury}
+                  setInjury={setInjury}
+                  userID={userID}
+                  setUserID={setUserID}
                 />
               }
             />
@@ -120,18 +199,90 @@ function App() {
             path="/"
             element={
               <WelcomePage
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/home/overview" replace />} />
           <Route exact path="/About" element={<AboutPage />} />
           <Route exact path="/Contact" element={<ContactPage />} />
           <Route
             path="/CreateAccount"
             element={
               <CreateAccount
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -139,7 +290,43 @@ function App() {
             path="/FirstTimeLogin"
             element={
               <FirstTimeLogin
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -147,7 +334,43 @@ function App() {
             path="/LoginPage"
             element={
               <LoginPage
-                exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -155,7 +378,43 @@ function App() {
             path="/home/recipesearch/RecipeDetails/:state"
             element={
               <RecipeDetails
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -163,7 +422,43 @@ function App() {
             path="/home/recipesearch/SearchResults"
             element={
               <SearchResults
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -171,15 +466,87 @@ function App() {
             path="/RecipeCreate"
             element={
               <RecipeCreate
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
           <Route
-            path='/ExerciseCreate'
+            path="/ExerciseCreate"
             element={
               <ExerciseCreate
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -187,7 +554,43 @@ function App() {
             path="/home/exercisesearch/ExerciseDetails/:state"
             element={
               <ExerciseDetails
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -195,7 +598,43 @@ function App() {
             path="/home/exercisesearch/SearchResults"
             element={
               <ExerciseSearchResults
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -204,7 +643,43 @@ function App() {
             path="/home/MentalHealth"
             element={
               <MentalHealth
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -212,7 +687,43 @@ function App() {
             path="/home/MentalHealth/JournalEntry"
             element={
               <JournalEntry
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -220,7 +731,43 @@ function App() {
             path="/home/Filter"
             element={
               <Filter
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -237,18 +784,176 @@ function App() {
             path="/"
             element={
               <WelcomePage
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
           <Route path="*" element={<Navigate to="/" replace />} />
-          <Route exact path="/About" element={<AboutPage exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
-          <Route exact path="/Contact" element={<ContactPage exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID} />} />
           <Route
-            path='/ExerciseCreate'
+            exact
+            path="/About"
+            element={
+              <AboutPage
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/Contact"
+            element={
+              <ContactPage
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
+              />
+            }
+          />
+          <Route
+            path="/ExerciseCreate"
             element={
               <ExerciseCreate
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -256,7 +961,43 @@ function App() {
             path="/CreateAccount"
             element={
               <CreateAccount
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -264,7 +1005,43 @@ function App() {
             path="/FirstTimeLogin"
             element={
               <FirstTimeLogin
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
@@ -272,7 +1049,43 @@ function App() {
             path="/LoginPage"
             element={
               <LoginPage
-              exercise_dict={exercise_dict} exercises={exercises} setexercises={setexercises} part_checks={part_checks} setpart_checks={setpart_checks} exercise_data={exercise_data} setexercise_data={setexercise_data} data={data} setdata={setdata} filter_check={filter_check} setfilter_check={setfilter_check} allergy_check={allergy_check} set_allergycheck={set_allergycheck} ingredients_to_avoid={ingredients_to_avoid} set_ingredients_to_avoid={set_ingredients_to_avoid} ingredient_names={ingredient_names} set_ingredient_names={set_ingredient_names} filters={filters} setFilter={setFilter} firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} age={age} setAge={setAge} gender={gender} setGender={setGender} weight={weight} setWeight={setWeight} height={height} setHeight={setHeight} allergies={allergies} setAllergies={setAllergies} injury={injury} setInjury={setInjury} userID={userID} setUserID={setUserID}
+                exercise_dict={exercise_dict}
+                exercises={exercises}
+                setexercises={setexercises}
+                part_checks={part_checks}
+                setpart_checks={setpart_checks}
+                exercise_data={exercise_data}
+                setexercise_data={setexercise_data}
+                data={data}
+                setdata={setdata}
+                filter_check={filter_check}
+                setfilter_check={setfilter_check}
+                allergy_check={allergy_check}
+                set_allergycheck={set_allergycheck}
+                ingredients_to_avoid={ingredients_to_avoid}
+                set_ingredients_to_avoid={set_ingredients_to_avoid}
+                ingredient_names={ingredient_names}
+                set_ingredient_names={set_ingredient_names}
+                filters={filters}
+                setFilter={setFilter}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                weight={weight}
+                setWeight={setWeight}
+                height={height}
+                setHeight={setHeight}
+                allergies={allergies}
+                setAllergies={setAllergies}
+                injury={injury}
+                setInjury={setInjury}
+                userID={userID}
+                setUserID={setUserID}
               />
             }
           />
