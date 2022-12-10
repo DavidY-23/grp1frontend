@@ -33,7 +33,6 @@ const NavBar = (props) => {
     Chest: false,
   });
   function logout() {
-    // clearState();
     signOut(auth).then(() => {
       console.log(props);
       try {
@@ -58,7 +57,6 @@ const NavBar = (props) => {
           Back: false,
           Chest: false
         });
-        console.log(props);
         setDoc(doc(db, "Users", props.userID), {
           uniqueId: id,
           firstName: fname,
@@ -88,71 +86,6 @@ const NavBar = (props) => {
     console.log(props.firstName);
   }
 
-  // function clearState() {
-  //   console.log(props);
-  //   console.log("logout button clicked");
-  //   props.setUserID("");
-  //   props.setFirstName("test");
-  //   props.setLastName("");
-  //   props.setAge("");
-  //   props.setGender("");
-  //   props.setWeight("");
-  //   props.setHeight("");
-  //   props.setAllergies([]);
-  //   props.setInjury([]);
-  //   props.setFilter([]);
-  //   props.set_ingredients_to_avoid([]);
-  //   props.setfilter_check(false);
-  //   props.set_allergycheck(false);
-  //   props.set_ingredient_names([]);
-  //   props.setpart_checks({
-  //     Arms: false,
-  //     Legs: false,
-  //     Back: false,
-  //     Chest: false
-  //   });
-  // }
-
-  function saveInfo() {
-    // var id = props.userID;
-    // var fname = props.firstName;
-    // var lname = props.lastName;
-    // var userage = props.age;
-    // var usergender = props.gender;
-    // var userweight = props.weight;
-    // var userheight = props.height;
-    // var userallergies = props.allergies;
-    // var userinjury = props.injury;
-    // var userfilters = props.filters;
-    // var useringredient_names = props.ingredient_names;
-    // var useringredients_to_avoid = props.ingredients_to_avoid;
-    // var userfilter_check = props.filter_check;
-    // var userallergy_check = props.allergy_check;
-    // var userpart_checks = props.part_checks;
-    //   try {
-    //     setDoc(doc(db, "Users", props.userID), {
-    //     uniqueId: id,
-    //     firstName: fname,
-    //     lastName: lname,
-    //     age: userage,
-    //     gender: usergender,
-    //     weight: userweight,
-    //     height: userheight,
-    //     allergies: userallergies,
-    //     injury: userinjury,
-    //     filters: userfilters,
-    //     ingredient_names: useringredient_names,
-    //     ingredients_to_avoid: useringredients_to_avoid,
-    //     filter_check: userfilter_check,
-    //     allergy_check: userallergy_check,
-    //     part_checks: userpart_checks,
-    //   });
-    // }
-    // catch (error) {
-    //   console.log(error.code + error.message);
-    //   alert(error.message);
-    // }
-  }
   return (
     <div className="container-fluid sticky-top side-nav-bar">
       <div className="row">
@@ -208,14 +141,23 @@ const NavBar = (props) => {
             Mental Health
           </div>
         </Link>
-        <Link to="/">
+        {/* <Link to="/">
           <div onClick={() => { logout() }}
             className={props.selected === "locator" ? "selected-nav-tab" : ""}
           >
             Logout
           </div>
-        </Link>
+        </Link> */}
 
+      </div>
+      <div className="row">
+        <Link to="/">
+          <div onClick={() => { logout() }}
+            className="log-out"
+          >
+            Logout
+          </div>
+        </Link>
       </div>
     </div>
   );

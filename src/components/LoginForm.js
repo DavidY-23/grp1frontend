@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/LoginForm.css";
 import { auth, provider } from "./firebase.js"
@@ -11,30 +12,6 @@ import GoogleButton from 'react-google-button'
 
 
 function LoginForm(props, { Login, error }) {
-  useEffect(() => {
-    props.setUserID("");
-    props.setFirstName("");
-    props.setLastName("");
-    props.setAge("");
-    props.setGender("");
-    props.setWeight("");
-    props.setHeight("");
-    props.setAllergies([]); 
-    props.setInjury([]);
-    props.setFilter([]);
-    props.set_ingredients_to_avoid([]);
-    props.setfilter_check(false);
-    props.set_allergycheck(false);
-    props.set_ingredient_names([]);
-    props.setpart_checks({
-      Arms: false,
-      Legs: false,
-      Back: false,
-      Chest: false
-    });
-  }, []);
-
-  console.log(props)
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();

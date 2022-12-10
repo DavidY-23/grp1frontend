@@ -11,7 +11,7 @@ import bowl3 from "../images/Welcome_Bowl3.png";
 function WelcomePage(props) {
   useEffect(() => {
     props.setUserID("");
-    props.setFirstName("test");
+    props.setFirstName("");
     props.setLastName("");
     props.setAge("");
     props.setGender("");

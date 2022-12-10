@@ -13,3 +13,11 @@
   color: white;
   text-align: center;
 }
+
+.log-out
+{
+  left:42%;
+  bottom:4%;
+  position: absolute;
+  text-decoration: none;
+}
