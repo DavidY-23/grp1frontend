@@ -7,6 +7,13 @@ import db from './firebase.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 function CreateAccount(props) {
     // The reference to the collection of Users
     const colRef = collection(db, "Users");
@@ -37,6 +44,7 @@ function CreateAccount(props) {
             });
             
             navigate('/FirstTimeLogin');
+            setCookie("userid", user.uid, 1);
             props.setUserID(user.user.uid);
         } catch (error) {
             console.log(error.code + error.message);

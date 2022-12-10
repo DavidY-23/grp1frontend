@@ -15,7 +15,14 @@ function Calorie(props) {
         console.log("hello!!!");
         console.log(currWeight, goalWeight, days);
         var calories = ((parseFloat(currWeight) - parseFloat(goalWeight)) * 3500)/parseFloat(days);
-        setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`) 
+        // setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`)
+        if (calories > 0) {
+          setCalculate(`You would need to eat ${parseInt(calories)} less calories a day`);
+        }
+        if (calories < 0) {
+            calories = calories * -1;
+            setCalculate(`You would need to eat ${parseInt(calories)} more calories a day`);
+        } 
       };
 
     console.log(props, "test");

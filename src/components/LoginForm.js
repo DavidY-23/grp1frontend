@@ -89,6 +89,7 @@ function LoginForm(props, { Login, error }) {
           getDoc(docRef).then((doc) => {
             const userData = doc.data();
             // console.log(doc.data(), doc.id, doc.data()["age"])
+            setCookie("userid", user.uid, 1);
             props.setUserID(user.uid);
             props.setFirstName(userData["firstName"]);
             props.setLastName(userData["lastName"]);
