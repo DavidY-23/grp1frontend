@@ -22,7 +22,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function LoginForm(props, { Login, error }) {
-  console.log(props);
+  // console.log(props);
   /* global google */
   const [details, setDetails] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ function LoginForm(props, { Login, error }) {
           props.setpart_checks(userData["part_checks"]);
           navigate("/home/profile");
         });
-        console.log("signed in user", user.uid);
+        // console.log("signed in user", user.uid);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -77,14 +77,14 @@ function LoginForm(props, { Login, error }) {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         // const details = getAdditionalUserInfo(result);
-        console.log(details.isNewUser);
+        // console.log(details.isNewUser);
         if (getAdditionalUserInfo(result).isNewUser) {
-          console.log("new user");
+          // console.log("new user");
           createAccount(user);
         } else {
-          console.log("existing user");
+          // console.log("existing user");
           const docRef = doc(db, "Users", user.uid);
           getDoc(docRef).then((doc) => {
             const userData = doc.data();
@@ -154,7 +154,7 @@ function LoginForm(props, { Login, error }) {
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID Token: " + response.credential);
     var userObject = jwt_decode(response.credential);
-    console.log(userObject);
+    // console.log(userObject);
     setDetails({ ...details, email: userObject.email });
   }
 

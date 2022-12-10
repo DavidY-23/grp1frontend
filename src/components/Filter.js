@@ -61,10 +61,10 @@ function Filter(props) {
         let lower_case = temporary_ingred_array.map(element => {
             return element.toLowerCase();
         })
-        console.log(lower_case)
+        // console.log(lower_case)
         let removeDuplicates = [...new Set(lower_case)];
         removeDuplicates = removeDuplicates.sort();
-        console.log(removeDuplicates)
+        // console.log(removeDuplicates)
         for (let i = 0; i < removeDuplicates.length; i++) {
             let next_index = removeDuplicates[i + 1];
             let cut_off = null;
@@ -79,7 +79,7 @@ function Filter(props) {
         removeDuplicates.splice(2, 1); //removes the element that has allspice in one word
         // removeDuplicates.splice(44, 1); //removes the elmeent that has blackberrys since it is mispelt
         props.set_ingredient_names(removeDuplicates);
-        console.log(removeDuplicates);
+        // console.log(removeDuplicates);
     }
 
     const addToFilter = (element, index) => {
@@ -90,9 +90,9 @@ function Filter(props) {
         props.setFilter((prevArray => [...prevArray, { ingredient: element, index: index }]));
         new_array = [...props.ingredient_names];
         new_array[index] = "FILTERED: " + element;
-        console.log(new_array[index] + " Removed")
+        // console.log(new_array[index] + " Removed")
         props.set_ingredient_names(new_array);
-        console.log(props.filters)
+        // console.log(props.filters)
     }
 
     const DeleteFilter = (element, index, filterlist_index) => {
@@ -126,7 +126,7 @@ function Filter(props) {
                 list[i].style.display = "none";
             }
         }
-        console.log(filter)
+        // console.log(filter)
     }
     // const onReturn = () => {
     //     navigate('/home/recipesearch')
