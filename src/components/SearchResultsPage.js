@@ -23,7 +23,7 @@ const SearchResults = (props) => {
     }, []); 
 
     const collectData = () => {
-        console.log(data)
+        // console.log(data)
         if (props.allergy_check === true && props.filter_check === true) {
             allergyFilter(data);
         }
@@ -58,7 +58,7 @@ const SearchResults = (props) => {
                     }
                     if (counter === props.filters.length) {
                         personal_array.push(array[i]);
-                        console.log(personal_array)
+                        // console.log(personal_array)
                     }
                 }
             }

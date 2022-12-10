@@ -10,7 +10,7 @@ import { map } from "@firebase/util";
 function Profile(props) {
   //Temporary way to demostrate form until we have backend working
 
-  console.log(props)
+  // console.log(props)
   // let BMI =
   //   "BMI " +
   //   (

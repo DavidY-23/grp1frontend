@@ -12,7 +12,7 @@ function LoginPage(props) {
   const [error, setError] = useState("");
 
   const Login = details => {
-    console.log(details);
+    // console.log(details);
 
     if (details.email == "cw191wc@gmail.com") {
       console.log("Logged in");
@@ -29,13 +29,13 @@ function LoginPage(props) {
       });
     }
     else {
-      console.log("Details do not match");
+      // console.log("Details do not match");
       setError("Details do not match");
     }
   }
 
   const Logout = () => {
-    console.log("Logout");
+    // console.log("Logout");
 
     setUser({ email: "" });
   }

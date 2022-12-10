@@ -42,7 +42,7 @@ const NavBar = (props) => {
   function logout() {
     signOut(auth)
       .then(() => {
-        console.log(props);
+        // console.log(props);
         try {
           removeCookie("userid");
           console.log("logout button clicked");
@@ -91,7 +91,7 @@ const NavBar = (props) => {
       .catch((error) => {
         console.log("logout failed");
       });
-    console.log(props.firstName);
+    // console.log(props.firstName);
   }
 
   return (
