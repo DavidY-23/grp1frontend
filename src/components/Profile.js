@@ -98,6 +98,8 @@ function Profile(props) {
     return <span>BMI : {bmi.toFixed(1)}</span>
   }
 
+  console.log(props.injury.length);
+
   return (
     <div className="profile">
       <div className="banner">
@@ -129,23 +131,23 @@ function Profile(props) {
       <div className="profile-body">
         <div className='body-box'>
           <div style={{ display: 'flex' }}>
-            Allergies: {
-              (props?.injuries && !!props?.injuries.length)
+            Allergies:&nbsp;{
+              (props?.allergies && !!props?.allergies.length)
               ? props?.allergies.map((allergy, idx) => {
                   return <span key={`${allergy}-${idx}`}>
                     {allergy}
-                    {idx != props?.allergies.length-1 && ", "}
+                    {idx != props?.allergies.length-1 ? (<span>,&nbsp;</span>) : ("") }
                   </span>
                 }) :
                 "none"}
           </div>
           <div style={{ display: 'flex' }}>
-            Injuries: {
-              (props?.injuries && !!props?.injuries.length)
-                ? props?.injuries.map((injuries, idx) => {
+            Injuries:&nbsp;{
+              (props?.injury && !!props?.injury.length)
+                ? props?.injury.map((injuries, idx) => {
                   return <span key={`${injuries}-${idx}`}>
                     {injuries}
-                    {idx != props?.injuries.length-1 && ", "}
+                    {(idx != props?.injury.length-1) ? (<span>,&nbsp;</span>) : ("") }
                   </span>
                 }) :
                 "none"}
