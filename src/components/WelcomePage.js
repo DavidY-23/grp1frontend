@@ -10,6 +10,11 @@ import bowl3 from "../images/Welcome_Bowl3.png";
 import { useNavigate } from "react-router-dom";
 
 function WelcomePage(props) {
+  const navigate = useNavigate();
+  if (props.userID != "") {
+    navigate("/home/profile");
+  }
+
   useEffect(() => {
     props.setUserID("");
     props.setFirstName("");
@@ -33,6 +38,7 @@ function WelcomePage(props) {
     });
   }, []);
   console.log(props);
+
   return (
     <div className="Welcome">
       <WelcomeNav
