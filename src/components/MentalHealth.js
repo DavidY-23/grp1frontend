@@ -10,7 +10,12 @@ function MentalHealth() {
     const links=["http://www.bcmhsus.ca/about/news-stories/stories/10-tips-to-boost-your-mental-health",
     "https://www.mhanational.org/31-tips-boost-your-mental-health",
     "https://childadolescentpsych.cumc.columbia.edu/articles/11-tips-mental-health-well-being",
-    "https://uhs.umich.edu/tenthings"
+    "https://uhs.umich.edu/tenthings",
+    "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+    "https://www.mentalhealth.org.uk/explore-mental-health/publications/our-best-mental-health-tips",
+    "https://www.bbrfoundation.org/blog/everyday-mental-health-tips",
+    "https://www.self.com/story/best-mental-health-tips",
+    "https://www.dean.edu/news-events/dean-college-blog/story/6-mental-health-tips-college-students/",
     ];
 
     // State for random Index
