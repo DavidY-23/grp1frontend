@@ -52,18 +52,18 @@ function RecipeSearchHTML(props) {
                     <div className="padtwo">
                         {/* <img src={recipeLeft} alt="" />
                         <a href="https://feelgoodfoodie.net/recipe/avocado-toast-with-egg-3-ways/">Toast with eggs and avocado</a> */}
-                        <Slideshow lower={0} upper={93} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
+                        <Slideshow lower={0} upper={93} ind1={randInd1} ind2={randInd2} ind3={randInd3} />
 
                     </div>
                     <div className="padtwo">
                         {/* <img src={recipeMiddle} alt="" />
                         <a href="https://therecipecritic.com/trail-mix/">Trail Mix</a> */}
-                        <Slideshow lower={94} upper={187} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
+                        <Slideshow lower={94} upper={187} ind1={randInd1} ind2={randInd2} ind3={randInd3} />
                     </div>
                     <div className="padtwo">
                         {/* <img src={recipeRight} alt="" />
                         <a href="https://thefeedfeed.com/dieteticaesthetic/cream-cheese-lox-toast">Lox and cream cheese on Toast</a> */}
-                        <Slideshow lower={188} upper={283} ind1={randInd1} ind2={randInd2} ind3={randInd3}/>
+                        <Slideshow lower={188} upper={283} ind1={randInd1} ind2={randInd2} ind3={randInd3} />
                     </div>
                 </div>
             </div>
@@ -75,6 +75,12 @@ function RecipeSearch(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (props.allergies.length === 0) {
+            props.set_allergycheck(false)
+            props.set_ingredients_to_avoid([]);
+            // console.log(props.ingredients_to_avoid); 
+        }
+
         if (props.allergies.length !== 0) {
             if (props.allergy_check === true) {
                 document.getElementById("allergycheck").checked = true;
@@ -85,6 +91,8 @@ function RecipeSearch(props) {
                 document.getElementById("allergycheck").checked = false;
                 props.set_ingredients_to_avoid([]);
             }
+            // console.log(props.ingredients_to_avoid);  
+
         }
         if (props.filters.length !== 0) {
             if (props.filter_check === true) {
