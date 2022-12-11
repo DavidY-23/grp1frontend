@@ -112,7 +112,7 @@ function RecipeSearch(props) {
         if (allergies.checked === true) {
             props.set_allergycheck(true);
             if (props.allergies.includes("Milk")) {
-                let lactose_intolerance = ["milk", "cheese", "butter", "yogurt", "ice cream", "buttermilk", "sour cream", "whipped cream", "cheddar cheese", "cheese curds", "colby jack cheese", "cream cheese", "cubed feta cheese", "goats cheese", "gouda cheese", "gruyere cheese", "monterey jack cheese", "parmesan cheese", "shredded mexican cheese", "shredded monterey jack cheese", "stilton cheese", "stilton", "cheddar", "mozzarella", "mozzaerlla balls", "parmesan"]
+                let lactose_intolerance = ["milk", "cheese", "butter", "yogurt", "ice cream", "buttermilk", "sour cream", "whipped cream", "cheddar cheese", "cheese curds", "colby jack cheese", "cream cheese", "cubed feta cheese", "goats cheese", "gouda cheese", "gruyere cheese", "monterey jack cheese", "parmesan cheese", "shredded mexican cheese", "shredded monterey jack cheese", "stilton cheese", "stilton", "cheddar", "mozzarella", "mozzarella balls", "parmesan", "goat cheese"]
                 lactose_intolerance.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
