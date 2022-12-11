@@ -112,35 +112,35 @@ function RecipeSearch(props) {
         if (allergies.checked === true) {
             props.set_allergycheck(true);
             if (props.allergies.includes("Milk")) {
-                let lactose_intolerance = ["milk", "cheese", "butter", "yogurt", "ice cream", "buttermilk", "sour cream", "whipped cream"]
+                let lactose_intolerance = ["milk", "cheese", "butter", "yogurt", "ice cream", "buttermilk", "sour cream", "whipped cream", "cheddar cheese", "cheese curds", "colby jack cheese", "cream cheese", "cubed feta cheese", "goats cheese", "gouda cheese", "gruyere cheese", "monterey jack cheese", "parmesan cheese", "shredded mexican cheese", "shredded monterey jack cheese", "stilton cheese", "stilton", "cheddar", "mozzarella", "mozzarella balls", "parmesan", "goat cheese", "mozzarella cheese"]
                 lactose_intolerance.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, lactose_intolerance]);
             }
             if (props.allergies.includes("Nuts")) {
-                let nut_allergy = ["peanut oil", "arachis oil", "nuts", "nut", "peanut", "peanuts", "pine nuts"];
+                let nut_allergy = ["peanut oil", "arachis oil", "nuts", "nut", "peanut", "peanuts", "pine nuts", "pecan nuts", "walnuts", "hazlenuts", "chestnuts", "cashew nuts"];
                 nut_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, nut_allergy]);
             }
             if (props.allergies.includes("Eggs")) {
-                let egg_allergy = ["egg", "eggs"];
+                let egg_allergy = ["egg", "eggs", "egg plants", "egg rolls", "egg white", "egg yolks", "flax eggs", "free-range egg, beaten", "free-range eggs, beaten"];
                 egg_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, egg_allergy]);
             }
             if (props.allergies.includes("Fish")) {
-                let fish_allergy = ["fish", "anchovies", "bass", "catfish", "cod", "flounder", "grouper", "haddock", "hake", "halibut", "herring", "mahi mahi", "perch", "pike", "pollock", "salmon", "scrod", "sole", "snapper", "swordfish", "tilapia", "trout", "tuna"];
+                let fish_allergy = ["fish", "anchovies", "bass", "catfish", "cod", "flounder", "grouper", "haddock", "hake", "halibut", "herring", "mahi mahi", "perch", "pike", "pollock", "salmon", "scrod", "sole", "snapper", "swordfish", "tilapia", "trout", "tuna", "white fish", "white fish fillets", "thai fish sauce", "monkfish", "fish stock", "fish sauce"];
                 fish_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, fish_allergy]);
             }
             if (props.allergies.includes("Wheat")) {
-                let wheat_allergy = ["wheat", "whole wheat"];
+                let wheat_allergy = ["wheat", "whole wheat", "buckwheat", "bulgur wheat"];
                 wheat_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
@@ -154,7 +154,7 @@ function RecipeSearch(props) {
                 // props.set_ingredients_to_avoid((prevArray) => [...prevArray, shell_fish_allergy]);
             }
             if (props.allergies.includes("Soybeans")) {
-                let soybean_allergy = ["soy", "soybean"];
+                let soybean_allergy = ["soy", "soybean", "soya milk", "soy sauce", "dark soy sauce"];
                 soybean_allergy.forEach((element) => {
                     props.set_ingredients_to_avoid((prevArray) => [...prevArray, element]);
                 })
