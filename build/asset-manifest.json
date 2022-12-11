@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.81d93c68.css",
+    "main.js": "/static/js/main.e5eb737a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/backgroundForRecipe.png": "/static/media/backgroundForRecipe.869107cb13e4793d2d25.png",
+    "static/media/background5.jpg": "/static/media/background5.11b94182cb32702ec1eb.jpg",
+    "static/media/backgroundForExercise.png": "/static/media/backgroundForExercise.7cbd6230bdb3e87c97ec.png",
+    "static/media/Welcome_BG2.jpeg": "/static/media/Welcome_BG2.bae7c47f8495a455de59.jpeg",
+    "static/media/Login_BG.jpeg": "/static/media/Login_BG.d36b05f208bbdd5a498c.jpeg",
+    "static/media/Welcome_Bowl2.png": "/static/media/Welcome_Bowl2.8bc770e64b04ae30382e.png",
+    "static/media/Welcome_BG1.jpeg": "/static/media/Welcome_BG1.291bd3febbf66d247b63.jpeg",
+    "static/media/Welcome_Bowl1.png": "/static/media/Welcome_Bowl1.54f5933c9170489a84fd.png",
+    "static/media/Welcome_Bowl3.png": "/static/media/Welcome_Bowl3.d3fe9709de95c27d8f14.png",
+    "static/media/createaccountimage.jpg": "/static/media/createaccountimage.0443f12796cc4dca2727.jpg",
+    "static/media/Logo11.png": "/static/media/Logo11.5c8fa92c810aba0cccc1.png",
+    "static/media/DetailsBG.png": "/static/media/DetailsBG.25de59d59289f68b9a79.png",
+    "static/media/recipeMiddle.png": "/static/media/recipeMiddle.b3e1928f24e824e47e61.png",
+    "static/media/Welcome_Middle.png": "/static/media/Welcome_Middle.316b17aafaedaeedcd2a.png",
+    "static/media/fullHeartIcon.png": "/static/media/fullHeartIcon.bd052cf40331d3338db5.png",
+    "static/media/notebook.png": "/static/media/notebook.104f8e8e92bba12b1e91.png",
+    "static/media/recipeLeft.png": "/static/media/recipeLeft.5c80ccd2279ac7d8a2ae.png",
+    "static/media/recipeRight.png": "/static/media/recipeRight.7ab8cd3f0ba925172eda.png",
+    "static/media/legs.png": "/static/media/legs.5ee50c11c1521fd6b9e3.png",
+    "static/media/Arms.png": "/static/media/Arms.5c69779bb4ab6070a142.png",
+    "static/media/JournalEntryBackground.jpeg": "/static/media/JournalEntryBackground.95040be98280c24c1bc0.jpeg",
+    "static/media/createrecipebackground.webp": "/static/media/createrecipebackground.aa16289583851eb6d1dc.webp",
+    "static/media/MentalHealthBottom.png": "/static/media/MentalHealthBottom.e7fd98a3c3b3cb3fb044.png",
+    "static/media/heartIcon.png": "/static/media/heartIcon.47a6732b2c4f54255998.png",
+    "static/media/comic-neue-all-400-normal.woff": "/static/media/comic-neue-all-400-normal.ae50873f714aaf33b2bd.woff",
+    "static/media/comic-neue-latin-400-normal.woff2": "/static/media/comic-neue-latin-400-normal.f50eaba0eb4d65e17d4d.woff2",
+    "static/media/homeIcon.png": "/static/media/homeIcon.97c8266904975796cde1.png",
+    "static/media/MentalHealth.jpg": "/static/media/MentalHealth.3df9cb461414c2c58d8d.jpg",
+    "index.html": "/index.html",
+    "main.81d93c68.css.map": "/static/css/main.81d93c68.css.map",
+    "main.e5eb737a.js.map": "/static/js/main.e5eb737a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81d93c68.css",
+    "static/js/main.e5eb737a.js"
+  ]
+}
