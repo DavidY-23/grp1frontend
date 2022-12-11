@@ -43,7 +43,6 @@ function List(props) {
             personFilters(data);
         }
     }
-
     async function personFilters(array) {
         let personal_array = [];
         let ingredients_to_prioritize = [];
