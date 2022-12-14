@@ -7,7 +7,6 @@ Our app was deployed using Firebase Hosting and can be found [here](https://caps
 
 To use the Locator section of our app, you would need to enable the server [here](https://cors-anywhere.herokuapp.com/corsdemo).
 
-To test 
 # Link to our recipe search API:
 https://www.themealdb.com/ 
 
